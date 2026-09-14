@@ -1,0 +1,20 @@
+from app.db.base import Base, TimestampMixin, GUID
+from app.models.user import User, UserRole, UserStatus
+from app.models.audit_log import AuditLog
+from app.models.notification import Notification
+from app.models.role_profiles import CitizenProfile, FacultyProfile, StudentProfile, IndustryProfile
+
+__all__ = [
+    "Base",
+    "TimestampMixin",
+    "GUID",
+    "User",
+    "UserRole",
+    "UserStatus",
+    "AuditLog",
+    "Notification",
+    "CitizenProfile",
+    "FacultyProfile",
+    "StudentProfile",
+    "IndustryProfile",
+]

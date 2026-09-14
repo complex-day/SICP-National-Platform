@@ -1,0 +1,69 @@
+export type UserRole =
+  | "citizen"
+  | "student"
+  | "faculty"
+  | "industry"
+  | "government"
+  | "admin";
+
+export type UserStatus = "ACTIVE" | "PENDING" | "SUSPENDED" | "BANNED";
+
+export interface User {
+  id: string;
+  full_name: string;
+  email: string;
+  phone?: string | null;
+  role: UserRole;
+  status: UserStatus;
+  is_verified: boolean;
+  trust_score: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AuthTokens {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+  expires_in: number;
+}
+
+export interface LoginResponseData {
+  access_token: string;
+  refresh_token: string;
+  token_type: string;
+  expires_in: number;
+  role: UserRole;
+  user_id: string;
+  full_name: string;
+  email: string;
+}
+
+export interface RegisterResponseData {
+  user_id: string;
+  message: string;
+}
+
+export interface RefreshTokenResponseData {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+}
+
+export interface StandardResponse<T> {
+  success: true;
+  data: T;
+}
+
+export interface ErrorDetail {
+  code: string;
+  message: string;
+  details?: Record<string, unknown>;
+}
+
+export interface ErrorResponse {
+  success: false;
+  error: ErrorDetail;
+}
+
+export type ApiResponse<T> = StandardResponse<T> | ErrorResponse;
