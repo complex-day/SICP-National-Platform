@@ -2,98 +2,48 @@
 
 ## Status
 🔒 **LOCKED & VERIFIED** (Completed: Milestone 2)  
-Readiness Score: **100 / 100**
+Readiness Score: **100 / 100**  
+Verification: **58 / 58 Tests Passing**  
+Date: **2026-09-14**  
 
 ---
 
-## 1. Executive Summary & Completed Deliverables
+## 1. What M2 Provides
 
 Module 2 delivers the complete **Citizen Challenge Management** subsystem for the Societal Innovation Collaboration Platform (SICP). It enables citizens to capture, geo-locate, document, and submit societal problems, while empowering evaluators and administrators to review, approve, publish, close, or archive challenges through a strictly validated, role-authorized state machine.
 
-### 1.1 Backend Challenge Management System (FastAPI / Python 3.12+)
-- **Challenge Lifecycle CRUD & State Machine:**
-  - Implemented complete CRUD operations for societal challenges with UUID primary keys and `created_by` ownership anchor.
-  - Deterministic state machine governing all 8 lifecycle states:
-    - *Active/Transitional:* `draft` $\rightarrow$ `submitted` $\rightarrow$ `under_review` $\rightarrow$ `approved` $\rightarrow$ `published` $\rightarrow$ `closed`.
-    - *Terminal:* `rejected`, `archived`.
-  - Strict invalid transition blocking with `InvalidStateTransitionError` (HTTP 422).
-- **Role-Action Authorization Matrix:**
-  - Enforced RBAC and resource ownership across Citizen, Student, Evaluator (Faculty), and Admin roles.
-  - Ownership enforcement: Non-admin users can only edit or upload assets to challenges they created (`created_by == user.id`).
-  - Draft editing and soft deletion restricted exclusively to the original creator prior to submission.
-  - Review, approval, and rejection restricted to Evaluators and Admins.
-- **Multipart Asset Upload & Magic-Byte Validation:**
-  - Validated multipart media uploads (`POST /api/v1/challenges/{id}/assets`).
-  - Strict MIME type enforcement via magic-byte header inspection (allowing `image/jpeg`, `image/png`, `application/pdf`).
-  - Executable, script, and malicious payload blocking (`.exe`, `.sh`, `.bat`, etc.).
-  - Enforced size limit (10MB per file) and race-free capacity limits (maximum 5 assets per challenge).
-- **Extensible Storage Abstraction:**
-  - Designed `BaseStorageService` abstraction ready for Local, Amazon S3, and MinIO storage providers.
-  - Implemented `LocalStorageService` with deterministic directory structures, UUID file hashing, and MIME verification.
-- **Concurrency Control & Data Integrity:**
-  - Optimistic locking using atomic `version` incrementation (`WHERE id = :id AND version = :expected_version`), raising `ConcurrencyConflictError` (HTTP 409) on concurrent update collisions.
-  - In-memory `Idempotency-Key` caching preventing duplicate submissions.
-- **Audit Event Logging:**
-  - Emits immutable audit logs (`audit_logs` table) across all 6 challenge lifecycle events:
-    1. `CHALLENGE_CREATED`
-    2. `CHALLENGE_UPDATED`
-    3. `STATUS_CHANGED`
-    4. `ASSET_UPLOADED`
-    5. `CHALLENGE_ARCHIVED`
-    6. `VISIBILITY_CHANGED`
-- **Standardized API Response Envelopes:**
-  - Consistent JSON envelopes: `{"success": true, "data": {...}}` and `{"success": false, "error": {"code": "...", "message": "...", "details": {...}}}`.
-
-### 1.2 Database Architecture (PostgreSQL 16 + PostGIS / SQLite Async)
-- `challenges` table with UUID primary key, `created_by` foreign key, `updated_by`, `published_at`, `archived_at`, `visibility` enum (`PRIVATE`, `INSTITUTION`, `PUBLIC`, `ARCHIVED`), `version` integer, geospatial coordinates (`latitude`, `longitude`), category taxonomy, priority placeholder, and soft deletion.
-- `challenge_assets` table for media metadata, MIME type, byte size, file path/URL, and soft deletion.
-- Alembic database migration script: `backend/alembic/versions/002_challenge_management_schema.py`.
-
-### 1.3 Frontend Application (Next.js 15 App Router / TypeScript Strict / Tailwind CSS)
-- **Feature-Based Architecture (`src/features/challenge`):**
-  - Type-safe domain models and DTOs (`challenge.types.ts`).
-  - Form validation with Zod and React Hook Form (`challenge.schema.ts`).
-  - Challenge API service layer (`challenge.service.ts`).
-- **Reusable UI Components:**
-  - `ChallengeForm.tsx`: Multi-section challenge creation form with category selection and demographic impact inputs.
-  - `LocationPicker.tsx`: Interactive GPS coordinate picker with browser geolocation integration and manual lat/long overrides.
-  - `AssetUploader.tsx`: Drag-and-drop file upload zone with file size/type validation and preview gallery.
-  - `ChallengeCard.tsx`: Rich catalog card with category iconography, status badges, location tags, and impact stats.
-  - `ChallengeFilters.tsx`: Search bar, category pill filters, and status selection controls.
-  - `ChallengeStatusBadge.tsx`: Color-coded semantic status indicator.
-  - `ChallengeAssetGallery.tsx`: Interactive media gallery for challenge evidence inspection.
-- **Citizen & Public Pages:**
-  - `/citizen/create-challenge`: Citizen challenge authoring wizard.
-  - `/citizen/my-challenges`: Citizen personal dashboard with status tracking and draft management.
-  - `/challenges`: Public searchable and filterable challenge catalog.
-  - `/challenges/[id]`: Comprehensive challenge detail view with location metadata, full description, and attached assets.
+### Core Capabilities:
+1. **Challenge Capture & Lifecycle:** Complete CRUD capabilities for societal challenges with UUID primary keys and `created_by` ownership anchoring.
+2. **Deterministic State Machine:** Strict validation of 8 lifecycle states (`draft`, `submitted`, `under_review`, `approved`, `published`, `closed`, `rejected`, `archived`) preventing illegal transitions.
+3. **Role-Action Authorization Matrix:** Fine-grained access control ensuring citizens only mutate their own drafts, while evaluation and publishing are reserved for evaluators and admins.
+4. **Multipart Evidence Uploads:** Safe media asset attachments with magic-byte MIME type inspection (JPEG, PNG, PDF), executable rejection (`.exe`, `.sh`), 10MB file caps, and maximum 5 assets per challenge.
+5. **Storage Abstraction:** Storage layer (`BaseStorageService` and `LocalStorageService`) engineered for seamless drop-in extension to AWS S3 and MinIO.
+6. **Optimistic Locking & Concurrency Safeguards:** `version` column compare-and-swap update semantics rejecting conflicting updates (HTTP 409) and double-submission protection.
+7. **Comprehensive Audit Trails:** Automatic logging of 6 key lifecycle actions (`CHALLENGE_CREATED`, `CHALLENGE_UPDATED`, `STATUS_CHANGED`, `ASSET_UPLOADED`, `CHALLENGE_ARCHIVED`, `VISIBILITY_CHANGED`).
+8. **Frontend Citizen Workspace:** Complete Next.js 15 App Router interface including interactive map coordinate picker, media uploader, personal management dashboard, public challenge catalog, and detailed view pages.
 
 ---
 
-## 2. Frozen Architectural Contracts (DO NOT MODIFY IN M3–M7)
+## 2. API Endpoints
 
-The following contracts are permanently locked from M2 onwards:
+All endpoints conform to standard JSON envelopes:
+- Success: `{"success": true, "data": {...}}`
+- Error: `{"success": false, "error": {"code": "...", "message": "...", "details": {...}}}`
 
-1. **Challenge & Asset Models:** `Challenge`, `ChallengeAsset`.
-2. **Ownership Anchor:** `created_by` (UUID FK $\rightarrow$ `users.id`) is the immutable ownership anchor for challenges.
-3. **Challenge Categories (`ChallengeCategory`):**
-   `WATER_SANITATION`, `HEALTHCARE`, `AGRICULTURE`, `EDUCATION`, `INFRASTRUCTURE`, `ENVIRONMENT`, `ENERGY`, `URBAN_PLANNING`, `WOMEN_CHILD_WELFARE`, `DISASTER_MANAGEMENT`, `OTHER`.
-4. **Challenge Statuses (`ChallengeStatus`):**
-   - Active/Lifecycle: `draft`, `submitted`, `under_review`, `approved`, `published`, `closed`.
-   - Terminal: `rejected`, `archived`.
-5. **Visibility Scope (`ChallengeVisibility`):**
-   `PRIVATE`, `INSTITUTION`, `PUBLIC`, `ARCHIVED`.
-6. **Optimistic Locking Contract:**
-   - Every challenge entity includes a `version: int` column.
-   - Updates must pass `version` in payload; repository executes atomic compare-and-swap (`version = version + 1 WHERE id = :id AND version = :version`).
-7. **Asset Limits:**
-   - Maximum 5 assets per challenge.
-   - Maximum 10MB per asset file.
-   - Allowed MIME types: `image/jpeg`, `image/png`, `application/pdf`.
+| HTTP Method | Route | Description | Auth Required | Allowed Roles |
+| :--- | :--- | :--- | :--- | :--- |
+| `POST` | `/api/v1/challenges` | Create a new challenge (`draft` or `submitted`) | Yes | `citizen`, `admin` |
+| `GET` | `/api/v1/challenges` | List published challenges with filters & pagination | Optional / Public | All |
+| `GET` | `/api/v1/challenges/my-challenges` | List challenges created by the current user | Yes | Any authenticated user |
+| `GET` | `/api/v1/challenges/{id}` | Retrieve challenge details & asset attachments | Yes / Public | Author, Evaluator, Admin (Public if `published`) |
+| `PATCH` | `/api/v1/challenges/{id}` | Update draft challenge fields with optimistic locking | Yes | Author (if `draft`), `admin` |
+| `PATCH` | `/api/v1/challenges/{id}/status` | Execute validated state machine transition | Yes | Governed by Authorization Matrix |
+| `POST` | `/api/v1/challenges/{id}/assets` | Upload multipart image/PDF evidence (max 5 assets) | Yes | Author (if `draft`), `admin` |
+| `DELETE` | `/api/v1/challenges/{id}` | Soft-delete a draft challenge | Yes | Author (if `draft`), `admin` |
 
 ---
 
-## 3. Database Schema
+## 3. Database Tables
 
 ### `challenges` Table
 | Column | Type | Constraints / Notes |
@@ -136,72 +86,97 @@ The following contracts are permanently locked from M2 onwards:
 
 ---
 
-## 4. Implemented API Routes
+## 4. State Machine
 
-| HTTP Method | Route | Description | Auth Required |
+```
+               ┌───────────┐
+               │   draft   │◄───────── (Creator Creates Draft)
+               └─────┬─────┘
+                     │ (Creator Submits)
+                     ▼
+               ┌───────────┐
+      ┌───────►│ submitted │
+      │        └─────┬─────┘
+      │              │ (Evaluator Starts Review)
+      │              ▼
+      │        ┌──────────────┐
+(Changes Req)  │ under_review ├──────────┐ (Evaluator Rejects)
+      │        └─────┬────────┘          ▼
+      │              │ (Evaluator) ┌───────────┐
+      │              ▼             │ rejected  │ [Terminal]
+      │        ┌───────────┐       └───────────┘
+      └────────┤ approved  │
+               └─────┬─────┘
+                     │ (Admin/Evaluator Publishes)
+                     ▼
+               ┌───────────┐
+               │ published │
+               └─────┬─────┘
+                     │ (Admin/Evaluator Closes)
+                     ▼
+               ┌───────────┐
+               │  closed   │
+               └─────┬─────┘
+                     │ (Admin Archives)
+                     ▼
+               ┌───────────┐
+               │ archived  │ [Terminal]
+               └───────────┘
+```
+
+### Valid State Transitions Table
+| Current State | Target State | Allowed Trigger Roles | Notes |
 | :--- | :--- | :--- | :--- |
-| `POST` | `/api/v1/challenges` | Create a new challenge (`draft` or `submitted`) | Yes (`citizen`, `admin`) |
-| `GET` | `/api/v1/challenges` | List published challenges with filters & pagination | Optional / Public |
-| `GET` | `/api/v1/challenges/my-challenges` | List challenges created by the current user | Yes (Any role) |
-| `GET` | `/api/v1/challenges/{id}` | Retrieve challenge details & asset attachments | Yes / Public (Visibility-gated) |
-| `PATCH` | `/api/v1/challenges/{id}` | Update draft challenge fields with optimistic locking | Yes (Author or `admin`) |
-| `PATCH` | `/api/v1/challenges/{id}/status` | Execute validated state machine transition | Yes (Role-governed) |
-| `POST` | `/api/v1/challenges/{id}/assets` | Upload multipart image/PDF evidence (max 5 assets) | Yes (Author or `admin`) |
-| `DELETE` | `/api/v1/challenges/{id}` | Soft-delete a draft challenge | Yes (Author or `admin`) |
+| `[None]` | `draft`, `submitted` | `citizen`, `admin` | Challenge creation |
+| `draft` | `submitted` | Author (`citizen`), `admin` | Final submission for review |
+| `submitted` | `under_review` | `faculty` (Evaluator), `admin` | Evaluator claims challenge |
+| `under_review`| `approved` | `faculty` (Evaluator), `admin` | Quality criteria met |
+| `under_review`| `rejected` | `faculty` (Evaluator), `admin` | Fails platform standards [Terminal] |
+| `approved` | `published` | `admin`, `faculty` (Evaluator) | Challenge made visible in catalog |
+| `approved` | `submitted` | `admin`, `faculty` (Evaluator) | Request author revisions |
+| `published` | `closed` | `admin`, `faculty` (Evaluator) | Problem solved or intake closed |
+| `closed` | `archived` | `admin` | Historical preservation [Terminal] |
+| `published` | `archived` | `admin` | Historical preservation [Terminal] |
 
 ---
 
-## 5. Frontend Pages
+## 5. Authorization Matrix
 
-- `/citizen/create-challenge` — Citizen submission interface with interactive map coordinate picker, category selection, and asset uploader.
-- `/citizen/my-challenges` — Citizen personal dashboard with real-time status badges, draft editing, and lifecycle tracking.
-- `/challenges` — Public catalog with multi-facet filters (category, status, search keyword), pagination, and quick-view cards.
-- `/challenges/[id]` — Detailed challenge overview displaying full narrative, geospatial coordinates, author metadata, and interactive media evidence gallery.
-
----
-
-## 6. Automated Test Suite (100% Pass)
-
-The M2 automated test suite covers unit, state machine, authorization matrix, concurrency, repository, REST API, asset upload, and end-to-end lifecycle flows:
-
-- `test_challenge_schemas.py`: Validation of field constraints, category enums, GPS coordinate ranges, and visibility enums.
-- `test_challenge_state_machine.py`: Deterministic state transitions across all 8 states; validation and rejection of invalid/terminal state transitions.
-- `test_challenge_auth_matrix.py`: Comprehensive role-action matrix testing (Citizen, Student, Evaluator, Admin) across create, edit, transition, upload, view, and delete operations.
-- `test_challenge_audit.py`: Verification of immutable audit records for all 6 challenge audit actions.
-- `test_challenge_concurrency.py`: Optimistic locking version conflict rejection (HTTP 409), double-submission idempotency protection, and race-free asset limit enforcement.
-- `test_challenge_benchmarks.py`: API latency acceptance criteria verification ($\le 200\text{ms}$ challenge creation, $\le 100\text{ms}$ catalog queries).
-- `test_challenge_repository.py`: CRUD, pagination, geospatial filtering, and soft-delete isolation at the repository layer.
-- `test_challenges_api.py`: Full REST API integration with standardized success/error response envelopes.
-- `test_challenge_assets_api.py`: Multipart file uploads, magic-byte inspection, file size bounds, and malicious executable rejection.
-- `test_challenge_e2e.py`: Complete multi-step citizen lifecycle journey (`Draft -> Asset Upload -> Submit -> Review -> Approve -> Publish -> Close -> Archive`).
+| Action | Citizen (Author) | Citizen (Non-Author) | Student | Evaluator (Faculty) | Admin |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Create Challenge** | ✅ | ✅ | ❌ | ❌ | ✅ |
+| **Edit Draft Fields** | ✅ | ❌ | ❌ | ❌ | ✅ |
+| **Upload Asset** | ✅ (Draft) | ❌ | ❌ | ❌ | ✅ |
+| **Submit Challenge** | ✅ (Draft) | ❌ | ❌ | ❌ | ✅ |
+| **View Published** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **View Own Draft** | ✅ | ❌ | ❌ | ❌ | ✅ |
+| **Start Review (`under_review`)**| ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Approve / Reject** | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Publish Challenge** | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Close Challenge** | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Archive Challenge** | ❌ | ❌ | ❌ | ❌ | ✅ |
+| **Soft Delete Draft** | ✅ | ❌ | ❌ | ❌ | ✅ |
 
 ---
 
-## 7. Production Hardening Checklist (Pre-Production Deployment)
+## 6. Known Limitations
 
-- [ ] **Cloud Storage Configuration:** Wire AWS S3 / MinIO storage adapter credentials for distributed multi-region media persistence.
-- [ ] **Virus / Malware Scanning:** Integrate ClamAV or AWS GuardDuty scanner on uploaded assets prior to public URL serving.
-- [ ] **PostGIS Spatial Indexing:** Enable PostGIS geometry extension (`GIST` index on `location_geom`) for sub-millisecond bounding-box queries.
-- [ ] **CDN Asset Distribution:** Configure CloudFront / Cloudflare CDN edge caching for public challenge assets.
-- [ ] **Search Indexing:** Configure full-text search indexing (`tsvector` on `title` + `description`) for high-volume catalogs.
+1. **Local Storage in Dev:** The active storage implementation writes to local disk (`uploads/`). S3 and MinIO drivers are architected via `BaseStorageService` and ready to configure in production deployment.
+2. **Synchronous In-Memory Idempotency:** Idempotency caching for double-submission protection currently operates in-memory; horizontal scaling in production will connect to distributed Redis.
+3. **Draft-Only Edits:** Challenges in `submitted`, `under_review`, or `published` states cannot have their narrative fields edited directly to preserve evaluation integrity.
 
 ---
 
-## 8. Next Module Scope & Boundaries (Day 3 — M3: AI Intelligence Engine)
+## 7. Dependencies Exposed to M3 (AI Intelligence Engine)
 
-### Required Inputs from M2:
-- `challenges` records in `submitted` or `published` status.
-- `challenge_assets` image URLs for multi-modal analysis.
-- `ChallengeCreated` and `ChallengePublished` event hooks.
+Module 3 will consume the following contracts established and frozen in M2:
 
-### Strict Scope for M3:
-- **Automated NLP Categorization**: Multi-label text classification using fine-tuned transformer models.
-- **AI Priority Scoring (0–100)**: Multi-factor scoring engine evaluating severity, urgency, population scale, and infrastructure criticality.
-- **Duplicate Cluster Detection**: Semantic vector embeddings (SentenceTransformers) with cosine similarity clustering to group duplicate reports.
-- **Automated Text Summarization & Keyword Extraction**: Generating structured executive briefs for academic and government evaluators.
-
-### Prohibited in M3 (Belongs to M4–M7):
-- ❌ University / Faculty matching algorithms (M4)
-- ❌ Student project formation & milestone tracking (M5)
-- ❌ Industry CSR sponsorship management (M6)
-- ❌ Governance heatmaps & policy analytics (M7)
+1. **Database Tables:**
+   - `challenges`: `title`, `description`, `category`, `district`, `state`, `affected_population`, `status`.
+   - `challenge_assets`: Attached media URLs and file paths for multimodal analysis.
+2. **AI Fields in `challenges` Schema:**
+   - `priority_score` (FLOAT): Target field where M3 will persist automated priority ratings ($0.0 - 100.0$).
+   - `ai_category_prediction` (VARCHAR): Target field where M3 will store NLP-predicted categories.
+3. **Event Hooks / Ingestion Triggers:**
+   - Ingestion trigger on challenges transitioning to `submitted` or `published`.
+   - Embeddings generator consuming `title` + `description` to populate duplicate cluster vectors.

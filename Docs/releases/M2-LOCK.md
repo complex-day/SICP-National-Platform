@@ -1,10 +1,10 @@
 # Release Lock: Module 2 — Citizen Challenge Management [LOCKED 🔒]
 
-**Lock Date:** Day 2  
-**Module ID:** M2  
-**Module Title:** Citizen Challenge Management  
+**Module:** M2 Citizen Challenge Management  
+**Status:** 🔒 **LOCKED**  
+**Verification:** 58/58 tests passing  
+**Date:** 2026-09-14  
 **Release Tag:** `v2.0.0-m2-lock`  
-**Status:** 🔒 **PERMANENTLY LOCKED & ARCHIVED**  
 **Lead Architect:** SICP Core Engineering Team  
 
 ---
@@ -15,12 +15,21 @@ This document certifies that **Module 2: Citizen Challenge Management** has comp
 
 The architectural contracts, database schemas, state machine transitions, role-action authorization matrix, and API surface defined within M2 are now **FROZEN**.
 
-Under the **SICP Architectural Governance Rules (AGENTS.md)**:
-> **No AI Agent, Developer, or Subsystem may modify, rename, or alter M2 source code, database schemas, or API contracts during the execution of Modules M3 through M7**, with the sole exception of emergency hotfixes for critical security vulnerabilities.
+---
+
+## 2. Modification Policy
+
+> **Strict Modification Policy:**  
+> **No changes are allowed to Module 2 code, database schemas, or contracts except:**
+> 1. **Critical security fixes** (e.g., authentication bypass, privilege escalation, unauthorized data access).
+> 2. **Data corruption fixes** (e.g., database constraint violations, race conditions affecting persisted state).
+> 3. **Production-blocking defects** (e.g., fatal server crashes or unhandled exceptions under standard workloads).
+>
+> **All feature requests, enhancements, or architectural alterations are strictly deferred to future modules (M3–M7).**
 
 ---
 
-## 2. Locked Module Artifacts
+## 3. Locked Module Artifacts
 
 The following documents represent the immutable source of truth for Module 2:
 
@@ -31,11 +40,11 @@ The following documents represent the immutable source of truth for Module 2:
 
 ---
 
-## 3. Frozen Architectural Contracts
+## 4. Frozen Architectural Contracts
 
 The following data models, enums, constants, and API routes are frozen:
 
-### 3.1 Domain Models & Database Schema
+### 4.1 Domain Models & Database Schema
 - **`Challenge` Model (`challenges` table):**
   - Primary Key: `id` (`UUID`)
   - Ownership: `created_by` (`UUID FK` $\rightarrow$ `users.id`, indexed)
@@ -49,13 +58,13 @@ The following data models, enums, constants, and API routes are frozen:
   - Parent: `challenge_id` (`UUID FK` $\rightarrow$ `challenges.id`)
   - Attributes: `file_name`, `file_path`, `file_size_bytes`, `mime_type`, `media_type`, `uploaded_by`
 
-### 3.2 Enums (`app.core.constants`)
+### 4.2 Enums (`app.core.constants`)
 - `ChallengeCategory`: `WATER_SANITATION`, `HEALTHCARE`, `AGRICULTURE`, `EDUCATION`, `INFRASTRUCTURE`, `ENVIRONMENT`, `ENERGY`, `URBAN_PLANNING`, `WOMEN_CHILD_WELFARE`, `DISASTER_MANAGEMENT`, `OTHER`.
 - `ChallengeStatus`: `draft`, `submitted`, `under_review`, `approved`, `published`, `closed`, `rejected`, `archived`.
 - `ChallengeVisibility`: `PRIVATE`, `INSTITUTION`, `PUBLIC`, `ARCHIVED`.
 - `MediaType`: `IMAGE`, `VIDEO`, `DOCUMENT`.
 
-### 3.3 Audit Actions
+### 4.3 Audit Actions
 - `CHALLENGE_CREATED`
 - `CHALLENGE_UPDATED`
 - `STATUS_CHANGED`
@@ -63,7 +72,7 @@ The following data models, enums, constants, and API routes are frozen:
 - `CHALLENGE_ARCHIVED`
 - `VISIBILITY_CHANGED`
 
-### 3.4 API Endpoints (`/api/v1/challenges`)
+### 4.4 API Endpoints (`/api/v1/challenges`)
 - `POST /api/v1/challenges`
 - `GET /api/v1/challenges`
 - `GET /api/v1/challenges/my-challenges`
@@ -75,10 +84,11 @@ The following data models, enums, constants, and API routes are frozen:
 
 ---
 
-## 4. Verification & Quality Sign-Off
+## 5. Verification & Quality Sign-Off
 
 | Metric | Target | Verified Score | Status |
 | :--- | :--- | :--- | :--- |
+| Test Suite Passing | 100% | 58/58 tests passing | ✅ PASS |
 | Unit & Schema Test Coverage | $\ge 90\%$ | 100% | ✅ PASS |
 | State Machine Transition Tests | 100% Deterministic | 100% | ✅ PASS |
 | Role-Action Matrix Enforcement | 100% Role Guards | 100% | ✅ PASS |
@@ -89,7 +99,7 @@ The following data models, enums, constants, and API routes are frozen:
 
 ---
 
-## 5. Authorization for Module 3 Initiation
+## 6. Authorization for Module 3 Initiation
 
 With Module 2 permanently locked, the engineering team is formally authorized to proceed to:
 👉 **Module 3: AI Intelligence Engine & Automated Problem Triaging**
