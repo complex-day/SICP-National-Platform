@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, Optional, Set
+import uuid
 import jwt
 from passlib.context import CryptContext
 from app.core.config import settings
@@ -30,7 +31,7 @@ def create_access_token(
     extra_claims: Optional[Dict[str, Any]] = None,
     expires_delta: Optional[timedelta] = None
 ) -> str:
-    """Creates a short-lived JWT access token (15 mins default)."""
+    """Creates a short-lived JWT access token (15 mins default) with unique jti identifier."""
     now = datetime.now(timezone.utc)
     if expires_delta:
         expire = now + expires_delta
@@ -41,6 +42,7 @@ def create_access_token(
         "sub": str(subject),
         "role": role,
         "type": "access",
+        "jti": str(uuid.uuid4()),
         "iat": now,
         "exp": expire,
     }
@@ -55,7 +57,7 @@ def create_refresh_token(
     subject: str,
     expires_delta: Optional[timedelta] = None
 ) -> str:
-    """Creates a long-lived JWT refresh token (7 days default)."""
+    """Creates a long-lived JWT refresh token (7 days default) with unique jti identifier."""
     now = datetime.now(timezone.utc)
     if expires_delta:
         expire = now + expires_delta
@@ -65,6 +67,7 @@ def create_refresh_token(
     to_encode: Dict[str, Any] = {
         "sub": str(subject),
         "type": "refresh",
+        "jti": str(uuid.uuid4()),
         "iat": now,
         "exp": expire,
     }

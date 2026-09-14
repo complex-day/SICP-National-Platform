@@ -3,6 +3,7 @@ from app.models.user import User, UserRole, UserStatus
 from app.models.audit_log import AuditLog
 from app.models.notification import Notification
 from app.models.role_profiles import CitizenProfile, FacultyProfile, StudentProfile, IndustryProfile
+from app.models.challenge import Challenge, ChallengeAsset
 
 __all__ = [
     "Base",
@@ -17,4 +18,7 @@ __all__ = [
     "FacultyProfile",
     "StudentProfile",
     "IndustryProfile",
+    "Challenge",
+    "ChallengeAsset",
 ]
+

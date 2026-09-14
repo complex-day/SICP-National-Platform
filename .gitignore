@@ -68,3 +68,7 @@ Thumbs.db
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Uploads & Runtime Media
+uploads/
+backend/uploads/

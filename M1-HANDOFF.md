@@ -48,8 +48,8 @@ The following contracts are permanently locked from M1 onwards:
    - Success: `{"success": true, "data": {}}`
    - Error: `{"success": false, "error": {"code": "...", "message": "...", "details": {}}}`
 5. **JWT Payload Structure:**
-   - Access Token: `sub` (UUID), `role`, `type: "access"`, `email`, `name`, `exp` (15 mins).
-   - Refresh Token: `sub` (UUID), `type: "refresh"`, `exp` (7 days).
+   - Access Token: `sub` (UUID), `role`, `type: "access"`, `jti` (UUID), `email`, `name`, `exp` (15 mins).
+   - Refresh Token: `sub` (UUID), `type: "refresh"`, `jti` (UUID), `exp` (7 days).
 6. **RBAC Middleware Contract:** `require_roles(["role1", "role2"])` with `admin` bypass.
 
 ---

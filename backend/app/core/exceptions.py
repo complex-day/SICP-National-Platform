@@ -67,3 +67,54 @@ class ValidationException(AppException):
             message=message,
             details=details
         )
+
+
+class InvalidStateTransitionError(AppException):
+    def __init__(self, message: str = "Invalid state transition", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="INVALID_STATE_TRANSITION",
+            message=message,
+            details=details
+        )
+
+
+class ConcurrencyConflictError(AppException):
+    def __init__(self, message: str = "Resource version conflict. The resource was modified concurrently.", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="CONCURRENCY_CONFLICT",
+            message=message,
+            details=details
+        )
+
+
+class MaxAssetsExceededError(AppException):
+    def __init__(self, message: str = "Maximum number of assets (5) exceeded for this challenge.", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="MAX_ASSETS_EXCEEDED",
+            message=message,
+            details=details
+        )
+
+
+class PayloadTooLargeError(AppException):
+    def __init__(self, message: str = "File size exceeds allowable limits", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            code="PAYLOAD_TOO_LARGE",
+            message=message,
+            details=details
+        )
+
+
+class UnsupportedMediaTypeError(AppException):
+    def __init__(self, message: str = "Unsupported media or MIME type", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
+            code="UNSUPPORTED_MEDIA_TYPE",
+            message=message,
+            details=details
+        )
+

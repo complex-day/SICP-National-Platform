@@ -141,6 +141,14 @@ async def test_login_success_and_profile_retrieval(client: AsyncClient):
     new_access_token = refresh_res.json()["data"]["access_token"]
     assert new_access_token != access_token
 
+    # Verify jti uniqueness and identity preservation
+    from app.core import security
+    orig_claims = security.decode_token(access_token)
+    new_claims = security.decode_token(new_access_token)
+    assert orig_claims["jti"] != new_claims["jti"]
+    assert orig_claims["sub"] == new_claims["sub"]
+    assert new_claims["role"] == "faculty"
+
     # 5. Access Profile with New Token
     profile_res_2 = await client.get(
         "/api/v1/auth/me",

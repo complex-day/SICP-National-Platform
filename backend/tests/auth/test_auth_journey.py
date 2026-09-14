@@ -67,6 +67,14 @@ async def test_complete_authentication_journey(client: AsyncClient, db_session: 
     access_token_2 = refresh_data["data"]["access_token"]
     assert access_token_2 != access_token_1
 
+    # Verify jti uniqueness and identity match
+    from app.core import security
+    claims_1 = security.decode_token(access_token_1)
+    claims_2 = security.decode_token(access_token_2)
+    assert claims_1["jti"] != claims_2["jti"]
+    assert claims_1["sub"] == claims_2["sub"]
+    assert claims_2["role"] == "citizen"
+
     # -------------------------------------------------------------
     # Step 4: Retrieve authenticated Profile (/me) using new token
     # -------------------------------------------------------------
