@@ -118,3 +118,76 @@ class UnsupportedMediaTypeError(AppException):
             details=details
         )
 
+
+# --- Module 3 Exceptions ---
+
+class DuplicateTeamMembershipError(AppException):
+    def __init__(self, message: str = "User is already an active member of a team solving this challenge", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_TEAM_MEMBERSHIP",
+            message=message,
+            details=details
+        )
+
+
+class DuplicateTeamOwnershipError(AppException):
+    def __init__(self, message: str = "User already owns an active team associated with this challenge", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_ACTIVE_TEAM_OWNERSHIP",
+            message=message,
+            details=details
+        )
+
+
+class TeamCapacityExceededError(AppException):
+    def __init__(self, message: str = "Team has reached its maximum student contributor capacity", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="TEAM_CAPACITY_EXCEEDED",
+            message=message,
+            details=details
+        )
+
+
+class MentorCapacityExceededError(AppException):
+    def __init__(self, message: str = "Team has reached its maximum mentor capacity (max 2 mentors)", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="MENTOR_CAPACITY_EXCEEDED",
+            message=message,
+            details=details
+        )
+
+
+class InvalidTeamStateError(AppException):
+    def __init__(self, message: str = "Cannot perform operations on a team in its current state", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="INVALID_TEAM_STATE",
+            message=message,
+            details=details
+        )
+
+
+class InvitationExpiredError(AppException):
+    def __init__(self, message: str = "This invitation has expired", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="INVITATION_EXPIRED",
+            message=message,
+            details=details
+        )
+
+
+class BadRequestError(AppException):
+    def __init__(self, message: str = "Bad request", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="BAD_REQUEST",
+            message=message,
+            details=details
+        )
+
+

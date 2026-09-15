@@ -4,6 +4,7 @@ from app.models.audit_log import AuditLog
 from app.models.notification import Notification
 from app.models.role_profiles import CitizenProfile, FacultyProfile, StudentProfile, IndustryProfile
 from app.models.challenge import Challenge, ChallengeAsset
+from app.models.team import Team, TeamMember
 
 __all__ = [
     "Base",
@@ -20,5 +21,8 @@ __all__ = [
     "IndustryProfile",
     "Challenge",
     "ChallengeAsset",
+    "Team",
+    "TeamMember",
 ]
+
 
