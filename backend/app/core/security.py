@@ -26,10 +26,12 @@ def get_password_hash(password: str) -> str:
 
 
 def create_access_token(
-    subject: str,
-    role: str,
+    subject: Any,
+    role: Any,
     extra_claims: Optional[Dict[str, Any]] = None,
-    expires_delta: Optional[timedelta] = None
+    expires_delta: Optional[timedelta] = None,
+    email: Optional[str] = None,
+    name: Optional[str] = None,
 ) -> str:
     """Creates a short-lived JWT access token (15 mins default) with unique jti identifier."""
     now = datetime.now(timezone.utc)
@@ -38,14 +40,19 @@ def create_access_token(
     else:
         expire = now + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     
+    role_str = role.value if hasattr(role, "value") else str(role)
     to_encode: Dict[str, Any] = {
         "sub": str(subject),
-        "role": role,
+        "role": role_str,
         "type": "access",
         "jti": str(uuid.uuid4()),
         "iat": now,
         "exp": expire,
     }
+    if email:
+        to_encode["email"] = email
+    if name:
+        to_encode["name"] = name
     if extra_claims:
         to_encode.update(extra_claims)
         

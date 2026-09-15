@@ -5,6 +5,14 @@ from app.models.notification import Notification
 from app.models.role_profiles import CitizenProfile, FacultyProfile, StudentProfile, IndustryProfile
 from app.models.challenge import Challenge, ChallengeAsset
 from app.models.team import Team, TeamMember
+from app.models.academic import (
+    University,
+    UniversityAdministrator,
+    Department,
+    FacultyAffiliation,
+    AcademicIntake,
+    IntakeTeamAllocation,
+)
 
 __all__ = [
     "Base",
@@ -23,6 +31,12 @@ __all__ = [
     "ChallengeAsset",
     "Team",
     "TeamMember",
+    "University",
+    "UniversityAdministrator",
+    "Department",
+    "FacultyAffiliation",
+    "AcademicIntake",
+    "IntakeTeamAllocation",
 ]
 
 

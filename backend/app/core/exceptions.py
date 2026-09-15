@@ -191,3 +191,146 @@ class BadRequestError(AppException):
         )
 
 
+# --- Module 4 Academic Collaboration Exceptions ---
+
+class UniversityNotFoundError(AppException):
+    def __init__(self, message: str = "University not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="UNIVERSITY_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class DuplicateUniversityError(AppException):
+    def __init__(self, message: str = "University with this name or code already exists", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_UNIVERSITY",
+            message=message,
+            details=details
+        )
+
+
+class UniversitySuspendedError(AppException):
+    def __init__(self, message: str = "University is suspended and cannot perform new academic actions", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="UNIVERSITY_SUSPENDED",
+            message=message,
+            details=details
+        )
+
+
+class DepartmentNotFoundError(AppException):
+    def __init__(self, message: str = "Department not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="DEPARTMENT_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class DuplicateDepartmentError(AppException):
+    def __init__(self, message: str = "Department with this name or code already exists in the university", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_DEPARTMENT",
+            message=message,
+            details=details
+        )
+
+
+class InvalidHODAffiliationError(AppException):
+    def __init__(self, message: str = "Designated Head of Department must hold an active affiliation in this department and university", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="INVALID_HOD_AFFILIATION",
+            message=message,
+            details=details
+        )
+
+
+class FacultyAffiliationNotFoundError(AppException):
+    def __init__(self, message: str = "Faculty affiliation not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="AFFILIATION_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class DuplicateActiveAffiliationError(AppException):
+    def __init__(self, message: str = "Faculty member already holds an active university department affiliation", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_ACTIVE_AFFILIATION",
+            message=message,
+            details=details
+        )
+
+
+class AcademicIntakeNotFoundError(AppException):
+    def __init__(self, message: str = "Academic challenge intake not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="INTAKE_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class DuplicateChallengeClaimError(AppException):
+    def __init__(self, message: str = "University has already claimed this challenge", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_CHALLENGE_CLAIM",
+            message=message,
+            details=details
+        )
+
+
+class ChallengeAlreadyAssignedError(AppException):
+    def __init__(self, message: str = "Challenge cannot be claimed because it is no longer open for academic intake", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="CHALLENGE_NOT_OPEN_FOR_INTAKE",
+            message=message,
+            details=details
+        )
+
+
+class FacultyMentorCapacityExceededError(AppException):
+    def __init__(self, message: str = "Faculty member has reached the platform maximum of 3 active mentoring allocations", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="FACULTY_MENTOR_CAPACITY_EXCEEDED",
+            message=message,
+            details=details
+        )
+
+
+class DuplicateChallengeMentorshipError(AppException):
+    def __init__(self, message: str = "Faculty member is already mentoring another team solving this exact challenge", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_CHALLENGE_MENTORSHIP",
+            message=message,
+            details=details
+        )
+
+
+class ActiveAcademicBindingsExistError(AppException):
+    def __init__(self, message: str = "Cannot delete university because active affiliations or in-progress challenge intakes exist", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="ACTIVE_ACADEMIC_BINDINGS_EXIST",
+            message=message,
+            details=details
+        )
+
+
+
