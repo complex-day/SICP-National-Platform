@@ -333,4 +333,147 @@ class ActiveAcademicBindingsExistError(AppException):
         )
 
 
+# --- Module 5 Innovation Project Lifecycle Exceptions ---
+
+class ProjectNotFoundError(AppException):
+    def __init__(self, message: str = "Innovation project not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="PROJECT_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class DuplicateProjectAllocationError(AppException):
+    def __init__(self, message: str = "An innovation project is already active for this academic intake team allocation", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_PROJECT_ALLOCATION",
+            message=message,
+            details=details
+        )
+
+
+class InvalidAllocationBindingError(AppException):
+    def __init__(self, message: str = "Specified intake team allocation is invalid, inactive, or not assigned to team", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="INVALID_ALLOCATION_BINDING",
+            message=message,
+            details=details
+        )
+
+
+class InvalidMilestoneWeightSumError(AppException):
+    def __init__(self, message: str = "Milestone weights must sum to exactly 100", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            code="INVALID_MILESTONE_WEIGHT_SUM",
+            message=message,
+            details=details
+        )
+
+
+class MilestoneNotFoundError(AppException):
+    def __init__(self, message: str = "Project milestone not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="MILESTONE_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class DuplicateMilestoneSequenceError(AppException):
+    def __init__(self, message: str = "A milestone with this sequence index already exists in this project", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_MILESTONE_SEQUENCE",
+            message=message,
+            details=details
+        )
+
+
+class PreviousMilestonesIncompleteError(AppException):
+    def __init__(self, message: str = "Previous sequential milestones must be approved before submitting this milestone", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="PREVIOUS_MILESTONES_INCOMPLETE",
+            message=message,
+            details=details
+        )
+
+
+class ApprovedMilestoneImmutableError(AppException):
+    def __init__(self, message: str = "Approved milestones are immutable and cannot be updated or deleted", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="APPROVED_MILESTONE_IMMUTABLE",
+            message=message,
+            details=details
+        )
+
+
+class DeliverableNotFoundError(AppException):
+    def __init__(self, message: str = "Project deliverable not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="DELIVERABLE_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class DeliverableLockedForReviewError(AppException):
+    def __init__(self, message: str = "Deliverables attached to submitted or under-review milestones are locked", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="DELIVERABLE_LOCKED_FOR_REVIEW",
+            message=message,
+            details=details
+        )
+
+
+class DuplicateAssetDetectedError(AppException):
+    def __init__(self, message: str = "Duplicate asset with identical checksum already exists for this milestone", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_ASSET_DETECTED",
+            message=message,
+            details=details
+        )
+
+
+class UnauthorizedReviewerError(AppException):
+    def __init__(self, message: str = "User is not authorized to review or sign off on this project milestone", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="UNAUTHORIZED_REVIEWER",
+            message=message,
+            details=details
+        )
+
+
+class ProjectNotReadyForCompletionError(AppException):
+    def __init__(self, message: str = "Project cannot be completed until all mandatory milestones are approved (100% progress)", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="PROJECT_NOT_READY_FOR_COMPLETION",
+            message=message,
+            details=details
+        )
+
+
+class OptimisticLockError(AppException):
+    def __init__(self, message: str = "Resource version conflict. The resource was modified concurrently.", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="OPTIMISTIC_LOCK_ERROR",
+            message=message,
+            details=details
+        )
+
+
+
 

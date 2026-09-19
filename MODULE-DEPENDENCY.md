@@ -1,6 +1,6 @@
 # SICP Module Dependency & Data Flow Map
 
-**Document Version:** 4.0  
+**Document Version:** 5.0  
 **Project:** Societal Innovation Collaboration Platform (SICP)  
 **Architecture Style:** Modular Monolith $\rightarrow$ Event-Driven Microservices Ready  
 
@@ -24,13 +24,13 @@ graph TD
     M2 --> M4
     M3 --> M4
 
-    M5["<b>M5: Innovation Project Lifecycle [NEXT 📋]</b><br/>Projects, Milestones, Deliverables, Code Repos, Sprint Tracking"]
+    M5["<b>M5: Innovation Project Lifecycle [LOCKED 🔒]</b><br/>Projects, Milestones, Deliverables, Code Repos, Sprint Tracking"]
     M1 --> M5
     M2 --> M5
     M3 --> M5
     M4 --> M5
 
-    M6["<b>M6: Industry Partnership Network</b><br/>CSR Sponsorship, Mentorship Allocation, Resource Contributions"]
+    M6["<b>M6: Industry Partnership Network [NEXT 📋]</b><br/>CSR Sponsorship, Mentorship Allocation, Resource Contributions"]
     M1 --> M6
     M4 --> M6
     M5 --> M6
@@ -46,9 +46,9 @@ graph TD
     classDef locked fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#fff;
     classDef nextModule fill:#1e3a5f,stroke:#38bdf8,stroke-width:3px,color:#fff;
     classDef upcoming fill:#1e293b,stroke:#64748b,stroke-width:2px,color:#fff;
-    class M1,M2,M3,M4 locked;
-    class M5 nextModule;
-    class M6,M7 upcoming;
+    class M1,M2,M3,M4,M5 locked;
+    class M6 nextModule;
+    class M7 upcoming;
 ```
 
 ---
@@ -78,7 +78,7 @@ graph TD
   - Authenticated citizen UUID (`current_user.id`).
   - `citizens` table foreign key target (`challenges.citizen_id -> citizens.user_id`).
   - RBAC guard: `require_roles(["citizen", "admin"])`.
-  - `AuditRepository.log` for audit event generation (`CHALLENGE_CREATED`, etc.).
+  - `AuditRepository.create_log` for audit event generation (`CHALLENGE_CREATED`, etc.).
 - **Core Entities Created:**
   - `challenges`: Title, description, category, affected population, latitude/longitude, district, state, workflow status (`draft`, `submitted`, `under_review`, `approved`, `published`, `in_progress`, `resolved`, `closed`), optimistic locking version.
   - `challenge_assets`: Storage URLs, media types (`image`, `video`, `document`), upload timestamps.
@@ -130,25 +130,26 @@ graph TD
 ---
 
 ### Module 5: Innovation Project Lifecycle
-- **Status:** 📋 **NEXT IN QUEUE**
+- **Status:** 🔒 **LOCKED & COMPLETE** (`v5.0.0-m5-lock`)
 - **Dependencies:** **M1 (IAM) + M2 (Challenge Management) + M3 (Teams) + M4 (Academic Hub)**
 - **Inputs Consumed:**
   - Bound `intake_team_allocations` from **M4** linking challenge, student team, university department, and faculty mentor.
   - Team roster and leader from **M3**.
   - Verified challenge context and population metrics from **M2**.
-- **Core Entities to Create:**
-  - `projects`: Title, description, status (`proposal`, `prototype`, `pilot`, `deployment`, `completed`), impact score, repository links.
-  - `project_milestones`: Title, description, due date, deliverables, review status, faculty mentor sign-off.
-  - `project_deliverables`: Artifacts, code repositories, test reports, verification proofs.
-  - `project_updates`: Sprint progress logs and team discussions.
+- **Core Entities Created:**
+  - `projects`: Title, description, status (`PROPOSAL`, `ACTIVE`, `PROTOTYPE`, `PILOT`, `REVIEW_READY`, `COMPLETED`, `SUSPENDED`, `TERMINATED`, `ABANDONED`), stage, project outcome (`SUCCESS`, `PARTIAL_SUCCESS`, `FAILED`, `ABANDONED`), progress percentage, repository links.
+  - `project_milestones`: Title, description, sequence, weight (sum=100), due date, acceptance criteria, review status, faculty mentor sign-off.
+  - `project_deliverables`: Multi-type artifacts, code repositories, test reports, SHA-256 hashes, version chains.
+  - `project_reviews`: Rubric scores, decisions (`APPROVED`, `CHANGES_REQUESTED`, `REJECTED`), feedback, immutable ledger.
+  - `project_updates`: Sprint progress telemetry and blocker notes.
 - **Events Published:**
-  - `PROJECT_CREATED`, `MILESTONE_SUBMITTED`, `MILESTONE_APPROVED`, `PROJECT_COMPLETED`.
+  - 15 project lifecycle audit actions (`PROJECT_CREATED`, `PROJECT_ROADMAP_ACTIVATED`, `MILESTONE_APPROVED`, `PROJECT_COMPLETED`, etc.).
 - **Next Module Dependency:** Validated innovation projects and prototype funding requirements feed into **M6** (Industry Sponsorship).
 
 ---
 
 ### Module 6: Industry Partnership Network
-- **Status:** 📋 **Upcoming**
+- **Status:** 📋 **NEXT IN QUEUE**
 - **Dependencies:** **M1 (IAM) + M4 (Academic Hub) + M5 (Project Lifecycle)**
 - **Inputs Consumed:**
   - `industries` profile table from **M1**.
@@ -190,7 +191,7 @@ graph TD
 | **M1** | Identity & Access Management (IAM) | `v1.0.0-m1-lock` | 🔒 **LOCKED** | Passing (100%) |
 | **M2** | Citizen Challenge Management | `v2.0.0-m2-lock` | 🔒 **LOCKED** | Passing (100%) |
 | **M3** | Team Formation & Collaboration | `v3.0.0-m3-lock` | 🔒 **LOCKED** | Passing (100%) |
-| **M4** | Academic Collaboration Hub | `v4.0.0-m4-lock` | 🔒 **LOCKED** | 24/24 Passing (100%) |
-| **M5** | Innovation Project Lifecycle | `v5.0.0-m5-candidate` | 📋 **NEXT** | Pending Implementation |
-| **M6** | Industry Partnership Network | `v6.0.0-m6-candidate` | 📋 Queued | Pending M5 |
+| **M4** | Academic Collaboration Hub | `v4.0.0-m4-lock` | 🔒 **LOCKED** | Passing (100%) |
+| **M5** | Innovation Project Lifecycle | `v5.0.0-m5-lock` | 🔒 **LOCKED** | Passing (100%) |
+| **M6** | Industry Partnership Network | `v6.0.0-m6-candidate` | 📋 **NEXT** | Pending Implementation |
 | **M7** | Governance & Impact Intelligence | `v7.0.0-m7-candidate` | 📋 Queued | Pending M6 |

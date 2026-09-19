@@ -13,6 +13,13 @@ from app.models.academic import (
     AcademicIntake,
     IntakeTeamAllocation,
 )
+from app.models.project import (
+    InnovationProject,
+    ProjectMilestone,
+    ProjectDeliverable,
+    ProjectReview,
+    ProjectUpdate,
+)
 
 __all__ = [
     "Base",
@@ -37,6 +44,12 @@ __all__ = [
     "FacultyAffiliation",
     "AcademicIntake",
     "IntakeTeamAllocation",
+    "InnovationProject",
+    "ProjectMilestone",
+    "ProjectDeliverable",
+    "ProjectReview",
+    "ProjectUpdate",
 ]
+
 
 
