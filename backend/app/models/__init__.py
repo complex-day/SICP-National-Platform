@@ -26,6 +26,12 @@ from app.models.partnership import (
     SponsorshipDisbursement,
     MentorshipSession,
 )
+from app.models.governance import (
+    DistrictImpactSnapshot,
+    UniversityPerformanceSnapshot,
+    SponsorReliabilitySnapshot,
+    ProjectImpactReport,
+)
 
 __all__ = [
     "Base",
@@ -59,7 +65,12 @@ __all__ = [
     "PartnershipAgreement",
     "SponsorshipDisbursement",
     "MentorshipSession",
+    "DistrictImpactSnapshot",
+    "UniversityPerformanceSnapshot",
+    "SponsorReliabilitySnapshot",
+    "ProjectImpactReport",
 ]
+
 
 
 
