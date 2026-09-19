@@ -30,12 +30,12 @@ graph TD
     M3 --> M5
     M4 --> M5
 
-    M6["<b>M6: Industry Partnership Network [NEXT 📋]</b><br/>CSR Sponsorship, Mentorship Allocation, Resource Contributions"]
+    M6["<b>M6: Industry Partnership Network [LOCKED 🔒]</b><br/>CSR Sponsorship, Corporate Mentorship, Equipment Manifests, Field Pilots"]
     M1 --> M6
     M4 --> M6
     M5 --> M6
 
-    M7["<b>M7: Governance & Impact Intelligence</b><br/>District Analytics, Impact Metrics, Government Dashboard, Production Hardening"]
+    M7["<b>M7: Governance & Impact Intelligence [NEXT 📋]</b><br/>District Analytics, Impact Metrics, Government Dashboard, Production Hardening"]
     M1 --> M7
     M2 --> M7
     M3 --> M7
@@ -46,9 +46,8 @@ graph TD
     classDef locked fill:#0f382c,stroke:#10b981,stroke-width:2px,color:#fff;
     classDef nextModule fill:#1e3a5f,stroke:#38bdf8,stroke-width:3px,color:#fff;
     classDef upcoming fill:#1e293b,stroke:#64748b,stroke-width:2px,color:#fff;
-    class M1,M2,M3,M4,M5 locked;
-    class M6 nextModule;
-    class M7 upcoming;
+    class M1,M2,M3,M4,M5,M6 locked;
+    class M7 nextModule;
 ```
 
 ---
@@ -149,32 +148,38 @@ graph TD
 ---
 
 ### Module 6: Industry Partnership Network
-- **Status:** 📋 **NEXT IN QUEUE**
+- **Status:** 🔒 **LOCKED & COMPLETE** (`v6.0.0-m6-lock`)
 - **Dependencies:** **M1 (IAM) + M4 (Academic Hub) + M5 (Project Lifecycle)**
 - **Inputs Consumed:**
-  - `industries` profile table from **M1**.
+  - `industry_partners` profile table from **M1/M6**.
   - Active innovation projects needing funding/mentorship from **M5**.
-- **Core Entities to Create:**
-  - `industry_partnerships`: Project ID, Industry ID, contribution type (`CSR Funding`, `Mentorship`, `Equipment`, `Cloud Credits`), funding amount.
-  - `industry_capability_profiles`: Domain interest, CSR focus areas, budget allocations.
-- **Services to Build:**
-  - Project Marketplace for industry CSR discovery.
-  - Sponsorship & equipment contribution workflow.
-  - Industrial mentor assignment.
+- **Core Entities Created:**
+  - `industry_partners`: Company name, domain, CIN number, CSR budget, point-of-contact, accreditation status (`PENDING_VERIFICATION`, `VERIFIED`, `REJECTED`, `SUSPENDED`).
+  - `partnership_agreements`: Partner ID, Project ID, partnership type (`FUNDING`, `MENTORSHIP`, `EQUIPMENT`, `PILOT_DEPLOYMENT`, `CSR_GRANT`), status, promised/released funds, promised/completed hours, equipment manifest, pilot evidence url.
+  - `sponsorship_disbursements`: Agreement ID, Milestone ID, tranche number, amount, status, transaction reference.
+  - `mentorship_sessions`: Agreement ID, Mentor ID, session date, duration hours, topic, summary, attendance, rating feedback.
+- **Services Built:**
+  - Partner verification and accreditation lifecycle.
+  - Multi-sponsor agreement creation, bilateral approvals, and withdrawal gap processing.
+  - Milestone-gated disbursement scheduling and releases.
+  - Corporate mentorship logging with decoupled rating analytics.
+  - Equipment delivery manifest tracking and pilot deployment evidence verification.
+  - Dynamic query-time coverage % and funding gap computation.
 - **Events Published:**
-  - `INDUSTRY_PARTNERSHIP_CREATED`.
+  - 16 partnership lifecycle audit actions (`INDUSTRY_PARTNER_REGISTERED`, `PARTNERSHIP_PROPOSED`, `DISBURSEMENT_RELEASED`, `MENTORSHIP_SESSION_LOGGED`, etc.).
+- **Next Module Dependency:** Verified sponsorship disbursements, corporate mentorship hours, and equipment/pilot metrics feed into **M7** (Governance & District Impact Intelligence).
 
 ---
 
 ### Module 7: Governance & Impact Intelligence & Hardening
-- **Status:** 📋 **Upcoming (Final Milestone)**
+- **Status:** 📋 **NEXT IN QUEUE (Final Milestone)**
 - **Dependencies:** **All Previous Modules (M1 $\rightarrow$ M6)**
 - **Inputs Consumed:**
   - Challenges and district metrics from **M2**.
   - Student and team collaboration metrics from **M3**.
   - University intake and faculty mentorship analytics from **M4**.
   - Project completion and pilot milestones from **M5**.
-  - Industry CSR funding figures from **M6**.
+  - Industry CSR funding figures, corporate mentorship, equipment, and pilot deployments from **M6**.
 - **Core Entities to Create:**
   - `impact_metrics`: People benefited, cost saved, water saved (liters), energy saved (kWh), jobs created, patents generated, pollution reduction.
 - **Services to Build:**
@@ -193,5 +198,5 @@ graph TD
 | **M3** | Team Formation & Collaboration | `v3.0.0-m3-lock` | 🔒 **LOCKED** | Passing (100%) |
 | **M4** | Academic Collaboration Hub | `v4.0.0-m4-lock` | 🔒 **LOCKED** | Passing (100%) |
 | **M5** | Innovation Project Lifecycle | `v5.0.0-m5-lock` | 🔒 **LOCKED** | Passing (100%) |
-| **M6** | Industry Partnership Network | `v6.0.0-m6-candidate` | 📋 **NEXT** | Pending Implementation |
-| **M7** | Governance & Impact Intelligence | `v7.0.0-m7-candidate` | 📋 Queued | Pending M6 |
+| **M6** | Industry Partnership Network | `v6.0.0-m6-lock` | 🔒 **LOCKED** | Passing (100%) |
+| **M7** | Governance & Impact Intelligence | `v7.0.0-m7-candidate` | 📋 **NEXT** | Queued for M7 |

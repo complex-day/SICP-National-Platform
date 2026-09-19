@@ -475,5 +475,138 @@ class OptimisticLockError(AppException):
         )
 
 
+# --- Module 6 Industry Partnership Exceptions ---
+
+class PartnerNotFoundError(AppException):
+    def __init__(self, message: str = "Industry partner not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="PARTNER_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class DuplicatePartnerCINError(AppException):
+    def __init__(self, message: str = "An industry partner with this CIN or registration number already exists", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_409_CONFLICT,
+            code="DUPLICATE_PARTNER_CIN",
+            message=message,
+            details=details
+        )
+
+
+class UnverifiedPartnerError(AppException):
+    def __init__(self, message: str = "Industry partner is not verified and cannot create partnership agreements", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="UNVERIFIED_PARTNER",
+            message=message,
+            details=details
+        )
+
+
+class PartnerSuspendedError(AppException):
+    def __init__(self, message: str = "Industry partner is suspended and cannot perform partnership operations", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="PARTNER_SUSPENDED",
+            message=message,
+            details=details
+        )
+
+
+class PartnershipAgreementNotFoundError(AppException):
+    def __init__(self, message: str = "Partnership agreement not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="AGREEMENT_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class InvalidProjectEligibilityError(AppException):
+    def __init__(self, message: str = "Project status is not eligible for industry partnership agreements", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="INVALID_PROJECT_ELIGIBILITY",
+            message=message,
+            details=details
+        )
+
+
+class FinancialInvariantViolationError(AppException):
+    def __init__(self, message: str = "Financial invariant violation: total tranches or released amounts exceed promised bounds", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="FINANCIAL_INVARIANT_VIOLATION",
+            message=message,
+            details=details
+        )
+
+
+class DisbursementNotFoundError(AppException):
+    def __init__(self, message: str = "Disbursement tranche not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="DISBURSEMENT_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class DisbursementMilestoneNotApprovedError(AppException):
+    def __init__(self, message: str = "Linked milestone is not approved. Cannot release milestone-gated disbursement.", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="DISBURSEMENT_MILESTONE_NOT_APPROVED",
+            message=message,
+            details=details
+        )
+
+
+class MentorshipSessionNotFoundError(AppException):
+    def __init__(self, message: str = "Mentorship session not found", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_404_NOT_FOUND,
+            code="MENTORSHIP_SESSION_NOT_FOUND",
+            message=message,
+            details=details
+        )
+
+
+class AgreementWithdrawnError(AppException):
+    def __init__(self, message: str = "Partnership agreement has been withdrawn; no new disbursements, sessions, or deliveries are permitted", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="AGREEMENT_WITHDRAWN",
+            message=message,
+            details=details
+        )
+
+
+class PilotEvidenceMissingError(AppException):
+    def __init__(self, message: str = "Valid deployment evidence artifact and checksum are required to fulfill pilot support", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            code="PILOT_EVIDENCE_MISSING",
+            message=message,
+            details=details
+        )
+
+
+class ImmutableAuditRecordError(AppException):
+    def __init__(self, message: str = "Audit log records are immutable and cannot be updated or deleted", details: Optional[Dict[str, Any]] = None):
+        super().__init__(
+            status_code=status.HTTP_403_FORBIDDEN,
+            code="IMMUTABLE_AUDIT_RECORD",
+            message=message,
+            details=details
+        )
+
+
+
 
 

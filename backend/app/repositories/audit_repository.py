@@ -54,3 +54,22 @@ class AuditRepository:
             entity_id=entity_id,
             metadata=metadata,
         )
+
+    @classmethod
+    async def get_logs_by_entity(
+        cls,
+        session: AsyncSession,
+        entity_type: Optional[str] = None,
+        entity_id: Optional[uuid.UUID] = None,
+    ) -> list[AuditLog]:
+        from sqlalchemy import select, and_
+        filters = []
+        if entity_type:
+            filters.append(AuditLog.entity_type == entity_type)
+        if entity_id:
+            filters.append(AuditLog.entity_id == entity_id)
+        
+        stmt = select(AuditLog).where(and_(*filters)).order_by(AuditLog.created_at.asc())
+        res = await session.execute(stmt)
+        return list(res.scalars().all())
+

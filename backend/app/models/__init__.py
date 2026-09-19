@@ -20,6 +20,12 @@ from app.models.project import (
     ProjectReview,
     ProjectUpdate,
 )
+from app.models.partnership import (
+    IndustryPartner,
+    PartnershipAgreement,
+    SponsorshipDisbursement,
+    MentorshipSession,
+)
 
 __all__ = [
     "Base",
@@ -49,7 +55,12 @@ __all__ = [
     "ProjectDeliverable",
     "ProjectReview",
     "ProjectUpdate",
+    "IndustryPartner",
+    "PartnershipAgreement",
+    "SponsorshipDisbursement",
+    "MentorshipSession",
 ]
+
 
 
 
