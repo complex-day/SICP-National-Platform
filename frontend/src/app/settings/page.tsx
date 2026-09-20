@@ -6,10 +6,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Lock, Eye, EyeOff, CheckCircle2, AlertCircle, Loader2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { changePasswordSchema, ChangePasswordInput } from "@/features/auth/auth.schema";
-import { authService } from "@/services/auth.service";
-import { useAuthStore } from "@/store/authStore";
-import { ApiError } from "@/lib/api";
+import { changePasswordSchema, ChangePasswordInput } from "../../features/auth/auth.schema";
+import { authService } from "../../services/auth.service";
+import { useAuthStore } from "../../store/authStore";
+import { ApiError } from "../../lib/api";
 
 export default function SettingsPage() {
   const router = useRouter();
