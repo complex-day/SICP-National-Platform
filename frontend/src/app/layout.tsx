@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
+import { Providers } from "@/providers/Providers";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "SICP – Societal Innovation Collaboration Platform",
@@ -15,12 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white">
-        <Navbar />
-        <main className="flex-1 flex flex-col">{children}</main>
-        <Footer />
+    <html lang="en" className="light" suppressHydrationWarning>
+      <body className="min-h-screen bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground font-sans">
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );
 }
+

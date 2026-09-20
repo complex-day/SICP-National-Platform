@@ -1,58 +1,144 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { ChallengeListItem } from "../types/challenge.types";
+import { Challenge } from "@/features/challenges/types/challenge.types";
 import { ChallengeStatusBadge } from "./ChallengeStatusBadge";
+import { ChallengeUrgencyBadge } from "./ChallengeUrgencyBadge";
+import { MapPin, Users, ThumbsUp, Calendar, ArrowUpRight, Paperclip } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { challengeService } from "@/services/challenge.service";
 
 interface ChallengeCardProps {
-  challenge: ChallengeListItem;
+  challenge: Challenge;
+  onUpvoteChange?: (id: string, newCount: number) => void;
+  className?: string;
 }
 
-export const ChallengeCard: React.FC<ChallengeCardProps> = ({ challenge }) => {
+export const ChallengeCard: React.FC<ChallengeCardProps> = ({
+  challenge,
+  onUpvoteChange,
+  className,
+}) => {
+  const [upvotes, setUpvotes] = useState(challenge.upvotes || 0);
+  const [isUpvoted, setIsUpvoted] = useState(challenge.isUpvoted || false);
+  const [isUpvoting, setIsUpvoting] = useState(false);
+
+  const handleUpvote = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isUpvoting) return;
+
+    try {
+      setIsUpvoting(true);
+      const res = await challengeService.upvoteChallenge(challenge.id);
+      setUpvotes(res.upvotes);
+      setIsUpvoted(res.isUpvoted);
+      onUpvoteChange?.(challenge.id, res.upvotes);
+    } catch (err) {
+      console.error("Upvote failed:", err);
+    } finally {
+      setIsUpvoting(false);
+    }
+  };
+
+  const district = challenge.location?.district;
+  const state = challenge.location?.state;
+  const affected = challenge.affectedPopulation || 0;
+  const mediaCount = challenge.media?.length || 0;
+
   return (
-    <div className="group relative rounded-2xl border border-zinc-800/80 bg-zinc-900/40 p-5 hover:bg-zinc-900/70 hover:border-zinc-700 transition-all duration-200 flex flex-col justify-between">
+    <div
+      className={cn(
+        "glass-panel rounded-2xl border border-border/80 p-5 sm:p-6 flex flex-col justify-between hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group relative overflow-hidden",
+        className
+      )}
+    >
+      {/* Subtle top ambient glow */}
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10 group-hover:bg-primary/10 transition-colors" />
+
       <div>
-        <div className="flex items-center justify-between gap-2 mb-3">
-          <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-zinc-800 text-zinc-300 border border-zinc-700/60">
-            {challenge.category}
-          </span>
+        {/* Top Badges */}
+        <div className="flex items-center justify-between gap-2 flex-wrap mb-3.5">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="px-2.5 py-0.5 rounded-lg bg-primary/10 text-primary border border-primary/20 text-xs font-semibold">
+              {challenge.category}
+            </span>
+            <ChallengeUrgencyBadge urgency={challenge.urgency} showIcon={false} />
+          </div>
           <ChallengeStatusBadge status={challenge.status} />
         </div>
 
-        <h3 className="text-base font-bold text-zinc-100 group-hover:text-emerald-400 transition-colors line-clamp-2 mb-2">
+        {/* Title */}
+        <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2 leading-snug capitalize">
           <Link href={`/challenges/${challenge.id}`} className="focus:outline-none">
             <span className="absolute inset-0" aria-hidden="true" />
             {challenge.title}
           </Link>
         </h3>
 
-        <div className="flex items-center gap-4 text-xs text-zinc-400 mb-4">
-          {challenge.district && (
-            <span className="flex items-center gap-1">
-              <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              </svg>
-              {challenge.district}, {challenge.state || ""}
+        {/* Description preview */}
+        <p className="text-xs text-muted-foreground line-clamp-2 mb-4 leading-relaxed">
+          {challenge.description}
+        </p>
+
+        {/* Location & Impact Meta */}
+        <div className="space-y-1.5 text-xs text-muted-foreground mb-4">
+          <div className="flex items-center gap-1.5">
+            <MapPin className="h-3.5 w-3.5 text-primary shrink-0" />
+            <span className="truncate font-medium text-foreground/80">
+              {district ? `${district}${state ? `, ${state}` : ""}` : "District unassigned"}
             </span>
-          )}
-          <span className="flex items-center gap-1">
-            <svg className="w-3.5 h-3.5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            ~{challenge.affected_population.toLocaleString()} affected
-          </span>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <Users className="h-3.5 w-3.5 text-sky-500 shrink-0" />
+            <span>
+              ~<strong className="text-foreground font-semibold">{affected.toLocaleString()}</strong> affected citizens
+            </span>
+          </div>
         </div>
       </div>
 
-      <div className="flex items-center justify-between pt-3 border-t border-zinc-800/60 text-xs text-zinc-500">
-        <span>{new Date(challenge.created_at).toLocaleDateString()}</span>
-        {challenge.assets_count > 0 && (
-          <span className="flex items-center gap-1 text-zinc-400">
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-            </svg>
-            {challenge.assets_count} evidence files
-          </span>
-        )}
+      {/* Bottom Footer Actions */}
+      <div className="pt-3.5 border-t border-border/60 flex items-center justify-between text-xs text-muted-foreground relative z-10">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1">
+            <Calendar className="h-3.5 w-3.5 text-muted-foreground/70" />
+            <span>{new Date(challenge.createdAt).toLocaleDateString()}</span>
+          </div>
+
+          {mediaCount > 0 && (
+            <div className="flex items-center gap-1 text-muted-foreground">
+              <Paperclip className="h-3.5 w-3.5" />
+              <span>{mediaCount} files</span>
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleUpvote}
+            disabled={isUpvoting}
+            className={cn(
+              "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border text-xs font-semibold transition-all cursor-pointer z-20",
+              isUpvoted
+                ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                : "bg-background/80 hover:bg-primary/10 text-foreground border-border hover:border-primary/30"
+            )}
+            title="Upvote this challenge"
+          >
+            <ThumbsUp className={cn("h-3.5 w-3.5", isUpvoted && "fill-current")} />
+            <span>{upvotes}</span>
+          </button>
+
+          <Link
+            href={`/challenges/${challenge.id}`}
+            className="p-1 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors z-20"
+            title="View Details"
+          >
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
       </div>
     </div>
   );

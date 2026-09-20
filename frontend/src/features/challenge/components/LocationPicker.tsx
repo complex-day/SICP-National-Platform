@@ -41,17 +41,17 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({ value, onChange,
   };
 
   return (
-    <div className="space-y-4 rounded-xl border border-zinc-800 bg-zinc-950/40 p-4">
+    <div className="space-y-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
       <div className="flex items-center justify-between">
         <div>
-          <h4 className="text-sm font-semibold text-zinc-200">Geospatial Coordinates</h4>
-          <p className="text-xs text-zinc-400">Pinpoint the location of the societal challenge.</p>
+          <h4 className="text-sm font-semibold text-slate-800">Geospatial Coordinates</h4>
+          <p className="text-xs text-slate-500">Pinpoint the location of the societal challenge.</p>
         </div>
         <button
           type="button"
           onClick={handleGetCurrentLocation}
           disabled={isCapturingGPS}
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors disabled:opacity-50"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 transition-colors disabled:opacity-50 cursor-pointer"
         >
           {isCapturingGPS ? (
             <span>Locating...</span>
@@ -68,30 +68,30 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({ value, onChange,
       </div>
 
       {gpsMessage && (
-        <p className="text-xs text-emerald-400/90 italic">{gpsMessage}</p>
+        <p className="text-xs text-emerald-700 italic">{gpsMessage}</p>
       )}
 
       {/* Coordinate Inputs */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-xs font-medium text-zinc-400 mb-1">Latitude</label>
+          <label className="block text-xs font-medium text-slate-700 mb-1">Latitude</label>
           <input
             type="number"
             step="0.000001"
             value={value.lat || ""}
             onChange={(e) => onChange({ ...value, lat: parseFloat(e.target.value) || 0 })}
-            className="w-full rounded-lg bg-zinc-900 border border-zinc-700 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
             placeholder="e.g. 23.344100"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-zinc-400 mb-1">Longitude</label>
+          <label className="block text-xs font-medium text-slate-700 mb-1">Longitude</label>
           <input
             type="number"
             step="0.000001"
             value={value.lng || ""}
             onChange={(e) => onChange({ ...value, lng: parseFloat(e.target.value) || 0 })}
-            className="w-full rounded-lg bg-zinc-900 border border-zinc-700 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
             placeholder="e.g. 85.309600"
           />
         </div>
@@ -100,38 +100,39 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({ value, onChange,
       {/* District & State */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div className="sm:col-span-1">
-          <label className="block text-xs font-medium text-zinc-400 mb-1">District</label>
+          <label className="block text-xs font-medium text-slate-700 mb-1">District</label>
           <input
             type="text"
             value={value.district || ""}
             onChange={(e) => onChange({ ...value, district: e.target.value })}
-            className="w-full rounded-lg bg-zinc-900 border border-zinc-700 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
             placeholder="e.g. Ranchi"
           />
         </div>
         <div className="sm:col-span-1">
-          <label className="block text-xs font-medium text-zinc-400 mb-1">State</label>
+          <label className="block text-xs font-medium text-slate-700 mb-1">State</label>
           <input
             type="text"
             value={value.state || ""}
             onChange={(e) => onChange({ ...value, state: e.target.value })}
-            className="w-full rounded-lg bg-zinc-900 border border-zinc-700 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
             placeholder="e.g. Jharkhand"
           />
         </div>
         <div className="sm:col-span-1">
-          <label className="block text-xs font-medium text-zinc-400 mb-1">Locality / Address</label>
+          <label className="block text-xs font-medium text-slate-700 mb-1">Locality / Address</label>
           <input
             type="text"
             value={value.address_text || ""}
             onChange={(e) => onChange({ ...value, address_text: e.target.value })}
-            className="w-full rounded-lg bg-zinc-900 border border-zinc-700 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-500 focus:border-emerald-500 focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
             placeholder="e.g. Ward 12, Village Rampur"
           />
         </div>
       </div>
 
-      {error && <p className="text-xs text-rose-400">{error}</p>}
+      {error && <p className="text-xs text-rose-600 font-medium">{error}</p>}
     </div>
   );
 };
+

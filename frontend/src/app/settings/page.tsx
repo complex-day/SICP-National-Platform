@@ -64,117 +64,117 @@ export default function SettingsPage() {
     <div className="max-w-2xl mx-auto px-4 py-12 w-full space-y-6">
       <Link
         href="/profile"
-        className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition"
+        className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 transition"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Profile</span>
       </Link>
 
-      <div className="p-8 bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-2xl shadow-2xl">
-        <h2 className="text-2xl font-bold text-white mb-2">Account Security Settings</h2>
-        <p className="text-sm text-slate-400 mb-8">
+      <div className="p-6 sm:p-8 bg-white border border-slate-200 rounded-xl shadow-sm">
+        <h2 className="text-xl font-bold text-slate-900 mb-1.5">Account Security Settings</h2>
+        <p className="text-sm text-slate-500 mb-6">
           Update your authentication password to maintain account integrity.
         </p>
 
         {isSuccess && (
-          <div className="mb-6 p-4 bg-emerald-950/60 border border-emerald-800 rounded-xl flex items-center gap-3 text-emerald-200 text-sm">
-            <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+          <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg flex items-center gap-3 text-emerald-800 text-sm">
+            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
             <span>Your password has been changed successfully.</span>
           </div>
         )}
 
         {serverError && (
-          <div className="mb-6 p-4 bg-red-950/50 border border-red-800 rounded-xl flex items-center gap-3 text-red-200 text-sm">
-            <AlertCircle className="w-5 h-5 text-red-400 shrink-0" />
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3 text-red-800 text-sm">
+            <AlertCircle className="w-5 h-5 text-red-600 shrink-0" />
             <span>{serverError}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1.5" htmlFor="current_password">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5" htmlFor="current_password">
               Current Password *
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                <Lock className="w-5 h-5" />
+                <Lock className="w-4 h-4" />
               </div>
               <input
                 id="current_password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 {...register("current_password")}
-                className={`w-full pl-11 pr-11 py-2.5 bg-slate-800/80 border ${
-                  errors.current_password ? "border-red-500" : "border-slate-700"
-                } rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500`}
+                className={`w-full pl-10 pr-10 py-2 bg-white border ${
+                  errors.current_password ? "border-red-400" : "border-slate-300"
+                } rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600`}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-200"
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
             </div>
             {errors.current_password && (
-              <p className="mt-1.5 text-xs text-red-400">{errors.current_password.message}</p>
+              <p className="mt-1.5 text-xs text-red-600">{errors.current_password.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1.5" htmlFor="new_password">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5" htmlFor="new_password">
               New Password *
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                <Lock className="w-5 h-5" />
+                <Lock className="w-4 h-4" />
               </div>
               <input
                 id="new_password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 {...register("new_password")}
-                className={`w-full pl-11 pr-4 py-2.5 bg-slate-800/80 border ${
-                  errors.new_password ? "border-red-500" : "border-slate-700"
-                } rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500`}
+                className={`w-full pl-10 pr-4 py-2 bg-white border ${
+                  errors.new_password ? "border-red-400" : "border-slate-300"
+                } rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600`}
               />
             </div>
             {errors.new_password && (
-              <p className="mt-1.5 text-xs text-red-400">{errors.new_password.message}</p>
+              <p className="mt-1.5 text-xs text-red-600">{errors.new_password.message}</p>
             )}
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1.5" htmlFor="confirm_new_password">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5" htmlFor="confirm_new_password">
               Confirm New Password *
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                <Lock className="w-5 h-5" />
+                <Lock className="w-4 h-4" />
               </div>
               <input
                 id="confirm_new_password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
                 {...register("confirm_new_password")}
-                className={`w-full pl-11 pr-4 py-2.5 bg-slate-800/80 border ${
-                  errors.confirm_new_password ? "border-red-500" : "border-slate-700"
-                } rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500`}
+                className={`w-full pl-10 pr-4 py-2 bg-white border ${
+                  errors.confirm_new_password ? "border-red-400" : "border-slate-300"
+                } rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600`}
               />
             </div>
             {errors.confirm_new_password && (
-              <p className="mt-1.5 text-xs text-red-400">{errors.confirm_new_password.message}</p>
+              <p className="mt-1.5 text-xs text-red-600">{errors.confirm_new_password.message}</p>
             )}
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-xl transition flex items-center justify-center gap-2 disabled:opacity-60"
+            className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition shadow-sm flex items-center justify-center gap-2 disabled:opacity-60 text-sm"
           >
             {isLoading ? (
               <>
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-4 h-4 animate-spin" />
                 <span>Updating Password...</span>
               </>
             ) : (

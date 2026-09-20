@@ -2,133 +2,170 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChallengeListItem } from "@/features/challenge/types/challenge.types";
+import { useRouter } from "next/navigation";
+import { DashboardLayout } from "@/components/layout/DashboardLayout";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { DataTable, ColumnDef } from "@/components/ui/DataTable";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { LoadingState } from "@/components/ui/LoadingState";
+import { Challenge } from "@/features/challenges/types/challenge.types";
 import { ChallengeStatusBadge } from "@/features/challenge/components/ChallengeStatusBadge";
+import { ChallengeUrgencyBadge } from "@/features/challenge/components/ChallengeUrgencyBadge";
 import { challengeService } from "@/services/challenge.service";
 import { useAuthStore } from "@/store/authStore";
+import { Plus, ArrowUpRight, Inbox, MapPin, ThumbsUp } from "lucide-react";
 
 export default function MyChallengesPage() {
-  const token = useAuthStore((state) => state.token);
-  const [challenges, setChallenges] = useState<ChallengeListItem[]>([]);
+  const router = useRouter();
+  const user = useAuthStore((state) => state.user);
+
+  const [challenges, setChallenges] = useState<Challenge[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchMyChallenges() {
-      if (!token) return;
+    async function loadMyChallenges() {
       try {
         setIsLoading(true);
-        const result = await challengeService.listMyChallenges(1, 50, token);
-        setChallenges(result.items);
+        setError(null);
+        const res = await challengeService.listMyChallenges(1, 50, user?.id);
+        setChallenges(res.items);
       } catch (err: any) {
-        setError(err.message || "Failed to load your challenges");
+        setError(err.message || "Failed to load your submitted challenges.");
       } finally {
         setIsLoading(false);
       }
     }
-    fetchMyChallenges();
-  }, [token]);
+    loadMyChallenges();
+  }, [user?.id]);
+
+  const columns: ColumnDef<Challenge>[] = [
+    {
+      key: "title",
+      header: "Challenge Title",
+      sortable: true,
+      render: (row) => (
+        <div className="max-w-md py-1">
+          <Link
+            href={`/challenges/${row.id}`}
+            className="font-bold text-foreground hover:text-primary transition-colors line-clamp-1 text-xs sm:text-sm"
+          >
+            {row.title}
+          </Link>
+          <div className="flex items-center gap-2 text-[11px] text-muted-foreground mt-0.5">
+            <span className="flex items-center gap-1">
+              <MapPin className="h-3 w-3 text-primary shrink-0" />
+              {row.location?.district || "District"}, {row.location?.state || ""}
+            </span>
+            <span>•</span>
+            <span>~{row.affectedPopulation.toLocaleString()} affected</span>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: "category",
+      header: "Category",
+      sortable: true,
+      render: (row) => (
+        <span className="px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 text-xs font-semibold whitespace-nowrap">
+          {row.category}
+        </span>
+      ),
+    },
+    {
+      key: "status",
+      header: "Status",
+      sortable: true,
+      render: (row) => <ChallengeStatusBadge status={row.status} />,
+    },
+    {
+      key: "urgency",
+      header: "Urgency",
+      sortable: true,
+      render: (row) => <ChallengeUrgencyBadge urgency={row.urgency} />,
+    },
+    {
+      key: "createdAt",
+      header: "Created Date",
+      sortable: true,
+      render: (row) => (
+        <span className="text-xs text-muted-foreground whitespace-nowrap">
+          {new Date(row.createdAt).toLocaleDateString()}
+        </span>
+      ),
+    },
+    {
+      key: "updatedAt",
+      header: "Last Updated",
+      sortable: true,
+      render: (row) => (
+        <span className="text-xs text-muted-foreground whitespace-nowrap">
+          {new Date(row.updatedAt).toLocaleDateString()}
+        </span>
+      ),
+    },
+    {
+      key: "actions",
+      header: "",
+      align: "right",
+      render: (row) => (
+        <Link
+          href={`/challenges/${row.id}`}
+          className="inline-flex items-center gap-1 text-xs font-bold text-primary hover:text-primary/80 transition-colors"
+        >
+          <span>View</span>
+          <ArrowUpRight className="h-3.5 w-3.5" />
+        </Link>
+      ),
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 py-10 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-100">
-              My <span className="text-emerald-400">Reported Challenges</span>
-            </h1>
-            <p className="text-sm text-zinc-400 mt-1">
-              Track the progress, evaluation, and lifecycle status of challenges you have submitted.
-            </p>
-          </div>
-          <Link
-            href="/citizen/create-challenge"
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-sm shadow-lg shadow-emerald-500/20 transition-all"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
-            </svg>
-            Report New Challenge
-          </Link>
-        </div>
-
-        {error && (
-          <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm">
-            {error}
-          </div>
-        )}
-
-        {isLoading ? (
-          <div className="py-20 text-center text-zinc-500">
-            <div className="animate-spin w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full mx-auto mb-3" />
-            Loading your challenges...
-          </div>
-        ) : challenges.length === 0 ? (
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-12 text-center space-y-4">
-            <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto text-zinc-500">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="text-base font-semibold text-zinc-200">No challenges reported yet</h3>
-              <p className="text-xs text-zinc-400 mt-1">
-                You haven&apos;t created any societal challenges yet. Start by reporting an issue in your local community.
-              </p>
-            </div>
+    <DashboardLayout requireAuth={false}>
+      <div className="space-y-6">
+        <PageHeader
+          title="Citizen Challenge Tracker"
+          description="Monitor verification progress, nodal officer triage, and academic R&D teams working on solutions for your reported challenges."
+          breadcrumbs={[
+            { label: "Home", href: "/dashboard" },
+            { label: "Citizen Portal", href: "/citizen/my-challenges" },
+            { label: "My Challenges" },
+          ]}
+          actions={
             <Link
               href="/citizen/create-challenge"
-              className="inline-flex items-center px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-semibold"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground font-bold text-xs hover:bg-primary/90 transition-all shadow-sm shadow-primary/20 cursor-pointer"
             >
-              Submit Your First Challenge
+              <Plus className="h-4 w-4" />
+              <span>Report New Challenge</span>
             </Link>
-          </div>
+          }
+        />
+
+        {isLoading ? (
+          <LoadingState message="Loading your submitted challenges..." />
+        ) : challenges.length === 0 ? (
+          <EmptyState
+            icon={Inbox}
+            title="No challenges submitted yet"
+            description="You haven't reported any societal problems yet. Step up for your community by reporting an issue in water, healthcare, education, or agriculture."
+            action={{
+              label: "Submit Your First Challenge",
+              href: "/citizen/create-challenge",
+            }}
+          />
         ) : (
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/30 overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-zinc-900/80 border-b border-zinc-800 text-xs uppercase text-zinc-400">
-                  <tr>
-                    <th className="px-6 py-4 font-semibold">Challenge Title</th>
-                    <th className="px-6 py-4 font-semibold">Category</th>
-                    <th className="px-6 py-4 font-semibold">Status</th>
-                    <th className="px-6 py-4 font-semibold">Affected</th>
-                    <th className="px-6 py-4 font-semibold">Created Date</th>
-                    <th className="px-6 py-4 font-semibold text-right">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-zinc-800/60">
-                  {challenges.map((c) => (
-                    <tr key={c.id} className="hover:bg-zinc-900/40 transition-colors">
-                      <td className="px-6 py-4 font-medium text-zinc-200 max-w-xs truncate">
-                        <Link href={`/challenges/${c.id}`} className="hover:text-emerald-400 transition-colors">
-                          {c.title}
-                        </Link>
-                      </td>
-                      <td className="px-6 py-4 text-zinc-400">{c.category}</td>
-                      <td className="px-6 py-4">
-                        <ChallengeStatusBadge status={c.status} />
-                      </td>
-                      <td className="px-6 py-4 text-zinc-400">~{c.affected_population.toLocaleString()}</td>
-                      <td className="px-6 py-4 text-zinc-500 text-xs">
-                        {new Date(c.created_at).toLocaleDateString()}
-                      </td>
-                      <td className="px-6 py-4 text-right">
-                        <Link
-                          href={`/challenges/${c.id}`}
-                          className="text-xs font-semibold text-emerald-400 hover:text-emerald-300"
-                        >
-                          View Details &rarr;
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <DataTable<Challenge>
+            columns={columns}
+            data={challenges}
+            searchKey="title"
+            searchPlaceholder="Filter your challenges by title..."
+            pageSize={10}
+            onRowClick={(row) => router.push(`/challenges/${row.id}`)}
+          />
         )}
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
