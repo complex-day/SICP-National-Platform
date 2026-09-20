@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, ArrowLeft, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-import { forgotPasswordSchema, ForgotPasswordInput } from "@/features/auth/auth.schema";
-import { authService } from "@/services/auth.service";
-import { ApiError } from "@/lib/api";
+import { forgotPasswordSchema, ForgotPasswordInput } from "../../features/auth/auth.schema";
+import { authService } from "../../services/auth.service";
+import { ApiError } from "../../lib/api";
 
 export default function ForgotPasswordPage() {
   const [isSuccess, setIsSuccess] = useState(false);

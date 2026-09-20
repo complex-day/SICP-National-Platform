@@ -28,7 +28,7 @@ import {
   Sparkles,
   Compass,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "../../../lib/utils";
 
 const STEP_TITLES = [
   { step: 1, title: "Problem Definition", desc: "Title, scope & domain" },
