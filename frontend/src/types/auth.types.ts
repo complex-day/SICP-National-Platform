@@ -1,12 +1,22 @@
-export type UserRole =
-  | "citizen"
-  | "student"
-  | "faculty"
-  | "industry"
-  | "government"
-  | "admin";
+export const UserRole = {
+  CITIZEN: "citizen",
+  STUDENT: "student",
+  FACULTY: "faculty",
+  INDUSTRY: "industry",
+  GOVERNMENT: "government",
+  ADMIN: "admin",
+} as const;
 
-export type UserStatus = "ACTIVE" | "PENDING" | "SUSPENDED" | "BANNED";
+export type UserRole = (typeof UserRole)[keyof typeof UserRole];
+
+export const UserStatus = {
+  ACTIVE: "ACTIVE",
+  PENDING: "PENDING",
+  SUSPENDED: "SUSPENDED",
+  BANNED: "BANNED",
+} as const;
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus];
 
 export interface User {
   id: string;

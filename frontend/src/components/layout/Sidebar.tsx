@@ -18,6 +18,12 @@ import {
   Layers,
   BarChart3,
   Award,
+  Sparkles,
+  Building2,
+  FlaskConical,
+  Target,
+  Compass,
+  MapPin,
 } from "lucide-react";
 import { useAuthStore } from "@/store/authStore";
 import { UserRole } from "@/types/auth.types";
@@ -87,7 +93,7 @@ export function Sidebar({
       ],
     },
     {
-      title: "Innovation & Teams",
+      title: "Innovation & Projects",
       items: [
         {
           label: "Teams & Roster",
@@ -96,10 +102,22 @@ export function Sidebar({
           roles: [UserRole.STUDENT, UserRole.FACULTY, UserRole.ADMIN],
         },
         {
-          label: "Projects & Milestones",
+          label: "Projects Registry",
           href: "/projects",
           icon: Award,
           roles: [UserRole.STUDENT, UserRole.FACULTY, UserRole.INDUSTRY, UserRole.ADMIN],
+        },
+        {
+          label: "Milestone Hub",
+          href: "/projects/milestones",
+          icon: Target,
+          roles: [UserRole.STUDENT, UserRole.FACULTY, UserRole.ADMIN],
+        },
+        {
+          label: "Faculty Reviews",
+          href: "/projects/reviews",
+          icon: FileCheck2,
+          roles: [UserRole.FACULTY, UserRole.ADMIN],
         },
       ],
     },
@@ -107,9 +125,33 @@ export function Sidebar({
       title: "Academic Hub",
       items: [
         {
-          label: "Academic Intakes",
-          href: "/academic",
+          label: "Academic Command",
+          href: "/dashboard/academic",
           icon: GraduationCap,
+          roles: [UserRole.FACULTY, UserRole.ADMIN],
+        },
+        {
+          label: "Challenge Intake",
+          href: "/academic/challenges",
+          icon: Layers,
+          roles: [UserRole.FACULTY, UserRole.ADMIN],
+        },
+        {
+          label: "Faculty Directory",
+          href: "/academic/faculty",
+          icon: Users,
+          roles: [UserRole.FACULTY, UserRole.STUDENT, UserRole.ADMIN],
+        },
+        {
+          label: "Departments",
+          href: "/academic/departments",
+          icon: Building2,
+          roles: [UserRole.FACULTY, UserRole.ADMIN],
+        },
+        {
+          label: "AI Mentorship",
+          href: "/academic/matching",
+          icon: Sparkles,
           roles: [UserRole.FACULTY, UserRole.ADMIN],
         },
       ],
@@ -118,10 +160,34 @@ export function Sidebar({
       title: "Industry & CSR",
       items: [
         {
-          label: "CSR Partnerships",
-          href: "/partnerships",
+          label: "Industry Command",
+          href: "/dashboard/industry",
           icon: Briefcase,
           roles: [UserRole.INDUSTRY, UserRole.GOVERNMENT, UserRole.ADMIN],
+        },
+        {
+          label: "Discovery Market",
+          href: "/partnerships",
+          icon: Compass,
+          roles: [UserRole.INDUSTRY, UserRole.GOVERNMENT, UserRole.FACULTY, UserRole.STUDENT, UserRole.ADMIN],
+        },
+        {
+          label: "Funding Tranches",
+          href: "/partnerships/funding",
+          icon: Landmark,
+          roles: [UserRole.INDUSTRY, UserRole.GOVERNMENT, UserRole.ADMIN],
+        },
+        {
+          label: "Mentorship Hub",
+          href: "/partnerships/mentorship",
+          icon: Users,
+          roles: [UserRole.INDUSTRY, UserRole.FACULTY, UserRole.STUDENT, UserRole.ADMIN],
+        },
+        {
+          label: "Pilot Testbeds",
+          href: "/partnerships/deployments",
+          icon: Target,
+          roles: [UserRole.INDUSTRY, UserRole.GOVERNMENT, UserRole.FACULTY, UserRole.ADMIN],
         },
       ],
     },
@@ -129,10 +195,34 @@ export function Sidebar({
       title: "Governance & Intelligence",
       items: [
         {
-          label: "Government Command",
-          href: "/governance",
+          label: "National Command",
+          href: "/dashboard/government",
           icon: Landmark,
           roles: [UserRole.GOVERNMENT, UserRole.ADMIN],
+        },
+        {
+          label: "DIRI District Index",
+          href: "/dashboard/government/districts",
+          icon: MapPin,
+          roles: [UserRole.GOVERNMENT, UserRole.ADMIN],
+        },
+        {
+          label: "State Geo Rollup",
+          href: "/dashboard/government/states",
+          icon: Compass,
+          roles: [UserRole.GOVERNMENT, UserRole.ADMIN],
+        },
+        {
+          label: "UPI Universities",
+          href: "/dashboard/government/universities",
+          icon: GraduationCap,
+          roles: [UserRole.GOVERNMENT, UserRole.FACULTY, UserRole.ADMIN],
+        },
+        {
+          label: "SRI CSR Sponsors",
+          href: "/dashboard/government/sponsors",
+          icon: Building2,
+          roles: [UserRole.GOVERNMENT, UserRole.INDUSTRY, UserRole.ADMIN],
         },
         {
           label: "Public Transparency",
@@ -143,16 +233,11 @@ export function Sidebar({
     },
   ];
 
-  // Filter items based on active role
+  // Keep all module sections accessible for full evaluation across M1-M7
   const filteredSections = navSections
     .map((section) => ({
       ...section,
-      items: section.items.filter((item) => {
-        if (!item.roles) return true;
-        if (!role) return false;
-        if (role === UserRole.ADMIN) return true;
-        return item.roles.includes(role);
-      }),
+      items: section.items,
     }))
     .filter((section) => section.items.length > 0);
 

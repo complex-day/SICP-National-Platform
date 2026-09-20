@@ -8,7 +8,6 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/providers/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -45,24 +44,14 @@ const config: Config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        brand: {
-          50: "#eef8ff",
-          100: "#d8eeff",
-          200: "#b9e1ff",
-          300: "#89ceff",
-          400: "#52b1ff",
-          500: "#0066cc", // GovTech Blue
-          600: "#0052a3",
-          700: "#003d7a",
-          800: "#002952",
-          900: "#001429",
-          950: "#000a14",
-        },
         gov: {
+          blue: "#0052CC", // NIC / Digital India Blue
+          navy: "#0A2540",
           saffron: "#FF9933",
-          white: "#FFFFFF",
-          green: "#138808",
-          navy: "#000080",
+          green: "#0F9D58", // Success
+          warning: "#F4B400", // Warning
+          danger: "#DB4437", // Danger
+          slate: "#F8FAFC", // Background
         },
       },
       borderRadius: {
@@ -71,8 +60,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        "glow-sm": "0 0 15px -3px rgba(0, 102, 204, 0.2)",
-        "glow-md": "0 0 25px -5px rgba(0, 102, 204, 0.3)",
+        xs: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        card: "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)",
       },
       keyframes: {
         "accordion-down": {
@@ -83,19 +72,14 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        shimmer: {
-          "100%": {
-            transform: "translateX(100%)",
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        shimmer: "shimmer 2s infinite",
       },
     },
   },
   plugins: [],
 };
 export default config;
+

@@ -35,6 +35,20 @@ export function LoadingSpinner({
   );
 }
 
+export function LoadingState({
+  message = "Loading data...",
+  className,
+}: {
+  message?: string;
+  className?: string;
+}) {
+  return (
+    <div className={cn("p-12 glass-panel rounded-2xl border border-border/80 text-center", className)}>
+      <LoadingSpinner label={message} size="lg" />
+    </div>
+  );
+}
+
 export function PageLoadingSkeleton({ title = "Loading page..." }: { title?: string }) {
   return (
     <div

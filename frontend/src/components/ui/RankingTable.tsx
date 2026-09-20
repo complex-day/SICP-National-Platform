@@ -63,7 +63,7 @@ const getRankBadge = (rank: number) => {
   }
   if (rank === 3) {
     return (
-      <span className="flex items-center justify-center h-7 w-7 rounded-full bg-amber-700/20 text-amber-600 dark:text-amber-500 font-bold border border-amber-700/40 text-xs">
+      <span className="flex items-center justify-center h-7 w-7 rounded-full bg-amber-100 text-amber-800 font-bold border border-amber-300 text-xs">
         3
       </span>
     );

@@ -20,19 +20,27 @@ interface BreadcrumbsProps {
 export function Breadcrumbs({ items, className, showHome = true }: BreadcrumbsProps) {
   const pathname = usePathname();
 
-  // Auto-generate items if not explicitly provided
-  const breadcrumbItems = items || React.useMemo(() => {
-    if (!pathname || pathname === "/") return [];
-    const segments = pathname.split("/").filter(Boolean);
-    return segments.map((segment, index) => {
-      const href = "/" + segments.slice(0, index + 1).join("/");
-      const label = segment
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-      return { label, href };
-    });
-  }, [pathname, items]);
+  // Clean and auto-generate items if not explicitly provided
+  const breadcrumbItems = React.useMemo(() => {
+    let raw = items;
+    if (!raw) {
+      if (!pathname || pathname === "/") return [];
+      const segments = pathname.split("/").filter(Boolean);
+      raw = segments.map((segment, index) => {
+        const href = "/" + segments.slice(0, index + 1).join("/");
+        const label = segment
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ");
+        return { label, href };
+      });
+    }
+
+    if (showHome && raw.length > 0 && raw[0].label.toLowerCase() === "home") {
+      return raw.slice(1);
+    }
+    return raw;
+  }, [pathname, items, showHome]);
 
   return (
     <nav

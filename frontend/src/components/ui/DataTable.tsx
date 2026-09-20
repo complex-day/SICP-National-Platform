@@ -133,8 +133,8 @@ export function DataTable<T extends Record<string, any>>({
       )}
 
       {/* Table Container */}
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm">
+      <div className="overflow-x-auto w-full">
+        <table className="w-full min-w-[640px] text-left text-sm">
           <thead className="bg-muted/50 border-b border-border text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             <tr>
               {columns.map((col) => (
