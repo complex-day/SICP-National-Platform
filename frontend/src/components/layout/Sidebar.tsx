@@ -14,6 +14,7 @@ import {
   FileCheck2,
   ChevronLeft,
   ChevronRight,
+  X,
   Globe2,
   Layers,
   BarChart3,
@@ -248,8 +249,8 @@ export function Sidebar({
         <Link
           href="/dashboard"
           className={cn(
-            "flex items-center gap-3 transition-opacity",
-            isCollapsed ? "justify-center w-full" : ""
+            "flex items-center gap-3 transition-opacity min-w-0",
+            isCollapsed ? "justify-center w-full" : "flex-1"
           )}
           onClick={onCloseMobile}
         >
@@ -270,6 +271,23 @@ export function Sidebar({
             </div>
           )}
         </Link>
+
+        {/* Navigate / Close Toggle Button */}
+        {!isCollapsed && (
+          <button
+            type="button"
+            onClick={isMobileOpen ? onCloseMobile : onToggleCollapse}
+            className="p-1.5 rounded-lg border border-border bg-background hover:bg-muted text-muted-foreground hover:text-foreground transition-colors shrink-0 ml-2"
+            title={isMobileOpen ? "Close Menu" : "Collapse Sidebar"}
+            aria-label={isMobileOpen ? "Close Menu" : "Collapse Sidebar"}
+          >
+            {isMobileOpen ? (
+              <X className="h-4 w-4" />
+            ) : (
+              <ChevronLeft className="h-4 w-4" />
+            )}
+          </button>
+        )}
       </div>
 
       {/* Navigation Links */}

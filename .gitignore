@@ -49,6 +49,7 @@ sicp.db
 
 # Environment variables
 .env
+.env.*
 .env.local
 .env.development.local
 .env.test.local
@@ -70,4 +71,7 @@ yarn-error.log*
 
 # Uploads & Runtime Media
 uploads/
+uploads/*
 backend/uploads/
+backend/uploads/*
+
