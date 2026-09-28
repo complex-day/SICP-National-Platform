@@ -103,7 +103,7 @@ export function LoginForm() {
       label: "Faculty Mentor",
       email: "prof.mehta@iitb.ac.in",
       name: "Dr. Rajesh Mehta (PI)",
-      color: "bg-purple-50 border-purple-300 hover:border-purple-500 text-purple-900",
+      color: "bg-teal-50 border-teal-300 hover:border-teal-500 text-teal-900",
       desc: "Review & mentor projects",
     },
     {
@@ -133,7 +133,7 @@ export function LoginForm() {
   ];
 
   return (
-    <div className="w-full max-w-lg p-8 bg-white border border-slate-200 rounded-2xl shadow-lg">
+    <div className="w-full max-w-lg p-8 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm">
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Sign in to SICP</h2>
         <p className="text-xs text-slate-500 mt-1.5">
@@ -202,7 +202,7 @@ export function LoginForm() {
               placeholder="user@example.com"
               {...register("email")}
               className={`w-full pl-10 pr-4 py-2.5 bg-white border ${
-                errors.email ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#0052CC]"
+                errors.email ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534]"
               } rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition duration-150`}
             />
           </div>
@@ -220,7 +220,7 @@ export function LoginForm() {
             </label>
             <Link
               href="/forgot-password"
-              className="text-xs font-semibold text-[#0052CC] hover:underline transition"
+              className="text-xs font-semibold text-[#166534] hover:underline transition"
             >
               Forgot password?
             </Link>
@@ -236,7 +236,7 @@ export function LoginForm() {
               placeholder="••••••••"
               {...register("password")}
               className={`w-full pl-10 pr-10 py-2.5 bg-white border ${
-                errors.password ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#0052CC]"
+                errors.password ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534]"
               } rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition duration-150`}
             />
             <button
@@ -258,7 +258,7 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full py-2.5 px-4 bg-[#0052CC] hover:bg-blue-700 text-white font-semibold rounded-lg shadow-xs transition duration-150 flex items-center justify-center gap-2 group disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer text-xs"
+          className="w-full py-2.5 px-4 bg-[#166534] hover:bg-[#14532D] active:bg-[#052E16] text-white font-semibold rounded-lg shadow-xs transition duration-150 flex items-center justify-center gap-2 group disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer text-xs"
         >
           {isLoading ? (
             <>
@@ -276,7 +276,7 @@ export function LoginForm() {
 
       <div className="mt-6 text-center text-xs text-slate-500">
         Don&apos;t have an account?{" "}
-        <Link href="/register" className="font-semibold text-[#0052CC] hover:underline transition">
+        <Link href="/register" className="font-semibold text-[#166534] hover:underline transition">
           Register now
         </Link>
       </div>

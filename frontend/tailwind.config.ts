@@ -45,20 +45,28 @@ const config: Config = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         gov: {
-          blue: "#0052CC", // NIC / Digital India Blue
-          navy: "#0A2540",
-          saffron: "#FF9933",
-          green: "#0F9D58", // Success
-          warning: "#F4B400", // Warning
-          danger: "#DB4437", // Danger
-          slate: "#F8FAFC", // Background
+          primary: "#166534",    // Primary Forest Green
+          deep: "#14532D",       // Deep Forest
+          dark: "#052E16",       // Dark Forest
+          success: "#16A34A",    // Success Green
+          accent: "#22C55E",     // Accent Green
+          danger: "#DC2626",     // Crimson Red
+          warning: "#D97706",    // Warm Orange / Amber
+          info: "#0369A1",       // Informational Blue
+          bg: "#F8FAFC",         // Soft Slate Background
+          surface: "#FFFFFF",    // Pure White Card Surface
+          section: "#EEF2F7",    // Government Grey Section Background
+          border: "#E2E8F0",     // Clean Slate Border
+          text: "#0F172A",       // Primary Slate Text
+          textMuted: "#64748B",  // Muted Slate Text
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "0.5rem",
+        md: "0.375rem",
+        sm: "0.25rem",
       },
+
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
         card: "0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)",

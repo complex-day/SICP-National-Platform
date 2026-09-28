@@ -31,18 +31,15 @@ export const TeamCard: React.FC<TeamCardProps> = ({
   return (
     <div
       className={cn(
-        "glass-panel rounded-2xl border border-border/80 p-5 sm:p-6 flex flex-col justify-between hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group relative overflow-hidden",
+        "bg-white rounded-xl border border-[#E2E8F0] p-5 sm:p-6 flex flex-col justify-between hover:border-[#166534]/50 shadow-xs transition-colors duration-200 group relative",
         className
       )}
     >
-      {/* Ambient background glow */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -z-10 group-hover:bg-primary/10 transition-colors" />
-
       <div>
         {/* Top Badges */}
         <div className="flex items-center justify-between gap-2 flex-wrap mb-3">
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="px-2.5 py-0.5 rounded-lg bg-primary/10 text-primary border border-primary/20 text-xs font-semibold">
+            <span className="px-2.5 py-0.5 rounded-full bg-[#EEF2F7] text-[#166534] border border-[#E2E8F0] text-xs font-semibold">
               {team.institution}
             </span>
           </div>
@@ -50,7 +47,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
         </div>
 
         {/* Team Name */}
-        <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1 mb-1.5">
+        <h3 className="text-base sm:text-lg font-bold text-[#0F172A] group-hover:text-[#166534] transition-colors line-clamp-1 mb-1.5">
           <Link href={`/teams/${team.id}`} className="focus:outline-none">
             <span className="absolute inset-0" aria-hidden="true" />
             {team.name}
@@ -59,46 +56,46 @@ export const TeamCard: React.FC<TeamCardProps> = ({
 
         {/* Linked Challenge Box */}
         {team.challengeTitle && (
-          <div className="mb-3.5 p-2.5 rounded-xl bg-muted/40 border border-border/70 text-xs">
-            <span className="text-[10px] font-bold text-muted-foreground uppercase block mb-0.5">
+          <div className="mb-3.5 p-2.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs">
+            <span className="text-[10px] font-bold text-[#64748B] uppercase block mb-0.5">
               Working On Challenge:
             </span>
-            <span className="font-semibold text-foreground line-clamp-1">
+            <span className="font-semibold text-[#0F172A] line-clamp-1">
               {team.challengeTitle}
             </span>
           </div>
         )}
 
         {/* Description */}
-        <p className="text-xs text-muted-foreground line-clamp-2 mb-4 leading-relaxed">
+        <p className="text-xs text-[#64748B] line-clamp-2 mb-4 leading-relaxed">
           {team.description}
         </p>
 
         {/* Leader and Roster Stats */}
-        <div className="space-y-2 text-xs text-muted-foreground mb-4">
+        <div className="space-y-2 text-xs text-[#64748B] mb-4">
           <div className="flex items-center justify-between text-xs">
-            <span className="flex items-center gap-1.5 font-medium text-foreground/90 truncate">
-              <span className="text-muted-foreground">Lead:</span>
-              <strong className="text-foreground">{team.leaderName}</strong>
+            <span className="flex items-center gap-1.5 font-medium text-[#0F172A] truncate">
+              <span className="text-[#64748B]">Lead:</span>
+              <strong className="text-[#0F172A]">{team.leaderName}</strong>
             </span>
 
             <div className="flex items-center gap-1 font-semibold shrink-0">
-              <Users className="h-3.5 w-3.5 text-primary" />
-              <span className="text-foreground">
+              <Users className="h-3.5 w-3.5 text-[#166534]" />
+              <span className="text-[#0F172A]">
                 {memberCount}/{maxMembers}
               </span>
-              <span className="text-[10px] text-muted-foreground">Members</span>
+              <span className="text-[10px] text-[#64748B]">Members</span>
             </div>
           </div>
 
           {/* Roster Capacity Progress Bar */}
-          <div className="w-full bg-muted/80 rounded-full h-1.5 overflow-hidden">
+          <div className="w-full bg-[#EEF2F7] rounded-full h-1.5 overflow-hidden">
             <div
               className={cn(
                 "h-full rounded-full transition-all duration-500",
                 memberCount >= maxMembers
-                  ? "bg-amber-500"
-                  : "bg-primary"
+                  ? "bg-[#D97706]"
+                  : "bg-[#166534]"
               )}
               style={{ width: `${(memberCount / maxMembers) * 100}%` }}
             />
@@ -108,14 +105,14 @@ export const TeamCard: React.FC<TeamCardProps> = ({
         {/* Required Skills Tags */}
         {team.requiredSkills && team.requiredSkills.length > 0 && (
           <div className="space-y-1.5 mb-2">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground block">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#64748B] block">
               Required Skills:
             </span>
             <div className="flex items-center gap-1.5 flex-wrap">
               {team.requiredSkills.map((skill) => (
                 <span
                   key={skill}
-                  className="px-2 py-0.5 rounded-md bg-muted text-[11px] font-semibold text-foreground/80 border border-border/60"
+                  className="px-2 py-0.5 rounded-md bg-[#EEF2F7] text-[11px] font-semibold text-[#0F172A] border border-[#E2E8F0]"
                 >
                   {skill}
                 </span>
@@ -126,15 +123,15 @@ export const TeamCard: React.FC<TeamCardProps> = ({
       </div>
 
       {/* Bottom Footer Actions */}
-      <div className="pt-3.5 border-t border-border/60 flex items-center justify-between text-xs relative z-10 gap-2">
-        <span className="text-[11px] text-muted-foreground">
+      <div className="pt-3.5 border-t border-[#E2E8F0] flex items-center justify-between text-xs relative z-10 gap-2">
+        <span className="text-[11px] text-[#64748B]">
           {hasOpenSlots ? (
-            <span className="text-emerald-700 font-semibold inline-flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+            <span className="text-[#166534] font-semibold inline-flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#166534]" />
               Open for Applications
             </span>
           ) : (
-            <span className="text-muted-foreground">Squad Roster Full</span>
+            <span className="text-[#64748B]">Squad Roster Full</span>
           )}
         </span>
 
@@ -147,7 +144,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
                 e.stopPropagation();
                 onRequestJoin(team);
               }}
-              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground border border-primary/20 text-xs font-bold transition-all cursor-pointer z-20"
+              className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-[#166534] text-[#166534] hover:text-white border border-emerald-300 text-xs font-bold transition-all cursor-pointer z-20"
             >
               <UserPlus className="h-3.5 w-3.5" />
               <span>Request Join</span>
@@ -156,10 +153,10 @@ export const TeamCard: React.FC<TeamCardProps> = ({
 
           <Link
             href={`/teams/${team.id}`}
-            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-background hover:bg-muted text-foreground border border-border text-xs font-semibold transition-colors z-20"
+            className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white hover:bg-[#EEF2F7] text-[#0F172A] border border-[#E2E8F0] text-xs font-semibold shadow-xs transition-colors z-20"
           >
             <span>Workspace</span>
-            <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground" />
+            <ArrowUpRight className="h-3.5 w-3.5 text-[#64748B]" />
           </Link>
         </div>
       </div>

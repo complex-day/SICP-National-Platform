@@ -103,26 +103,26 @@ export function MentorshipSessionModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-card border border-border w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0F172A]/50 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="bg-white border border-[#E2E8F0] w-full max-w-lg rounded-xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-border flex items-center justify-between bg-muted/40">
+        <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between bg-[#EEF2F7]">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-500 border border-purple-500/20">
+            <div className="p-2.5 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-300">
               <BookOpen className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground text-base">
+              <h3 className="font-semibold text-[#0F172A] text-base">
                 Log Advisory & Mentorship Session
               </h3>
-              <p className="text-xs text-muted-foreground truncate max-w-[280px]">
+              <p className="text-xs text-[#64748B] truncate max-w-[280px]">
                 {projectTitle}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+            className="p-1.5 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-[#E2E8F0] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -131,7 +131,7 @@ export function MentorshipSessionModal({
         {/* Content Form */}
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-4">
           {error && (
-            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-start gap-2.5 animate-in fade-in">
+            <div className="p-3.5 rounded-lg bg-red-50 border border-red-300 text-[#DC2626] text-xs flex items-start gap-2.5 animate-in fade-in">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
               <span>{error}</span>
             </div>
@@ -139,15 +139,15 @@ export function MentorshipSessionModal({
 
           {/* Mentor Selector */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-foreground flex items-center gap-1">
-              <User className="h-3 w-3 text-muted-foreground" />
-              Industry Mentor <span className="text-rose-400">*</span>
+            <label className="text-xs font-semibold text-[#0F172A] flex items-center gap-1">
+              <User className="h-3.5 w-3.5 text-[#166534]" />
+              Industry Mentor <span className="text-[#DC2626]">*</span>
             </label>
             {mentors.length > 0 ? (
               <select
                 value={mentorId}
                 onChange={(e) => setMentorId(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl bg-background border border-border text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+                className="w-full px-3.5 py-2 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
               >
                 {mentors.map((m) => (
                   <option key={m.id} value={m.id}>
@@ -160,7 +160,7 @@ export function MentorshipSessionModal({
                 type="text"
                 disabled
                 value={currentMentor.name}
-                className="w-full px-3.5 py-2 rounded-xl bg-muted/40 border border-border text-xs text-muted-foreground"
+                className="w-full px-3.5 py-2 rounded-lg bg-[#EEF2F7] border border-[#E2E8F0] text-xs text-[#64748B]"
               />
             )}
           </div>
@@ -168,23 +168,23 @@ export function MentorshipSessionModal({
           {/* Date & Duration */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-foreground flex items-center gap-1">
-                <Calendar className="h-3.5 w-3.5 text-primary" />
-                Session Date <span className="text-rose-400">*</span>
+              <label className="text-xs font-semibold text-[#0F172A] flex items-center gap-1">
+                <Calendar className="h-3.5 w-3.5 text-[#166534]" />
+                Session Date <span className="text-[#DC2626]">*</span>
               </label>
               <input
                 type="date"
                 value={sessionDate}
                 onChange={(e) => setSessionDate(e.target.value)}
-                className="w-full px-3.5 py-2 rounded-xl bg-background border border-border text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+                className="w-full px-3.5 py-2 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
                 required
               />
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-foreground flex items-center gap-1">
-                <Clock className="h-3.5 w-3.5 text-purple-400" />
-                Duration (Hours) <span className="text-rose-400">*</span>
+              <label className="text-xs font-semibold text-[#0F172A] flex items-center gap-1">
+                <Clock className="h-3.5 w-3.5 text-[#166534]" />
+                Duration (Hours) <span className="text-[#DC2626]">*</span>
               </label>
               <input
                 type="number"
@@ -193,7 +193,7 @@ export function MentorshipSessionModal({
                 max="12"
                 value={durationHours}
                 onChange={(e) => setDurationHours(Number(e.target.value))}
-                className="w-full px-3.5 py-2 rounded-xl bg-background border border-border text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+                className="w-full px-3.5 py-2 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
                 required
               />
             </div>
@@ -201,37 +201,37 @@ export function MentorshipSessionModal({
 
           {/* Topic */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-foreground">
-              Technical Discussion Topic <span className="text-rose-400">*</span>
+            <label className="text-xs font-semibold text-[#0F172A]">
+              Technical Discussion Topic <span className="text-[#DC2626]">*</span>
             </label>
             <input
               type="text"
               value={topic}
               onChange={(e) => setTopic(e.target.value)}
               placeholder="e.g., Firmware optimization, ISO 14001 compliance, Edge inference"
-              className="w-full px-3.5 py-2 rounded-xl bg-background border border-border text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+              className="w-full px-3.5 py-2 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
               required
             />
           </div>
 
           {/* Notes */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-foreground">
-              Session Minutes & Technical Guidance <span className="text-rose-400">*</span>
+            <label className="text-xs font-semibold text-[#0F172A]">
+              Session Minutes & Technical Guidance <span className="text-[#DC2626]">*</span>
             </label>
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               placeholder="Summarize key findings, architecture recommendations, and design trade-offs discussed..."
               rows={3}
-              className="w-full px-3.5 py-2 rounded-xl bg-background border border-border text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary resize-none"
+              className="w-full px-3.5 py-2 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534] resize-none"
               required
             />
           </div>
 
           {/* Action Items */}
           <div className="space-y-2">
-            <label className="text-xs font-semibold text-foreground">
+            <label className="text-xs font-semibold text-[#0F172A]">
               Key Action Items & Next Steps
             </label>
 
@@ -247,12 +247,12 @@ export function MentorshipSessionModal({
                   }
                 }}
                 placeholder="Add actionable task..."
-                className="flex-1 px-3 py-1.5 rounded-lg bg-background border border-border text-xs text-foreground placeholder:text-muted-foreground"
+                className="flex-1 px-3 py-1.5 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:ring-1 focus:ring-[#166534]"
               />
               <button
                 type="button"
                 onClick={handleAddActionItem}
-                className="px-3 py-1.5 rounded-lg bg-secondary text-secondary-foreground text-xs font-semibold hover:bg-muted transition-colors flex items-center gap-1 border border-border"
+                className="px-3 py-1.5 rounded-lg bg-[#EEF2F7] text-[#0F172A] text-xs font-semibold hover:bg-[#E2E8F0] transition-colors flex items-center gap-1 border border-[#E2E8F0]"
               >
                 <Plus className="h-3.5 w-3.5" />
                 Add
@@ -264,13 +264,13 @@ export function MentorshipSessionModal({
                 {actionItems.map((item, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center justify-between gap-2 p-2 rounded-lg bg-muted/40 border border-border/50 text-xs"
+                    className="flex items-center justify-between gap-2 p-2 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] text-xs"
                   >
-                    <span className="text-foreground">{item}</span>
+                    <span className="text-[#0F172A]">{item}</span>
                     <button
                       type="button"
                       onClick={() => handleRemoveActionItem(idx)}
-                      className="text-muted-foreground hover:text-rose-400 transition-colors p-0.5"
+                      className="text-[#64748B] hover:text-[#DC2626] transition-colors p-0.5"
                     >
                       <Trash2 className="h-3.5 w-3.5" />
                     </button>
@@ -281,18 +281,18 @@ export function MentorshipSessionModal({
           </div>
 
           {/* Action Buttons */}
-          <div className="pt-2 flex items-center justify-end gap-3 border-t border-border">
+          <div className="pt-2 flex items-center justify-end gap-3 border-t border-[#E2E8F0]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl border border-border text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+              className="px-4 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#475569] hover:text-[#0F172A] hover:bg-[#EEF2F7] transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting || !topic.trim()}
-              className="px-5 py-2 rounded-xl bg-purple-600 text-white text-xs font-semibold hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed shadow-glow flex items-center gap-2 transition-all"
+              className="px-5 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] disabled:opacity-50 disabled:cursor-not-allowed shadow-xs flex items-center gap-2 transition-colors"
             >
               {isSubmitting ? (
                 <>

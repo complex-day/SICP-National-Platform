@@ -8,31 +8,31 @@
     --foreground: 222 47% 11%; /* #0F172A */
 
     --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 222 47% 11%; /* #0F172A */
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 216 100% 40%; /* #0052CC GovTech Blue */
+    --primary: 143 64% 24%; /* #166534 Primary Forest Green */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222 47% 11.2%;
+    --secondary: 214 25% 95%; /* #EEF2F7 Government Grey */
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 40% 96.1%; /* #F1F5F9 */
-    --muted-foreground: 215.4 16.3% 46.9%; /* #64748B */
+    --muted: 214 25% 95%; /* #EEF2F7 */
+    --muted-foreground: 215 16% 47%; /* #64748B */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222 47% 11.2%;
+    --accent: 142 71% 45%; /* #22C55E Accent Green */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%; /* #DB4437 */
+    --destructive: 0 72% 51%; /* #DC2626 */
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%; /* #E2E8F0 */
-    --input: 214.3 31.8% 91.4%;
-    --ring: 216 100% 40%;
+    --border: 214 32% 91%; /* #E2E8F0 */
+    --input: 214 32% 91%;
+    --ring: 143 64% 24%;
 
-    --radius: 0.5rem; /* 8px */
+    --radius: 0.5rem;
   }
 }
 
@@ -44,34 +44,43 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
     min-height: 100vh;
+    background-color: #F8FAFC;
+    color: #0F172A;
   }
 }
 
-/* Standard GovTech Scrollbar */
+/* Official Government Clean Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #EEF2F7;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #94A3B8;
 }
 
-/* GovTech Panel Utilities */
+/* Official Government Card Utilities */
 .gov-card {
-  @apply bg-white border border-slate-200 rounded-lg shadow-xs;
+  @apply bg-white border border-[#E2E8F0] rounded-lg shadow-xs;
 }
 
 .gov-card-hover {
-  @apply transition-all duration-150 hover:border-slate-300 hover:shadow-sm;
+  @apply transition-colors duration-150 hover:border-[#166534]/50;
 }
+
+/* Backward-compatible flat government mapping for existing glass-panel usages */
+.glass-panel {
+  @apply bg-white border border-[#E2E8F0] rounded-lg shadow-xs;
+}
+
+
 

@@ -51,23 +51,23 @@ export function ProjectStageStepper({
     currentIndex < PROJECT_STAGES.length - 1 ? PROJECT_STAGES[currentIndex + 1] : null;
 
   return (
-    <div className="p-5 rounded-2xl bg-card border border-border space-y-4">
+    <div className="p-5 rounded-xl bg-white border border-[#E2E8F0] shadow-xs space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
+          <h4 className="text-xs font-semibold uppercase tracking-wider text-[#64748B] flex items-center gap-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-[#166534]" />
             Project Lifecycle Stage Workflow
           </h4>
-          <p className="text-xs text-foreground font-medium mt-0.5">
+          <p className="text-xs text-[#0F172A] font-medium mt-0.5">
             Current Stage:{" "}
-            <span className="text-primary font-bold">{STAGE_CONFIG[currentStage].label}</span>
+            <span className="text-[#166534] font-bold">{STAGE_CONFIG[currentStage].label}</span>
           </p>
         </div>
 
         {nextStage && onAdvanceStage && (
           <button
             onClick={() => onAdvanceStage(nextStage)}
-            className="px-3.5 py-1.5 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow flex items-center gap-1.5 transition-all"
+            className="px-3.5 py-1.5 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs flex items-center gap-1.5 transition-all"
           >
             <span>Advance to {STAGE_CONFIG[nextStage].label}</span>
             <ChevronRight className="w-3.5 h-3.5" />
@@ -90,10 +90,10 @@ export function ProjectStageStepper({
               className={cn(
                 "p-3.5 rounded-xl border transition-all relative flex flex-col justify-between gap-2",
                 isCurrent
-                  ? "bg-primary/10 border-primary/50 shadow-glow-sm"
+                  ? "bg-emerald-50/60 border-[#166534]"
                   : isCompleted
-                  ? "bg-emerald-500/5 border-emerald-500/30"
-                  : "bg-muted/30 border-border/60 opacity-60"
+                  ? "bg-[#EEF2F7] border-[#E2E8F0]"
+                  : "bg-[#F8FAFC] border-[#E2E8F0] opacity-60"
               )}
             >
               <div className="flex items-center justify-between">
@@ -101,10 +101,10 @@ export function ProjectStageStepper({
                   className={cn(
                     "w-8 h-8 rounded-lg flex items-center justify-center font-bold text-xs",
                     isCurrent
-                      ? "bg-primary text-primary-foreground shadow-glow-sm"
+                      ? "bg-[#166534] text-white"
                       : isCompleted
-                      ? "bg-emerald-500 text-white"
-                      : "bg-muted text-muted-foreground"
+                      ? "bg-[#16A34A] text-white"
+                      : "bg-[#E2E8F0] text-[#64748B]"
                   )}
                 >
                   {isCompleted ? (
@@ -113,7 +113,7 @@ export function ProjectStageStepper({
                     <IconComponent className="w-4 h-4" />
                   )}
                 </div>
-                <span className="font-mono text-[11px] font-bold text-muted-foreground">
+                <span className="font-mono text-[11px] font-bold text-[#64748B]">
                   0{idx + 1}
                 </span>
               </div>
@@ -123,15 +123,15 @@ export function ProjectStageStepper({
                   className={cn(
                     "font-semibold text-xs",
                     isCurrent
-                      ? "text-primary"
+                      ? "text-[#166534] font-bold"
                       : isCompleted
-                      ? "text-emerald-400"
-                      : "text-muted-foreground"
+                      ? "text-[#14532D]"
+                      : "text-[#64748B]"
                   )}
                 >
                   {config.label}
                 </div>
-                <div className="text-[10px] text-muted-foreground truncate">
+                <div className="text-[10px] text-[#64748B] truncate">
                   {config.description}
                 </div>
               </div>

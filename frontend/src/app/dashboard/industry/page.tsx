@@ -162,7 +162,7 @@ export default function IndustryDashboardPage() {
       render: (row: Partnership) => (
         <Link
           href={`/partnerships/${row.id}`}
-          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary text-xs font-semibold transition-colors"
+          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-[#166534] border border-emerald-200 text-xs font-semibold transition-colors"
         >
           <span>Workspace</span>
           <ArrowRight className="h-3 w-3" />
@@ -204,7 +204,7 @@ export default function IndustryDashboardPage() {
       header: "Tranche Value",
       sortable: true,
       render: (row) => (
-        <div className="font-mono text-xs font-bold text-emerald-500">
+        <div className="font-mono text-xs font-bold text-[#166534]">
           ₹{row.amount.toLocaleString("en-IN")}
           <div className="text-[10px] text-muted-foreground font-normal">
             Tranche #{row.trancheNumber}
@@ -216,7 +216,7 @@ export default function IndustryDashboardPage() {
       key: "status",
       header: "Audit Check",
       render: (row) => (
-        <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20">
+        <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300">
           <ShieldCheck className="h-3 w-3" />
           Milestone Verified
         </span>
@@ -235,7 +235,7 @@ export default function IndustryDashboardPage() {
               projectTitle: row.projectTitle,
             });
           }}
-          className="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-sm transition-colors flex items-center gap-1"
+          className="px-3 py-1 rounded-lg bg-[#166534] hover:bg-[#14532D] text-white text-xs font-semibold shadow-xs transition-colors flex items-center gap-1"
         >
           <IndianRupee className="h-3 w-3" />
           Release Tranche
@@ -269,11 +269,11 @@ export default function IndustryDashboardPage() {
       <div className="space-y-8 animate-in fade-in duration-300">
         {/* Success Toast */}
         {successToast && (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium flex items-center justify-between shadow-glow animate-in slide-in-from-top-2">
+          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-sm font-medium flex items-center justify-between shadow-xs animate-in slide-in-from-top-2">
             <span>{successToast}</span>
             <button
               onClick={() => setSuccessToast(null)}
-              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-300"
+              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-950"
             >
               Dismiss
             </button>
@@ -289,7 +289,7 @@ export default function IndustryDashboardPage() {
             { label: "Industry Network", href: "/dashboard/industry" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EEF2F7] text-[#166534] border border-[#E2E8F0]">
               Module 6 • Industry Hub
             </span>
           }
@@ -297,15 +297,15 @@ export default function IndustryDashboardPage() {
             <div className="flex items-center gap-2">
               <Link
                 href="/partnerships"
-                className="px-3.5 py-2 rounded-xl bg-secondary text-secondary-foreground text-xs font-semibold hover:bg-muted border border-border flex items-center gap-1.5 transition-colors"
+                className="px-3.5 py-2 rounded-lg bg-white text-[#0F172A] text-xs font-semibold hover:bg-[#EEF2F7] border border-[#E2E8F0] shadow-xs flex items-center gap-1.5 transition-colors"
               >
-                <Compass className="w-3.5 h-3.5 text-primary" />
+                <Compass className="w-3.5 h-3.5 text-[#166534]" />
                 Discovery Marketplace
               </Link>
 
               <button
                 onClick={() => setIsProposalModalOpen(true)}
-                className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow flex items-center gap-2 transition-all"
+                className="px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs flex items-center gap-2 transition-colors"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 Propose CSR Sponsorship
@@ -321,66 +321,66 @@ export default function IndustryDashboardPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Link
             href="/partnerships"
-            className="p-4 rounded-xl bg-card border border-border hover:border-primary/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-4 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#166534]/50 shadow-xs transition-colors group flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <Compass className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-semibold text-xs text-foreground">Discovery Marketplace</h4>
-                <p className="text-[11px] text-muted-foreground">Browse R&D Projects</p>
+                <h4 className="font-semibold text-xs text-[#0F172A]">Discovery Marketplace</h4>
+                <p className="text-[11px] text-[#64748B]">Browse R&D Projects</p>
               </div>
             </div>
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
 
           <Link
             href="/partnerships/funding"
-            className="p-4 rounded-xl bg-card border border-border hover:border-emerald-500/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-4 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#166534]/50 shadow-xs transition-colors group flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <IndianRupee className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-semibold text-xs text-foreground">Tranche Manager</h4>
-                <p className="text-[11px] text-muted-foreground">Milestone-Linked Releases</p>
+                <h4 className="font-semibold text-xs text-[#0F172A]">Tranche Manager</h4>
+                <p className="text-[11px] text-[#64748B]">Milestone-Linked Releases</p>
               </div>
             </div>
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
 
           <Link
             href="/partnerships/mentorship"
-            className="p-4 rounded-xl bg-card border border-border hover:border-purple-500/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-4 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#166534]/50 shadow-xs transition-colors group flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <Users className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-semibold text-xs text-foreground">Mentorship Hub</h4>
-                <p className="text-[11px] text-muted-foreground">Advisory Hours & Logs</p>
+                <h4 className="font-semibold text-xs text-[#0F172A]">Mentorship Hub</h4>
+                <p className="text-[11px] text-[#64748B]">Advisory Hours & Logs</p>
               </div>
             </div>
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-purple-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
 
           <Link
             href="/partnerships/deployments"
-            className="p-4 rounded-xl bg-card border border-border hover:border-amber-500/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-4 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#166534]/50 shadow-xs transition-colors group flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <Cpu className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-semibold text-xs text-foreground">Pilot Testbeds</h4>
-                <p className="text-[11px] text-muted-foreground">Field Deployments & Telemetry</p>
+                <h4 className="font-semibold text-xs text-[#0F172A]">Pilot Testbeds</h4>
+                <p className="text-[11px] text-[#64748B]">Field Deployments & Telemetry</p>
               </div>
             </div>
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-amber-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
         </div>
 

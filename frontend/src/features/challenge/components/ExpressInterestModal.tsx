@@ -58,20 +58,20 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="glass-panel border border-border rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200"
+        className="bg-white border border-[#E2E8F0] rounded-xl w-full max-w-lg shadow-xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-5 border-b border-border/80 flex items-center justify-between bg-muted/30">
+        <div className="p-5 border-b border-[#E2E8F0] flex items-center justify-between bg-[#EEF2F7]">
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center">
+            <div className="h-9 w-9 rounded-lg bg-emerald-50 border border-emerald-300 text-[#166534] flex items-center justify-center">
               <Sparkles className="h-4 w-4" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-foreground">Express Solution Interest</h3>
-              <p className="text-xs text-muted-foreground truncate max-w-[320px]">
+              <h3 className="text-base font-bold text-[#0F172A]">Express Solution Interest</h3>
+              <p className="text-xs text-[#64748B] truncate max-w-[320px]">
                 {challenge.title}
               </p>
             </div>
@@ -79,7 +79,7 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-white transition-colors cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -88,19 +88,19 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
         {/* Content */}
         {isSubmitted ? (
           <div className="p-8 text-center space-y-4">
-            <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 flex items-center justify-center mx-auto animate-in zoom-in">
+            <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-300 text-[#166534] flex items-center justify-center mx-auto animate-in zoom-in">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <div className="space-y-1">
-              <h4 className="text-lg font-bold text-foreground">Interest Registered!</h4>
-              <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+              <h4 className="text-lg font-bold text-[#0F172A]">Interest Registered!</h4>
+              <p className="text-xs text-[#475569] max-w-sm mx-auto">
                 Thank you for stepping up to solve this community challenge. The district innovation coordinator and citizen submitter have been notified.
               </p>
             </div>
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2 rounded-xl bg-primary text-primary-foreground font-semibold text-xs hover:bg-primary/90 transition-colors cursor-pointer"
+              className="px-5 py-2 rounded-lg bg-[#166534] text-white font-semibold text-xs hover:bg-[#14532D] transition-colors cursor-pointer shadow-xs"
             >
               Close Window
             </button>
@@ -108,15 +108,15 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
         ) : (
           <form onSubmit={handleSubmit} className="p-5 space-y-4 overflow-y-auto">
             {error && (
-              <div className="p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-xs">
+              <div className="p-3.5 rounded-lg bg-red-50 border border-red-200 text-[#DC2626] text-xs">
                 {error}
               </div>
             )}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-foreground mb-1">
-                  Your Full Name *
+                <label className="block text-xs font-semibold text-[#0F172A] mb-1">
+                  Your Full Name <span className="text-[#DC2626]">*</span>
                 </label>
                 <input
                   type="text"
@@ -124,13 +124,13 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Dr. S. Raman"
-                  className="w-full rounded-xl bg-background border border-border px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] px-3 py-2 text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-foreground mb-1">
-                  Official Email *
+                <label className="block text-xs font-semibold text-[#0F172A] mb-1">
+                  Official Email <span className="text-[#DC2626]">*</span>
                 </label>
                 <input
                   type="email"
@@ -138,15 +138,15 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="raman@iitb.ac.in"
-                  className="w-full rounded-xl bg-background border border-border px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] px-3 py-2 text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-semibold text-foreground mb-1">
-                  Institution / Organization *
+                <label className="block text-xs font-semibold text-[#0F172A] mb-1">
+                  Institution / Organization <span className="text-[#DC2626]">*</span>
                 </label>
                 <input
                   type="text"
@@ -154,13 +154,13 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
                   value={formData.organization}
                   onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                   placeholder="IIT Bombay / CleanTech Labs"
-                  className="w-full rounded-xl bg-background border border-border px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] px-3 py-2 text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-foreground mb-1">
-                  Affiliation Role *
+                <label className="block text-xs font-semibold text-[#0F172A] mb-1">
+                  Affiliation Role <span className="text-[#DC2626]">*</span>
                 </label>
                 <select
                   value={formData.role}
@@ -170,7 +170,7 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
                       role: e.target.value as "student" | "faculty" | "industry" | "government" | "other",
                     })
                   }
-                  className="w-full rounded-xl bg-background border border-border px-3 py-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer"
+                  className="w-full rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] px-3 py-2 text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534] cursor-pointer"
                 >
                   <option value="faculty">Academic Faculty / PI</option>
                   <option value="student">Student Research Lead</option>
@@ -182,8 +182,8 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-foreground mb-1">
-                Proposed Technical Approach & Scope *
+              <label className="block text-xs font-semibold text-[#0F172A] mb-1">
+                Proposed Technical Approach & Scope <span className="text-[#DC2626]">*</span>
               </label>
               <textarea
                 rows={3}
@@ -191,12 +191,12 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
                 value={formData.proposedApproach}
                 onChange={(e) => setFormData({ ...formData, proposedApproach: e.target.value })}
                 placeholder="Briefly describe the technology, pilot methodology, or lab prototype you intend to deploy..."
-                className="w-full rounded-xl bg-background border border-border p-3 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary leading-relaxed"
+                className="w-full rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] p-3 text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534] leading-relaxed"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-foreground mb-1">
+              <label className="block text-xs font-semibold text-[#0F172A] mb-1">
                 Estimated Pilot Timeline (Weeks)
               </label>
               <input
@@ -210,23 +210,23 @@ export const ExpressInterestModal: React.FC<ExpressInterestModalProps> = ({
                     estimatedTimelineWeeks: parseInt(e.target.value) || 12,
                   })
                 }
-                className="w-full rounded-xl bg-background border border-border px-3 py-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                className="w-full rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] px-3 py-2 text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
               />
             </div>
 
             {/* Actions */}
-            <div className="pt-3 border-t border-border flex items-center justify-end gap-2.5">
+            <div className="pt-3 border-t border-[#E2E8F0] flex items-center justify-end gap-2.5">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-xl border border-border bg-background hover:bg-muted text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                className="px-4 py-2 rounded-lg border border-[#CBD5E1] bg-white hover:bg-[#F8FAFC] text-xs font-semibold text-[#475569] hover:text-[#0F172A] transition-colors cursor-pointer shadow-xs"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 disabled:opacity-50 transition-all shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-bold hover:bg-[#14532D] disabled:opacity-50 transition-all shadow-xs cursor-pointer"
               >
                 <Send className="h-3.5 w-3.5" />
                 <span>{isSubmitting ? "Submitting..." : "Send Proposal"}</span>

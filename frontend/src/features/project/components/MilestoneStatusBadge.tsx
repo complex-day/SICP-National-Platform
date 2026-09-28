@@ -28,7 +28,7 @@ export function MilestoneStatusBadge({ status, className }: Props) {
       return (
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20",
+            "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-sky-50 text-sky-800 border border-sky-300",
             className
           )}
         >
@@ -40,7 +40,7 @@ export function MilestoneStatusBadge({ status, className }: Props) {
       return (
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20",
+            "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-300",
             className
           )}
         >
@@ -52,7 +52,7 @@ export function MilestoneStatusBadge({ status, className }: Props) {
       return (
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+            "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-[#166534] border border-emerald-300",
             className
           )}
         >
@@ -64,7 +64,7 @@ export function MilestoneStatusBadge({ status, className }: Props) {
       return (
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-500/10 text-rose-400 border border-rose-500/20",
+            "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-rose-50 text-rose-800 border border-rose-300",
             className
           )}
         >

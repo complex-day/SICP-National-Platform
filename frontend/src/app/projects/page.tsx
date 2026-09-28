@@ -141,7 +141,7 @@ export default function ProjectsRegistryPage() {
       render: (row: Project) => (
         <div className="text-xs">
           <div className="font-medium text-foreground flex items-center gap-1">
-            <GraduationCap className="w-3.5 h-3.5 text-emerald-400" />
+            <GraduationCap className="w-3.5 h-3.5 text-[#166534]" />
             {row.facultyMentorName}
           </div>
           <div className="text-muted-foreground text-[11px]">
@@ -182,7 +182,7 @@ export default function ProjectsRegistryPage() {
       render: (row: Project) => (
         <Link
           href={`/projects/${row.id}`}
-          className="px-2.5 py-1 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 text-xs font-semibold shadow-glow-sm transition-all flex items-center gap-1"
+          className="px-2.5 py-1 rounded-lg bg-[#166534] text-white hover:bg-[#14532D] text-xs font-semibold shadow-xs transition-all flex items-center gap-1"
         >
           <span>Workspace</span>
           <ArrowRight className="w-3 h-3" />
@@ -203,7 +203,7 @@ export default function ProjectsRegistryPage() {
             { label: "Projects", href: "/projects" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300">
               Module 5 Lifecycle
             </span>
           }
@@ -211,19 +211,19 @@ export default function ProjectsRegistryPage() {
             <div className="flex items-center gap-2.5">
               <Link
                 href="/projects/milestones"
-                className="px-3.5 py-2 rounded-xl border border-border text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+                className="px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#475569] hover:text-[#0F172A] hover:bg-[#EEF2F7] transition-colors"
               >
                 Milestone Hub
               </Link>
               <Link
                 href="/projects/reviews"
-                className="px-3.5 py-2 rounded-xl border border-border text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+                className="px-3.5 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#475569] hover:text-[#0F172A] hover:bg-[#EEF2F7] transition-colors"
               >
                 Faculty Reviews
               </Link>
               <Link
                 href="/projects/create"
-                className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow flex items-center gap-2 transition-all"
+                className="px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs flex items-center gap-2 transition-all"
               >
                 <Plus className="w-3.5 h-3.5" />
                 Create New Project
@@ -267,26 +267,26 @@ export default function ProjectsRegistryPage() {
         )}
 
         {/* Search, Filter & View Toggle Bar */}
-        <div className="p-4 rounded-2xl bg-card border border-border space-y-3">
+        <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] shadow-xs space-y-3">
           <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
             <form onSubmit={handleSearchSubmit} className="flex-1 w-full relative">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#64748B]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search projects by title, team, mentor, tags, or challenge..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-background border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534] transition-colors"
               />
             </form>
 
             <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={() => setViewMode("GRID")}
-                className={`p-2 rounded-xl border text-xs font-semibold transition-all ${
+                className={`p-2 rounded-lg border text-xs font-semibold transition-all ${
                   viewMode === "GRID"
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background border-border text-muted-foreground hover:text-foreground"
+                    ? "bg-[#166534] text-white border-[#166534] shadow-xs"
+                    : "bg-white border-[#CBD5E1] text-[#64748B] hover:text-[#0F172A] hover:bg-[#F8FAFC]"
                 }`}
                 title="Grid View"
               >
@@ -294,10 +294,10 @@ export default function ProjectsRegistryPage() {
               </button>
               <button
                 onClick={() => setViewMode("TABLE")}
-                className={`p-2 rounded-xl border text-xs font-semibold transition-all ${
+                className={`p-2 rounded-lg border text-xs font-semibold transition-all ${
                   viewMode === "TABLE"
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-background border-border text-muted-foreground hover:text-foreground"
+                    ? "bg-[#166534] text-white border-[#166534] shadow-xs"
+                    : "bg-white border-[#CBD5E1] text-[#64748B] hover:text-[#0F172A] hover:bg-[#F8FAFC]"
                 }`}
                 title="Table View"
               >
@@ -307,15 +307,15 @@ export default function ProjectsRegistryPage() {
           </div>
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-border/60">
+          <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-[#E2E8F0]">
             {/* Stage Filter */}
             <div className="flex items-center gap-1.5 text-xs">
-              <Filter className="w-3.5 h-3.5 text-muted-foreground" />
-              <span className="text-muted-foreground font-medium">Stage:</span>
+              <Filter className="w-3.5 h-3.5 text-[#166534]" />
+              <span className="text-[#475569] font-medium">Stage:</span>
               <select
                 value={selectedStage}
                 onChange={(e) => setSelectedStage(e.target.value)}
-                className="px-2.5 py-1 rounded-lg bg-background border border-border text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                className="px-2.5 py-1 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
               >
                 {STAGES.map((st) => (
                   <option key={st.value} value={st.value}>
@@ -327,11 +327,11 @@ export default function ProjectsRegistryPage() {
 
             {/* Category Filter */}
             <div className="flex items-center gap-1.5 text-xs">
-              <span className="text-muted-foreground font-medium">Category:</span>
+              <span className="text-[#475569] font-medium">Category:</span>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-2.5 py-1 rounded-lg bg-background border border-border text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                className="px-2.5 py-1 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
               >
                 {CATEGORIES.map((cat) => (
                   <option key={cat} value={cat}>

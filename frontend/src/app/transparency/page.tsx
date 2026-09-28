@@ -252,7 +252,7 @@ export default function PublicTransparencyPortalPage() {
             { label: "Transparency Portal", href: "/transparency" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300 flex items-center gap-1">
               <ShieldCheck className="h-3 w-3" />
               Open Data Verified
             </span>
@@ -263,7 +263,7 @@ export default function PublicTransparencyPortalPage() {
                 setSelectedDigestForModal("");
                 setIsVerifyModalOpen(true);
               }}
-              className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow flex items-center gap-2 transition-all"
+              className="px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs flex items-center gap-2 transition-all"
             >
               <Lock className="w-3.5 h-3.5" />
               Verify SHA-256 Digest
@@ -296,7 +296,7 @@ export default function PublicTransparencyPortalPage() {
             value={kpis.activeStudentTeams}
             subtitle={`${kpis.activeProjects} Active Projects`}
             icon={Users}
-            accentColor="purple"
+            accentColor="blue"
             trend={{ value: "+48 this month", direction: "up", isPositive: true }}
           />
 
@@ -320,13 +320,13 @@ export default function PublicTransparencyPortalPage() {
         </div>
 
         {/* Cryptographic Ledger Info Banner */}
-        <div className="glass-panel p-5 rounded-2xl border border-border flex flex-col md:flex-row md:items-center justify-between gap-4 bg-gradient-to-r from-card via-card to-emerald-500/5">
+        <div className="bg-[#EEF2F7] p-5 rounded-xl border border-[#CBD5E1] flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 font-bold text-foreground text-sm">
-              <ShieldCheck className="h-5 w-5 text-emerald-400" />
+            <div className="flex items-center gap-2 font-bold text-[#0F172A] text-sm">
+              <ShieldCheck className="h-5 w-5 text-[#166534]" />
               <span>Cryptographic Proof & Immutability Guarantee</span>
             </div>
-            <p className="text-xs text-muted-foreground max-w-2xl">
+            <p className="text-xs text-[#475569] max-w-2xl leading-relaxed">
               Every citizen problem submission, university team allocation, milestone approval, and CSR grant disbursement is cryptographically hashed with its preceding block digest to guarantee an immutable historical audit chain.
             </p>
           </div>
@@ -336,32 +336,32 @@ export default function PublicTransparencyPortalPage() {
               setSelectedDigestForModal(ledger[0]?.sha256Digest || "");
               setIsVerifyModalOpen(true);
             }}
-            className="px-4 py-2 rounded-xl bg-secondary text-secondary-foreground hover:bg-muted text-xs font-semibold border border-border transition-colors shrink-0 flex items-center gap-1.5"
+            className="px-4 py-2 rounded-lg bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-[#F8FAFC] text-xs font-semibold shadow-xs transition-colors shrink-0 flex items-center gap-1.5"
           >
-            <Lock className="h-3.5 w-3.5 text-primary" />
+            <Lock className="h-3.5 w-3.5 text-[#166534]" />
             <span>Verify Latest Block</span>
           </button>
         </div>
 
         {/* Filter and Search Bar */}
-        <div className="glass-panel p-4 rounded-2xl border border-border space-y-3">
+        <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-xs space-y-3">
           <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
             <div className="relative w-full sm:w-80">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64748B]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search audit ledger by title, hash, event, or role..."
-                className="w-full pl-9 pr-4 py-2 rounded-xl bg-background border border-border text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+                className="w-full pl-9 pr-4 py-2 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
               />
             </div>
           </div>
 
           {/* Module Filter Pills */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
-            <span className="text-[11px] font-semibold text-muted-foreground mr-1 flex items-center gap-1 shrink-0">
-              <Filter className="h-3 w-3" />
+            <span className="text-[11px] font-bold text-[#475569] mr-1 flex items-center gap-1 shrink-0">
+              <Filter className="h-3 w-3 text-[#166534]" />
               Source Module:
             </span>
             {[
@@ -377,10 +377,10 @@ export default function PublicTransparencyPortalPage() {
               <button
                 key={m.id}
                 onClick={() => setSelectedModule(m.id)}
-                className={`px-3 py-1 rounded-full whitespace-nowrap transition-all ${
+                className={`px-3 py-1 rounded-md text-xs whitespace-nowrap transition-all ${
                   selectedModule === m.id
-                    ? "bg-primary text-primary-foreground font-semibold shadow-sm"
-                    : "bg-muted/40 text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "bg-[#166534] text-white font-bold shadow-xs"
+                    : "bg-[#EEF2F7] text-[#475569] border border-[#E2E8F0] font-medium hover:text-[#0F172A] hover:bg-[#E2E8F0]"
                 }`}
               >
                 {m.label}

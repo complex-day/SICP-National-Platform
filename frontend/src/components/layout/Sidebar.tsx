@@ -243,9 +243,9 @@ export function Sidebar({
     .filter((section) => section.items.length > 0);
 
   const sidebarContent = (
-    <div className="flex flex-col h-full bg-card border-r border-border select-none">
+    <div className="flex flex-col h-full bg-white border-r border-[#E2E8F0] select-none">
       {/* Brand Header */}
-      <div className="h-16 flex items-center justify-between px-4 border-b border-border shrink-0">
+      <div className="h-16 flex items-center justify-between px-4 border-b border-[#E2E8F0] shrink-0">
         <Link
           href="/dashboard"
           className={cn(
@@ -254,19 +254,19 @@ export function Sidebar({
           )}
           onClick={onCloseMobile}
         >
-          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-brand-700 flex items-center justify-center text-primary-foreground font-black text-base shadow-glow-sm shrink-0">
-            🇮🇳
+          <div className="h-9 w-9 rounded-lg bg-[#166534] text-white flex items-center justify-center font-bold text-xs tracking-wider border border-[#14532D] shrink-0">
+            SICP
           </div>
           {!isCollapsed && (
             <div className="flex flex-col min-w-0">
-              <span className="font-bold text-sm text-foreground tracking-tight flex items-center gap-1.5">
+              <span className="font-bold text-sm text-[#0F172A] tracking-tight flex items-center gap-1.5">
                 SICP Portal
-                <span className="text-[9px] font-semibold uppercase px-1.5 py-0.2 rounded bg-primary/10 text-primary border border-primary/20">
-                  SIH 26043
+                <span className="text-[9px] font-semibold uppercase px-1.5 py-0.2 rounded bg-emerald-50 text-[#166534] border border-emerald-200">
+                  Jharkhand
                 </span>
               </span>
-              <span className="text-[10px] text-muted-foreground truncate">
-                Govt of India · Innovation Hub
+              <span className="text-[10px] text-[#64748B] truncate">
+                Govt of Jharkhand · Innovation Hub
               </span>
             </div>
           )}
@@ -277,7 +277,7 @@ export function Sidebar({
           <button
             type="button"
             onClick={isMobileOpen ? onCloseMobile : onToggleCollapse}
-            className="p-1.5 rounded-lg border border-border bg-background hover:bg-muted text-muted-foreground hover:text-foreground transition-colors shrink-0 ml-2"
+            className="p-1.5 rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-slate-100 text-[#64748B] hover:text-[#0F172A] transition-colors shrink-0 ml-2"
             title={isMobileOpen ? "Close Menu" : "Collapse Sidebar"}
             aria-label={isMobileOpen ? "Close Menu" : "Collapse Sidebar"}
           >
@@ -295,7 +295,7 @@ export function Sidebar({
         {filteredSections.map((section, sIdx) => (
           <div key={sIdx} className="space-y-1">
             {!isCollapsed && section.title && (
-              <h4 className="px-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70 mb-1.5">
+              <h4 className="px-3 text-[10px] font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">
                 {section.title}
               </h4>
             )}
@@ -313,17 +313,17 @@ export function Sidebar({
                   onClick={onCloseMobile}
                   title={isCollapsed ? item.label : undefined}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-all group relative",
+                    "flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium transition-colors group relative",
                     isActive
-                      ? "bg-primary text-primary-foreground shadow-sm font-semibold"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                      ? "bg-[#166534] text-white shadow-xs font-semibold"
+                      : "text-[#475569] hover:bg-[#F8FAFC] hover:text-[#0F172A]",
                     isCollapsed ? "justify-center px-0 py-2.5" : ""
                   )}
                 >
                   <Icon
                     className={cn(
                       "h-4 w-4 shrink-0 transition-transform group-hover:scale-105",
-                      isActive ? "text-primary-foreground" : "text-muted-foreground group-hover:text-foreground"
+                      isActive ? "text-white" : "text-[#64748B] group-hover:text-[#0F172A]"
                     )}
                   />
 
@@ -337,7 +337,7 @@ export function Sidebar({
                         "text-[9px] font-bold px-1.5 py-0.5 rounded-full",
                         isActive
                           ? "bg-white/20 text-white"
-                          : "bg-primary/10 text-primary border border-primary/20"
+                          : "bg-emerald-50 text-[#166534] border border-emerald-200"
                       )}
                     >
                       {item.badge}
@@ -351,17 +351,17 @@ export function Sidebar({
       </div>
 
       {/* Collapse Toggle Footer (Desktop only) */}
-      <div className="hidden lg:flex items-center justify-between p-3 border-t border-border shrink-0 bg-muted/20">
+      <div className="hidden lg:flex items-center justify-between p-3 border-t border-[#E2E8F0] shrink-0 bg-[#F8FAFC]">
         {!isCollapsed && (
-          <div className="flex items-center gap-2 text-[11px] text-muted-foreground truncate">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <div className="flex items-center gap-2 text-[11px] text-[#64748B] truncate">
+            <span className="h-2 w-2 rounded-full bg-[#16A34A] animate-pulse"></span>
             <span>API Online (v8.0.0)</span>
           </div>
         )}
         <button
           type="button"
           onClick={onToggleCollapse}
-          className="p-1.5 rounded-lg border border-border bg-background hover:bg-muted text-muted-foreground hover:text-foreground transition-colors mx-auto"
+          className="p-1.5 rounded-lg border border-[#E2E8F0] bg-white hover:bg-[#EEF2F7] text-[#64748B] hover:text-[#0F172A] transition-colors mx-auto"
           title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
         >
           {isCollapsed ? (

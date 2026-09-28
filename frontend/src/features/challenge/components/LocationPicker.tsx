@@ -80,7 +80,7 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({ value, onChange,
             step="0.000001"
             value={value.lat || ""}
             onChange={(e) => onChange({ ...value, lat: parseFloat(e.target.value) || 0 })}
-            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] focus:outline-none"
             placeholder="e.g. 23.344100"
           />
         </div>
@@ -91,7 +91,7 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({ value, onChange,
             step="0.000001"
             value={value.lng || ""}
             onChange={(e) => onChange({ ...value, lng: parseFloat(e.target.value) || 0 })}
-            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] focus:outline-none"
             placeholder="e.g. 85.309600"
           />
         </div>
@@ -105,7 +105,7 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({ value, onChange,
             type="text"
             value={value.district || ""}
             onChange={(e) => onChange({ ...value, district: e.target.value })}
-            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] focus:outline-none"
             placeholder="e.g. Ranchi"
           />
         </div>
@@ -115,7 +115,7 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({ value, onChange,
             type="text"
             value={value.state || ""}
             onChange={(e) => onChange({ ...value, state: e.target.value })}
-            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] focus:outline-none"
             placeholder="e.g. Jharkhand"
           />
         </div>
@@ -125,7 +125,7 @@ export const LocationPicker: React.FC<LocationPickerProps> = ({ value, onChange,
             type="text"
             value={value.address_text || ""}
             onChange={(e) => onChange({ ...value, address_text: e.target.value })}
-            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
+            className="w-full rounded-lg bg-white border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder-slate-400 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] focus:outline-none"
             placeholder="e.g. Ward 12, Village Rampur"
           />
         </div>

@@ -174,11 +174,11 @@ export default function PartnershipDetailPage() {
       <div className="space-y-8 animate-in fade-in duration-300">
         {/* Success Toast */}
         {successToast && (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium flex items-center justify-between shadow-glow animate-in slide-in-from-top-2">
+          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-[#166534] text-sm font-medium flex items-center justify-between shadow-xs animate-in slide-in-from-top-2">
             <span>{successToast}</span>
             <button
               onClick={() => setSuccessToast(null)}
-              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-300"
+              className="text-xs uppercase font-bold tracking-wider underline hover:text-[#14532D]"
             >
               Dismiss
             </button>
@@ -189,7 +189,7 @@ export default function PartnershipDetailPage() {
         <div>
           <Link
             href="/dashboard/industry"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-[#64748B] hover:text-[#166534] transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Back to Industry Dashboard
@@ -197,14 +197,14 @@ export default function PartnershipDetailPage() {
         </div>
 
         {/* Header Section */}
-        <div className="glass-panel p-6 rounded-2xl border border-border space-y-4">
+        <div className="gov-card p-6 rounded-xl border border-[#E2E8F0] space-y-4 bg-white shadow-xs">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div>
               <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300">
                   {partnership.partnerType.replace(/_/g, " ")}
                 </span>
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-secondary text-secondary-foreground border border-border">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EEF2F7] text-[#475569] border border-[#E2E8F0]">
                   {partnership.projectCategory}
                 </span>
                 <PartnershipStatusBadge status={partnership.status} />
@@ -214,27 +214,27 @@ export default function PartnershipDetailPage() {
                 />
               </div>
 
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#0F172A]">
                 {partnership.partnerName}
               </h1>
 
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                <span className="font-semibold text-foreground">
+              <div className="flex items-center gap-2 text-sm text-[#64748B] mt-1">
+                <span className="font-semibold text-[#0F172A]">
                   Sponsored: {partnership.projectTitle}
                 </span>
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground mt-2">
+              <div className="flex flex-wrap items-center gap-4 text-xs text-[#64748B] mt-2">
                 <div className="flex items-center gap-1.5">
-                  <GraduationCap className="h-3.5 w-3.5 text-primary" />
+                  <GraduationCap className="h-3.5 w-3.5 text-[#166534]" />
                   <span>{partnership.institutionName}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Users className="h-3.5 w-3.5 text-emerald-500" />
+                  <Users className="h-3.5 w-3.5 text-[#166534]" />
                   <span>{partnership.teamName}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+                  <Calendar className="h-3.5 w-3.5 text-[#64748B]" />
                   <span>
                     MoU: {new Date(partnership.mouSignedDate).toLocaleDateString("en-IN")}
                   </span>
@@ -246,9 +246,9 @@ export default function PartnershipDetailPage() {
             <div className="flex flex-wrap items-center gap-2.5">
               <Link
                 href={`/projects/${partnership.projectId}`}
-                className="px-3.5 py-2 rounded-xl bg-secondary text-secondary-foreground text-xs font-semibold hover:bg-muted border border-border flex items-center gap-1.5 transition-colors"
+                className="px-3.5 py-2 rounded-lg bg-[#EEF2F7] text-[#475569] text-xs font-semibold hover:bg-[#E2E8F0] border border-[#E2E8F0] flex items-center gap-1.5 transition-colors"
               >
-                <Layers className="h-3.5 w-3.5 text-primary" />
+                <Layers className="h-3.5 w-3.5 text-[#166534]" />
                 M5 Project Lifecycle
                 <ExternalLink className="h-3 w-3" />
               </Link>
@@ -258,7 +258,7 @@ export default function PartnershipDetailPage() {
                   setSelectedMentorForSession(null);
                   setIsMentorshipModalOpen(true);
                 }}
-                className="px-3.5 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow flex items-center gap-1.5 transition-all"
+                className="px-3.5 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs flex items-center gap-1.5 transition-all"
               >
                 <Sparkles className="h-3.5 w-3.5" />
                 Log Advisory Session
@@ -525,12 +525,12 @@ export default function PartnershipDetailPage() {
                     <button
                       key={lvl}
                       onClick={() => handleUpdateCRL(lvl)}
-                      className={`p-2.5 rounded-xl border text-left transition-all ${
+                      className={`p-2.5 rounded-lg border text-left transition-all ${
                         isCurrent
-                          ? "bg-primary text-primary-foreground border-primary shadow-glow ring-2 ring-primary/40"
+                          ? "bg-[#166534] text-white border-[#166534] shadow-xs"
                           : isPassed
-                          ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20"
-                          : "bg-muted/30 border-border text-muted-foreground hover:bg-muted"
+                          ? "bg-emerald-50 border-emerald-300 text-[#166534] hover:bg-emerald-100"
+                          : "bg-white border-[#E2E8F0] text-[#64748B] hover:bg-[#EEF2F7]"
                       }`}
                     >
                       <div className="text-[10px] font-bold uppercase tracking-wider">
@@ -545,8 +545,8 @@ export default function PartnershipDetailPage() {
               </div>
 
               {/* Active CRL explanation */}
-              <div className="p-3.5 bg-muted/40 rounded-xl border border-border text-xs space-y-1">
-                <span className="font-bold text-foreground">
+              <div className="p-3.5 bg-[#EEF2F7] rounded-lg border border-[#E2E8F0] text-xs space-y-1">
+                <span className="font-bold text-[#0F172A]">
                   CRL Level {partnership.techTransfer.commercializationReadinessLevel} Definition:
                 </span>
                 <p className="text-muted-foreground">
@@ -662,9 +662,9 @@ export default function PartnershipDetailPage() {
             )}
 
             {/* Session Logs List */}
-            <div className="glass-panel p-5 rounded-2xl border border-border space-y-3">
+            <div className="gov-card p-5 rounded-xl border border-[#E2E8F0] space-y-3 bg-white shadow-xs">
               <h4 className="font-bold text-foreground text-sm flex items-center gap-2">
-                <BookOpen className="h-4 w-4 text-purple-400" />
+                <BookOpen className="h-4 w-4 text-[#166534]" />
                 <span>Advisory Session History ({partnership.sessions.length} sessions)</span>
               </h4>
 
@@ -677,14 +677,14 @@ export default function PartnershipDetailPage() {
                   {partnership.sessions.map((sess) => (
                     <div
                       key={sess.id}
-                      className="p-4 rounded-xl bg-muted/30 border border-border/60 space-y-2 text-xs"
+                      className="p-4 rounded-xl bg-[#EEF2F7] border border-[#E2E8F0] space-y-2 text-xs"
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                         <div className="font-semibold text-foreground text-sm">
                           {sess.topic}
                         </div>
-                        <div className="flex items-center gap-2 text-muted-foreground text-[11px]">
-                          <span className="font-medium text-purple-400">
+                        <div className="flex items-center gap-2 text-[#64748B] text-[11px]">
+                          <span className="font-semibold text-[#166534]">
                             {sess.mentorName}
                           </span>
                           <span>•</span>

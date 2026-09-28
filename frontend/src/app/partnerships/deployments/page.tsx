@@ -205,11 +205,11 @@ export default function PilotDeploymentCenterPage() {
       <div className="space-y-8 animate-in fade-in duration-300">
         {/* Success Toast */}
         {successToast && (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium flex items-center justify-between shadow-glow animate-in slide-in-from-top-2">
+          <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-[#166534] text-sm font-medium flex items-center justify-between shadow-xs animate-in slide-in-from-top-2">
             <span>{successToast}</span>
             <button
               onClick={() => setSuccessToast(null)}
-              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-300"
+              className="text-xs uppercase font-bold tracking-wider underline hover:text-[#14532D] cursor-pointer"
             >
               Dismiss
             </button>
@@ -226,7 +226,7 @@ export default function PilotDeploymentCenterPage() {
             { label: "Pilot Deployments", href: "/partnerships/deployments" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-300">
               Field Testbeds
             </span>
           }
@@ -234,44 +234,44 @@ export default function PilotDeploymentCenterPage() {
 
         {/* KPI Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="glass-panel p-5 rounded-xl border border-amber-500/30 bg-amber-500/5">
-            <span className="text-xs font-semibold uppercase tracking-wider text-amber-400">
+          <div className="p-5 rounded-xl border border-amber-200 bg-amber-50/50 bg-white">
+            <span className="text-xs font-semibold uppercase tracking-wider text-amber-800">
               Active Field Testbeds
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-slate-900 mt-1">
               {deployments.length} Locations
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Across 5 States and Municipal Districts
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-border">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="p-5 rounded-xl border border-slate-200 bg-white shadow-2xs">
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Hardware Nodes Deployed
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-slate-900 mt-1">
               {totalInstalledUnits} Units
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Sensors, gateways, converters & test equipment
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-emerald-500/30 bg-emerald-500/5">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+          <div className="p-5 rounded-xl border border-emerald-200 bg-emerald-50/50 bg-white">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#166534]">
               Beneficiaries Reached
             </span>
-            <div className="text-2xl font-bold text-emerald-400 mt-1">
+            <div className="text-2xl font-bold text-[#166534] mt-1">
               {totalBeneficiaries.toLocaleString("en-IN")}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Citizens directly impacted by pilot systems
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-border">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="p-5 rounded-xl border border-slate-200 bg-white shadow-2xs">
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Live Telemetry Streams
             </span>
             <div className="text-2xl font-bold text-foreground mt-1 flex items-center gap-2">

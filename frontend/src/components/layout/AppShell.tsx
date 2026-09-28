@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Navbar } from "./Navbar";
-import { Footer } from "@/components/Footer";
-import { Shield, Sparkles, ArrowRight } from "lucide-react";
+import { GovTopBar } from "./GovTopBar";
+import { GovNavbar } from "./GovNavbar";
+import { GovFooter } from "./GovFooter";
+import { MobileBottomNav } from "./MobileBottomNav";
+import { AlertBar } from "@/components/common/AlertBar";
 import { cn } from "@/lib/utils";
 
 interface AppShellProps {
@@ -18,46 +18,41 @@ interface AppShellProps {
 
 export function AppShell({
   children,
-  showBanner = true,
+  showBanner = false,
   bannerContent,
   showFooter = true,
   className,
 }: AppShellProps) {
-  const pathname = usePathname();
-
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
-      {/* Optional GovTech Announcement Banner */}
+    <div className="min-h-screen flex flex-col bg-[#F5F7FA] text-[#212121] font-sans pb-16 lg:pb-0">
+      {/* 1. Official Government Top Bar */}
+      <GovTopBar />
+
+      {/* 2. Official Horizontal Navigation */}
+      <GovNavbar />
+
+      {/* 3. Official Alert / Notice Bar */}
       {showBanner && (
-        <div className="bg-gradient-to-r from-primary via-brand-600 to-indigo-700 text-white text-[11px] font-medium py-1.5 px-4 text-center flex items-center justify-center gap-2 shadow-xs">
-          {bannerContent || (
-            <>
-              <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-pulse shrink-0" />
-              <span>
-                <strong>SIH 26043 Grand Finale:</strong> Empowering citizens, academia, and industry through open-data governance.
-              </span>
-              <Link
-                href="/transparency"
-                className="inline-flex items-center gap-1 underline underline-offset-2 hover:text-amber-200 transition-colors ml-1 font-semibold"
-              >
-                <span>Verify Ledger</span>
-                <ArrowRight className="h-3 w-3" />
-              </Link>
-            </>
-          )}
-        </div>
+        <AlertBar
+          message={
+            bannerContent ||
+            "State Societal Innovation Ledger is active. All milestones, university approvals, and CSR funding tranches are cryptographically verifiable."
+          }
+          actionText="Verify Ledger"
+          actionHref="/transparency"
+        />
       )}
 
-      {/* Header / Navbar */}
-      <Navbar />
-
-      {/* Main Content Area */}
+      {/* 4. Main Content Area */}
       <main className={cn("flex-1 w-full", className)}>
         {children}
       </main>
 
-      {/* Footer */}
-      {showFooter && <Footer />}
+      {/* 5. Official Government Footer */}
+      {showFooter && <GovFooter />}
+
+      {/* 6. UMANG-Style Mobile Bottom Navigation */}
+      <MobileBottomNav />
     </div>
   );
 }

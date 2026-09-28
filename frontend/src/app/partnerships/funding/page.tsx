@@ -257,11 +257,11 @@ export default function FundingTrancheManagerPage() {
       <div className="space-y-8 animate-in fade-in duration-300">
         {/* Success Toast */}
         {successToast && (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium flex items-center justify-between shadow-glow animate-in slide-in-from-top-2">
+          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-900 text-sm font-medium flex items-center justify-between shadow-xs animate-in slide-in-from-top-2">
             <span>{successToast}</span>
             <button
               onClick={() => setSuccessToast(null)}
-              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-300"
+              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-950"
             >
               Dismiss
             </button>
@@ -278,7 +278,7 @@ export default function FundingTrancheManagerPage() {
             { label: "Funding Manager", href: "/partnerships/funding" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#EEF2F7] text-[#166534] border border-[#E2E8F0]">
               Audit & Tranches
             </span>
           }
@@ -286,70 +286,70 @@ export default function FundingTrancheManagerPage() {
 
         {/* Summary Widgets */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="glass-panel p-5 rounded-xl border border-border">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#64748B]">
               Total Committed Capital
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-[#0F172A] mt-1">
               {formatLakhs(kpis.totalCSRFundingCommitted)}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               Across active industry partnerships
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-emerald-500/30 bg-emerald-500/5">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#166534]">
               Total Disbursed Capital
             </span>
-            <div className="text-2xl font-bold text-emerald-400 mt-1">
+            <div className="text-2xl font-bold text-[#166534] mt-1">
               {formatLakhs(kpis.totalCSRFundingDisbursed)}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               {kpis.fundingUtilizationPercentage}% of total committed grants
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-amber-500/30 bg-amber-500/5">
-            <span className="text-xs font-semibold uppercase tracking-wider text-amber-400">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#D97706]">
               Eligible for Release
             </span>
-            <div className="text-2xl font-bold text-amber-400 mt-1">
+            <div className="text-2xl font-bold text-[#D97706] mt-1">
               {tranches.filter((t) => t.status === "ELIGIBLE").length} Tranches
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               Awaiting CSR Bureau authorization
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-border">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#64748B]">
               Committed (Future)
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-[#0F172A] mt-1">
               {tranches.filter((t) => t.status === "COMMITTED").length} Tranches
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               Linked to upcoming M5 milestones
             </p>
           </div>
         </div>
 
         {/* Filter and Search Bar */}
-        <div className="glass-panel p-4 rounded-2xl border border-border flex flex-col sm:flex-row gap-3 items-center justify-between">
+        <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-xs flex flex-col sm:flex-row gap-3 items-center justify-between">
           <div className="relative w-full sm:w-80">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64748B]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by partner, project, or milestone..."
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-background border border-border text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+              className="w-full pl-9 pr-4 py-2 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
             />
           </div>
 
           <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto text-xs">
-            <span className="text-[11px] font-semibold text-muted-foreground mr-1 flex items-center gap-1 shrink-0">
+            <span className="text-[11px] font-semibold text-[#64748B] mr-1 flex items-center gap-1 shrink-0">
               <Filter className="h-3 w-3" />
               Status:
             </span>
@@ -359,8 +359,8 @@ export default function FundingTrancheManagerPage() {
                 onClick={() => setSelectedStatus(status)}
                 className={`px-3 py-1 rounded-full whitespace-nowrap transition-all ${
                   selectedStatus === status
-                    ? "bg-primary text-primary-foreground font-semibold shadow-sm"
-                    : "bg-muted/40 text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "bg-[#166534] text-white font-semibold shadow-xs"
+                    : "bg-[#EEF2F7] text-[#475569] hover:text-[#0F172A] hover:bg-[#E2E8F0]"
                 }`}
               >
                 {status === "ALL" ? "All Tranches" : status}

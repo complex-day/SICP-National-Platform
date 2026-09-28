@@ -46,13 +46,13 @@ export default function ForgotPasswordPage() {
       <div className="relative z-10 w-full flex flex-col items-center">
         <Link
           href="/"
-          className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-[#0052CC] transition"
+          className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-[#166534] transition"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to SICP National Portal</span>
         </Link>
 
-        <div className="w-full max-w-md p-8 bg-white border border-slate-200 rounded-2xl shadow-lg">
+        <div className="w-full max-w-md p-8 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm">
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold text-slate-900">Reset Password</h2>
             <p className="text-xs text-slate-500 mt-1.5">
@@ -68,7 +68,7 @@ export default function ForgotPasswordPage() {
               </p>
               <Link
                 href="/login"
-                className="inline-flex items-center gap-1.5 text-xs text-[#0052CC] hover:underline font-semibold mt-2"
+                className="inline-flex items-center gap-1.5 text-xs text-[#166534] hover:underline font-semibold mt-2"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back to Sign In</span>
@@ -98,7 +98,7 @@ export default function ForgotPasswordPage() {
                       placeholder="user@example.com"
                       {...register("email")}
                       className={`w-full pl-10 pr-4 py-2.5 bg-white border ${
-                        errors.email ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#0052CC]"
+                        errors.email ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534]"
                       } rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition`}
                     />
                   </div>
@@ -110,7 +110,7 @@ export default function ForgotPasswordPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-2.5 px-4 bg-[#0052CC] hover:bg-blue-700 text-white font-semibold rounded-lg shadow-xs transition flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer text-xs"
+                  className="w-full py-2.5 px-4 bg-[#166534] hover:bg-[#14532D] active:bg-[#052E16] text-white font-semibold rounded-lg shadow-xs transition flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer text-xs"
                 >
                   {isLoading ? (
                     <>

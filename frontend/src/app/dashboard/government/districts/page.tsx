@@ -257,7 +257,7 @@ export default function DistrictRankingsPage() {
             { label: "DIRI Rankings", href: "/dashboard/government/districts" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300">
               DIRI Scorecards
             </span>
           }
@@ -265,47 +265,47 @@ export default function DistrictRankingsPage() {
 
         {/* KPI Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="glass-panel p-5 rounded-xl border border-primary/30 bg-primary/5">
-            <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#166534]">
               Monitored Districts
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-[#0F172A] mt-1">
               {districts.length} Districts
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               Indexed with real-time telemetry rollups
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-emerald-500/30 bg-emerald-500/5">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#16A34A]">
               Tier 1 Excellence
             </span>
-            <div className="text-2xl font-bold text-emerald-400 mt-1">
+            <div className="text-2xl font-bold text-[#166534] mt-1">
               {tier1Count} Districts
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               Resolution rates exceeding 70%
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-border">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#475569]">
               National Average DIRI
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-[#0F172A] mt-1">
               {avgDiri} / 100
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               Composite mathematical index
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-border">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#475569]">
               Total Resolved Problems
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-[#0F172A] mt-1">
               {districts.reduce((acc, d) => acc + d.resolvedChallenges, 0)} Challenges
             </div>
             <p className="text-xs text-muted-foreground mt-1">

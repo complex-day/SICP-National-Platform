@@ -274,11 +274,11 @@ export default function AcademicDashboardPage() {
       <div className="space-y-8 animate-in fade-in duration-300">
         {/* Success Toast */}
         {successToast && (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium flex items-center justify-between shadow-glow animate-in slide-in-from-top-2">
+          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-[#166534] text-sm font-medium flex items-center justify-between shadow-xs animate-in slide-in-from-top-2">
             <span>{successToast}</span>
             <button
               onClick={() => setSuccessToast(null)}
-              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-300"
+              className="text-xs uppercase font-bold tracking-wider underline hover:text-[#14532D]"
             >
               Dismiss
             </button>
@@ -294,14 +294,14 @@ export default function AcademicDashboardPage() {
             { label: "Academic Hub", href: "/dashboard/academic" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300">
               HEI Layer (M4)
             </span>
           }
           actions={
             <Link
               href="/academic/matching"
-              className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow flex items-center gap-2 transition-all"
+              className="px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs flex items-center gap-2 transition-all"
             >
               <Sparkles className="w-3.5 h-3.5" />
               AI Mentor Matching
@@ -349,50 +349,50 @@ export default function AcademicDashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Link
             href="/academic/challenges"
-            className="p-5 rounded-2xl bg-card border border-border hover:border-primary/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-5 rounded-xl bg-white border border-[#E2E8F0] shadow-xs hover:border-[#CBD5E1] transition-all duration-200 group flex items-center justify-between"
           >
             <div className="flex items-center gap-3.5">
-              <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20 group-hover:scale-105 transition-transform">
+              <div className="p-3 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <Layers className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-foreground">Challenge Intake Catalog</h4>
-                <p className="text-xs text-muted-foreground">Claim & route broadcast problems</p>
+                <h4 className="font-bold text-sm text-[#0F172A] group-hover:text-[#166534] transition-colors">Challenge Intake Catalog</h4>
+                <p className="text-xs text-[#475569]">Claim & route broadcast problems</p>
               </div>
             </div>
-            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-4 h-4 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
 
           <Link
             href="/academic/faculty"
-            className="p-5 rounded-2xl bg-card border border-border hover:border-primary/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-5 rounded-xl bg-white border border-[#E2E8F0] shadow-xs hover:border-[#CBD5E1] transition-all duration-200 group flex items-center justify-between"
           >
             <div className="flex items-center gap-3.5">
-              <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-3 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <GraduationCap className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-foreground">Faculty Directory</h4>
-                <p className="text-xs text-muted-foreground">Workload caps & specialization</p>
+                <h4 className="font-bold text-sm text-[#0F172A] group-hover:text-[#166534] transition-colors">Faculty Directory</h4>
+                <p className="text-xs text-[#475569]">Workload caps & specialization</p>
               </div>
             </div>
-            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-4 h-4 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
 
           <Link
             href="/academic/matching"
-            className="p-5 rounded-2xl bg-card border border-border hover:border-primary/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-5 rounded-xl bg-white border border-[#E2E8F0] shadow-xs hover:border-[#CBD5E1] transition-all duration-200 group flex items-center justify-between"
           >
             <div className="flex items-center gap-3.5">
-              <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-3 rounded-lg bg-sky-50 text-[#0369A1] border border-sky-200">
                 <Sparkles className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-foreground">AI Mentorship Engine</h4>
-                <p className="text-xs text-muted-foreground">5-factor explainable recommendation</p>
+                <h4 className="font-bold text-sm text-[#0F172A] group-hover:text-[#0369A1] transition-colors">AI Mentorship Engine</h4>
+                <p className="text-xs text-[#475569]">5-factor explainable recommendation</p>
               </div>
             </div>
-            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-blue-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-4 h-4 text-[#64748B] group-hover:text-[#0369A1] group-hover:translate-x-0.5 transition-all" />
           </Link>
         </div>
 

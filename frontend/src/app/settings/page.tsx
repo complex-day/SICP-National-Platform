@@ -64,13 +64,13 @@ export default function SettingsPage() {
     <div className="max-w-2xl mx-auto px-4 py-12 w-full space-y-6">
       <Link
         href="/profile"
-        className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 transition"
+        className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-[#166534] transition"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Back to Profile</span>
       </Link>
 
-      <div className="p-6 sm:p-8 bg-white border border-slate-200 rounded-xl shadow-sm">
+      <div className="p-6 sm:p-8 bg-white border border-[#E2E8F0] rounded-xl shadow-sm">
         <h2 className="text-xl font-bold text-slate-900 mb-1.5">Account Security Settings</h2>
         <p className="text-sm text-slate-500 mb-6">
           Update your authentication password to maintain account integrity.
@@ -106,12 +106,12 @@ export default function SettingsPage() {
                 {...register("current_password")}
                 className={`w-full pl-10 pr-10 py-2 bg-white border ${
                   errors.current_password ? "border-red-400" : "border-slate-300"
-                } rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600`}
+                } rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]`}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600"
+                className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600 cursor-pointer"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -136,7 +136,7 @@ export default function SettingsPage() {
                 {...register("new_password")}
                 className={`w-full pl-10 pr-4 py-2 bg-white border ${
                   errors.new_password ? "border-red-400" : "border-slate-300"
-                } rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600`}
+                } rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]`}
               />
             </div>
             {errors.new_password && (
@@ -159,7 +159,7 @@ export default function SettingsPage() {
                 {...register("confirm_new_password")}
                 className={`w-full pl-10 pr-4 py-2 bg-white border ${
                   errors.confirm_new_password ? "border-red-400" : "border-slate-300"
-                } rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600`}
+                } rounded-lg text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]`}
               />
             </div>
             {errors.confirm_new_password && (
@@ -170,7 +170,7 @@ export default function SettingsPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition shadow-sm flex items-center justify-center gap-2 disabled:opacity-60 text-sm"
+            className="w-full py-2.5 px-4 bg-[#166534] hover:bg-[#14532D] active:bg-[#052E16] text-white font-medium rounded-lg transition shadow-xs flex items-center justify-center gap-2 disabled:opacity-60 text-sm cursor-pointer"
           >
             {isLoading ? (
               <>

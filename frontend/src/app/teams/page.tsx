@@ -155,14 +155,14 @@ export default function TeamsDirectoryPage() {
                 e.stopPropagation();
                 setSelectedTeamForJoin(row);
               }}
-              className="px-2.5 py-1 rounded-lg bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground text-xs font-bold transition-all cursor-pointer"
+              className="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-[#166534] border border-emerald-200 text-xs font-bold transition-all cursor-pointer"
             >
               Join
             </button>
           )}
           <Link
             href={`/teams/${row.id}`}
-            className="p-1 rounded-lg text-muted-foreground hover:text-primary transition-colors"
+            className="p-1 rounded-lg text-[#64748B] hover:text-[#166534] transition-colors"
           >
             <ArrowUpRight className="h-4 w-4" />
           </Link>
@@ -185,23 +185,23 @@ export default function TeamsDirectoryPage() {
             <div className="flex items-center gap-2.5 flex-wrap">
               <Link
                 href="/teams/invitations"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-border bg-background hover:bg-muted text-xs font-semibold text-foreground transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-[#CBD5E1] bg-white hover:bg-[#F8FAFC] text-xs font-semibold text-[#0F172A] shadow-xs transition-colors"
               >
-                <Mail className="h-4 w-4 text-primary" />
+                <Mail className="h-4 w-4 text-[#166534]" />
                 <span>Invitations</span>
               </Link>
 
               <Link
                 href="/teams/requests"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-border bg-background hover:bg-muted text-xs font-semibold text-foreground transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-[#CBD5E1] bg-white hover:bg-[#F8FAFC] text-xs font-semibold text-[#0F172A] shadow-xs transition-colors"
               >
-                <UserCheck className="h-4 w-4 text-primary" />
+                <UserCheck className="h-4 w-4 text-[#166534]" />
                 <span>Join Requests</span>
               </Link>
 
               <Link
                 href="/teams/create"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground font-bold text-xs hover:bg-primary/90 transition-all shadow-sm shadow-primary/20 cursor-pointer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#166534] text-white font-bold text-xs hover:bg-[#14532D] transition-all shadow-xs cursor-pointer"
               >
                 <Plus className="h-4 w-4" />
                 <span>Create Team</span>

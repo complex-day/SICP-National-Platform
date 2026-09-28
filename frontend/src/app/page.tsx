@@ -3,595 +3,632 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  Globe2,
+  Globe,
   Users,
   GraduationCap,
   Briefcase,
-  Landmark,
   ShieldCheck,
   ArrowRight,
+  ArrowUpRight,
   User,
-  Lightbulb,
   Award,
   CheckCircle2,
   ChevronRight,
-  Lock,
   IndianRupee,
-  Menu,
-  X,
-  LayoutDashboard,
   FileText,
   Building2,
-  Check,
+  MapPin,
+  ExternalLink,
+  Layers,
+  ChevronLeft,
+  Bell,
+  Cpu,
+  Sparkles,
+  Download,
+  Info,
+  Radio,
+  Server,
+  Zap,
 } from "lucide-react";
-import { useAuthStore } from "@/store/authStore";
+import { AppShell } from "@/components/layout";
+import { cn } from "@/lib/utils";
 
 export default function HomePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isAuthenticated, user } = useAuthStore();
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const stats = [
-    { label: "Civic Challenges Logged", value: "2,480+", subtext: "+18% this month", icon: Globe2 },
-    { label: "Active Student Teams", value: "612", subtext: "Cross-disciplinary", icon: Users },
-    { label: "Participating HEIs", value: "148", subtext: "Universities & IITs", icon: GraduationCap },
-    { label: "CSR Capital Committed", value: "₹11.25 Cr", subtext: "Milestone-linked", icon: IndianRupee },
-    { label: "Citizens Impacted", value: "1.24M", subtext: "Direct beneficiaries", icon: Building2 },
-    { label: "Verified Audit Blocks", value: "14,820", subtext: "SHA-256 immutable", icon: ShieldCheck },
-  ];
-
-  const problemFlow = [
+  const heroSlides = [
     {
-      step: "01",
-      title: "Citizen",
-      desc: "Local community challenges crowdsourced with geotagged photo evidence and priority rating.",
-      badge: "Intake",
+      title: "JHARKHAND STATE SOCIETAL INNOVATION & RESEARCH NETWORK",
+      subtitle: "Connecting Grassroots Citizen Challenges with Academic R&D, JAP-IT, and CSR Grants for Sustainable Development",
+      tagline: "State Societal Innovation Mission • Dept. of Higher & Technical Education / Dept. of IT & e-Governance, Govt. of Jharkhand",
     },
     {
-      step: "02",
-      title: "Challenge Validation",
-      desc: "AI semantic classification, duplicate detection, and verification of local relevance.",
-      badge: "AI Filter",
+      title: "JHARNET & REGIONAL TELEMETRY NETWORK",
+      subtitle: "Decentralized Environmental Monitoring, Clean Water Diagnostics & Smart Agriculture across 24 Districts",
+      tagline: "Empowering 24 Districts of Jharkhand with Real-Time Geospatial Intelligence (JSAC / PM GatiShakti)",
     },
     {
-      step: "03",
-      title: "University Assignment",
-      desc: "Automated routing to matching Higher Education Institutions and academic departments.",
-      badge: "Allocation",
-    },
-    {
-      step: "04",
-      title: "Student Team Formation",
-      desc: "Cross-disciplinary student squads (AI/ML, IoT, Embedded, CAD, UI/UX) claim problems.",
-      badge: "R&D Squads",
-    },
-    {
-      step: "05",
-      title: "Industry Mentorship",
-      desc: "Corporate sponsors provide technical guidance and milestone-gated CSR grant funding.",
-      badge: "CSR Tranches",
-    },
-    {
-      step: "06",
-      title: "Pilot Deployment",
-      desc: "Field testing and real-world implementation in target rural and urban districts.",
-      badge: "Field Trials",
-    },
-    {
-      step: "07",
-      title: "Social Impact",
-      desc: "DIRI District Innovation Index evaluation, verified SROI, and permanent public ledger audit.",
-      badge: "Transformation",
+      title: "JHARKHAND ACADEMIC CAPSTONE & DEEP-TECH INITIATIVE",
+      subtitle: "48+ Accredited Higher Education Institutions (BIT Mesra, IIT ISM Dhanbad, NIT Jamshedpur, JUT)",
+      tagline: "JUT / AICTE Aligned Capstone Credit Allocation & Field Verification",
     },
   ];
 
-  const compactModules = [
+  const nationalStats = [
+    { label: "Community Challenges", value: "2,480+", subtext: "From 24 Districts of Jharkhand", icon: Globe },
+    { label: "Partner Universities", value: "48+", subtext: "BIT Mesra, IIT ISM, NIT, JUT", icon: GraduationCap },
+    { label: "Active Student Squads", value: "612", subtext: "Multidisciplinary R&D", icon: Users },
+    { label: "CSR Capital Committed", value: "₹11.25 Cr", subtext: "Milestone-Gated Tranches", icon: IndianRupee },
+    { label: "Citizens Impacted", value: "1.24 Million", subtext: "Verified Ground Relief", icon: Building2 },
+    { label: "Immutable Audit Blocks", value: "14,820", subtext: "SHA-256 Public Ledger", icon: ShieldCheck },
+  ];
+
+  const leadership = [
     {
-      title: "Citizen Problem Crowdsourcing",
-      badge: "Module 2",
-      role: "Citizens & Communities",
-      desc: "Submit geotagged civic challenges across water, sanitation, infrastructure, and healthcare with resolution tracking.",
-      href: "/challenges",
-      icon: User,
+      role: "Hon'ble Chief Minister",
+      name: "Shri Hemant Soren",
+      dept: "Government of Jharkhand / Patron, State Innovation Mission",
+      image: "/images/leadership/hemant_soren.png",
+      initial: "HS",
     },
     {
-      title: "Student Innovation Teams",
-      badge: "Module 3",
-      role: "Student Innovators",
-      desc: "Form multidisciplinary squads, manage engineering skill tags, and collaborate on validated societal problems.",
-      href: "/teams",
-      icon: Users,
-    },
-    {
-      title: "Academic Collaboration Hub",
-      badge: "Module 4",
-      role: "Faculty & Universities",
-      desc: "Department workload balancing, challenge review pipelines, faculty mentorship, and academic credit scoring.",
-      href: "/dashboard/academic",
-      icon: GraduationCap,
-    },
-    {
-      title: "Stage-Gated Project Lifecycle",
-      badge: "Module 5",
-      role: "Project Execution",
-      desc: "Four-phase milestone governance (Proposal → Development → Pilot → Completed) with deliverable validation.",
-      href: "/projects",
-      icon: Award,
-    },
-    {
-      title: "Industry CSR Sponsorship",
-      badge: "Module 6",
-      role: "Corporate Sponsors",
-      desc: "Direct CSR grant capital to verified university prototypes with automated milestone-linked tranche disbursements.",
-      href: "/dashboard/industry",
-      icon: Briefcase,
-    },
-    {
-      title: "National Governance Command",
-      badge: "Module 7",
-      role: "Government & Ministries",
-      desc: "District Innovation & Resolution Index (DIRI), state rollups, SROI auditing, and policy decision intelligence.",
-      href: "/dashboard/government",
-      icon: Landmark,
+      role: "Principal Secretary, IAS",
+      name: "Shri Rahul Kumar Purwar, IAS",
+      dept: "Dept. of Higher & Technical Education, Government of Jharkhand",
+      image: "/images/leadership/rahul_purwar.png",
+      initial: "RP",
     },
   ];
 
-  const stakeholders = [
+  const recentUpdates = [
     {
-      name: "Citizens",
-      role: "Problem Identifiers",
-      desc: "First responders on the ground who identify infrastructure, water, sanitation, and civic bottlenecks.",
-      features: ["Mobile geotagged intake", "Real-time resolution status", "Public grievance ledger"],
+      date: "21 APR",
+      category: "Notification/Circular",
+      title: "Clarifications for Jharkhand State Societal Innovation & Startup Policy 2026-28",
+      ref: "DHTE/SICP/NOTIF-2026/04",
+      isNew: true,
     },
     {
-      name: "Universities & HEIs",
-      role: "Academic Centers",
-      desc: "Higher education institutions providing research labs, faculty supervision, and innovation infrastructure.",
-      features: ["Department matching", "Curriculum credit alignment", "Multi-institution consortiums"],
+      date: "16 APR",
+      category: "Government Resolutions",
+      title: "Geospatial Boundary Integration with JSAC & PM GatiShakti for District Grievances",
+      ref: "GR-JSAC-GATI-2026-09",
+      isNew: true,
     },
     {
-      name: "Faculty Mentors",
-      role: "Technical Evaluators",
-      desc: "Domain experts guiding student engineering squads through stage-gated milestone reviews.",
-      features: ["Milestone sign-off", "Deliverable scoring", "Workload management"],
+      date: "12 OCT",
+      category: "Government Resolutions",
+      title: "Setting up of AI Triage & Semantic Matching Taskforce in the State of Jharkhand",
+      ref: "GR-JAPIT-TASKFORCE-88",
+      isNew: false,
     },
     {
-      name: "Industry & Startups",
-      role: "CSR & Technical Partners",
-      desc: "Corporate entities providing domain mentorship, testbed access, and milestone-linked CSR capital.",
-      features: ["Tranche disbursements", "Direct student hiring pipeline", "IP & patent support"],
+      date: "11 OCT",
+      category: "Policy Guidelines",
+      title: "Modification and Addendum to Academic Capstone Credit Allocation Framework",
+      ref: "JUT-DHTE-ADDENDUM-14",
+      isNew: false,
+    },
+  ];
+
+  const innovationPolicies = [
+    {
+      title: "Jharkhand SpaceTech Policy",
+      period: "2025 - 2030",
+      desc: "JSAC satellite telemetry, drought prediction & rural GIS mapping infrastructure.",
+      tag: "Deep Tech",
+      active: false,
     },
     {
-      name: "Government",
-      role: "Policy & Administrative Oversight",
-      desc: "District collectors, state departments, and central ministries monitoring societal impact and scaling solutions.",
-      features: ["DIRI District Index", "SROI analytical models", "SHA-256 audit transparency"],
+      title: "Jharkhand Startup Policy",
+      period: "2025 - 2030",
+      desc: "Incubation centers co-financing grassroots university research labs.",
+      tag: "CSR & Industry",
+      active: true,
+    },
+    {
+      title: "Electronics & Sensor Policy",
+      period: "2022 - 2028",
+      desc: "Hardware fabrication subsidies for student IoT and embedded water sensors.",
+      tag: "Hardware R&D",
+      active: false,
+    },
+    {
+      title: "Semiconductor Mission",
+      period: "2022 - 2027",
+      desc: "Indigenous chip design & sensor prototyping for community challenges.",
+      tag: "Fabrication",
+      active: false,
+    },
+    {
+      title: "Jharkhand IT/ITeS Policy",
+      period: "2022 - 2027",
+      desc: "Automated AI grievance classification & public audit ledgers.",
+      tag: "e-Governance",
+      active: false,
+    },
+  ];
+
+  const ecosystemNodes = [
+    { name: "Directorate of Higher & Technical Education", role: "Policy & Academic Oversight", icon: Building2 },
+    { name: "Jharkhand Agency for Promotion of IT (JAP-IT)", role: "State Systems Implementation", icon: Server },
+    { name: "Jharkhand Space Applications Center (JSAC)", role: "Geospatial GIS & Remote Sensing", icon: Radio },
+    { name: "JharNet (Jharkhand State WAN)", role: "Last-Mile Rural Connectivity", icon: Zap },
+    { name: "Jharkhand Council on Science & Tech (JCSTI)", role: "Academic Research Financing", icon: Award },
+    { name: "Jharkhand University of Technology (JUT)", role: "Curriculum & Capstone Accreditation", icon: GraduationCap },
+    { name: "BIT Mesra & IIT (ISM) Dhanbad Incubators", role: "Startup Commercialization", icon: Briefcase },
+    { name: "Jharkhand State Data Center (JSDC Ranchi)", role: "Secure Sovereign Cloud Compute", icon: ShieldCheck },
+  ];
+
+  const projectsAndInitiatives = [
+    {
+      title: "JharNet & Rural Wi-Fi Grid",
+      code: "JharNet Wi-Fi",
+      desc: "High-speed block and panchayat connectivity enabling citizen grievance geotagging and real-time sensor uploads.",
+      tag: "Connectivity",
+      icon: Radio,
+    },
+    {
+      title: "Jharkhand State Data Center",
+      code: "JSDC Cloud",
+      desc: "Tier-III sovereign data infrastructure in Ranchi hosting state innovation repositories and AI triage engines.",
+      tag: "Cloud Infrastructure",
+      icon: Server,
+    },
+    {
+      title: "JharSewa Workflow Engine",
+      code: "JharSewa",
+      desc: "End-to-end digital administrative routing connecting District Commissioners with University Deans.",
+      tag: "e-Governance",
+      icon: FileText,
+    },
+    {
+      title: "Jharkhand Cyber Security Ops",
+      code: "J-CSOC Center",
+      desc: "24x7 threat monitoring and SHA-256 cryptographic audit logs guaranteeing grant transparency.",
+      tag: "Cyber Security",
+      icon: ShieldCheck,
     },
   ];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans antialiased">
-      {/* Official Tri-Color National Portal Bar */}
-      <div className="h-1 w-full flex">
-        <div className="h-full w-1/3 bg-[#FF9933]" />
-        <div className="h-full w-1/3 bg-white" />
-        <div className="h-full w-1/3 bg-[#138808]" />
-      </div>
+    <AppShell>
+      <div className="space-y-0 text-[#0F172A]">
+        {/* SECTION 1: HERO SECTION WITH FULL-WIDTH AERIAL FOREST PHOTOGRAPHY */}
+        <div className="relative text-white overflow-hidden border-b border-[#E2E8F0] min-h-[480px] sm:min-h-[520px] flex flex-col justify-between">
+          {/* Background Aerial Forest Image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: "url('/images/hero/forest_aerial.jpg')",
+            }}
+          />
 
-      {/* Top Gov Header */}
-      <div className="bg-slate-100 border-b border-slate-200 py-1.5 px-4 text-xs text-slate-600">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-800">भारत सरकार | Government of India</span>
-            <span className="text-slate-300">|</span>
-            <span className="hidden sm:inline">Ministry of Education & AICTE Initiative</span>
-          </div>
-          <div className="flex items-center gap-4 text-[11px]">
-            <span className="font-medium text-blue-700">SIH Problem Statement ID: 26043</span>
-            <span className="hidden md:inline text-slate-500">Standard Light Theme</span>
-          </div>
-        </div>
-      </div>
+          {/* Light Optimistic Institutional Overlay (5–8% White Tint with subtle high-contrast gradient) */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#052E16]/85 via-[#14532D]/75 to-[#052E16]/70" />
 
-      {/* Main Sticky Navigation Bar */}
-      <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-200 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg bg-blue-700 text-white flex items-center justify-center font-bold text-xl shadow-xs">
-              🏛️
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-base text-slate-900 tracking-tight">SICP</span>
-                <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
-                  GovTech Portal
-                </span>
+          {/* Hero Content Container */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10 w-full my-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Main Content */}
+              <div className="lg:col-span-8 space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-400/30 text-xs font-semibold uppercase tracking-wider backdrop-blur-xs">
+                  <span>🌿 National Sustainability & Innovation Mission</span>
+                </div>
+
+                <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight font-sans">
+                  {heroSlides[currentSlide].title}
+                </h1>
+
+                <p className="text-sm sm:text-base lg:text-lg text-emerald-100 max-w-2xl leading-relaxed">
+                  {heroSlides[currentSlide].subtitle}
+                </p>
+
+                <div className="text-xs text-emerald-200/90 font-medium pt-1">
+                  {heroSlides[currentSlide].tagline}
+                </div>
+
+                {/* Primary National CTAs */}
+                <div className="flex flex-wrap items-center gap-3 pt-4">
+                  <Link
+                    href="/citizen/submit-problem"
+                    className="px-5 py-3 rounded-lg bg-[#16A34A] hover:bg-[#15803D] text-white text-xs sm:text-sm font-bold shadow-md transition-all inline-flex items-center gap-2 border border-emerald-400/30"
+                  >
+                    <span>Report Citizen Challenge</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+
+                  <Link
+                    href="/university/dashboard"
+                    className="px-5 py-3 rounded-lg bg-white hover:bg-slate-100 text-[#166534] text-xs sm:text-sm font-bold shadow-md transition-all inline-flex items-center gap-2"
+                  >
+                    <GraduationCap className="h-4 w-4" />
+                    <span>University Innovation Cell</span>
+                  </Link>
+
+                  <Link
+                    href="/partnerships"
+                    className="px-4 py-3 rounded-lg bg-black/30 hover:bg-black/40 border border-white/30 text-white text-xs sm:text-sm font-semibold transition-all inline-flex items-center gap-1.5 backdrop-blur-xs"
+                  >
+                    <Building2 className="h-4 w-4" />
+                    <span>CSR Industry Portal</span>
+                  </Link>
+                </div>
               </div>
-              <span className="text-[11px] text-slate-500 hidden sm:inline leading-none mt-0.5">
-                Societal Innovation Collaboration Portal
-              </span>
-            </div>
-          </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 text-xs font-medium text-slate-700">
-            <Link href="/challenges" className="hover:text-blue-700 transition-colors">Civic Challenges</Link>
-            <Link href="/teams" className="hover:text-blue-700 transition-colors">Teams & Roster</Link>
-            <Link href="/projects" className="hover:text-blue-700 transition-colors">Projects Registry</Link>
-            <Link href="/partnerships" className="hover:text-blue-700 transition-colors">CSR Marketplace</Link>
-            <Link href="/transparency" className="hover:text-blue-700 transition-colors flex items-center gap-1 text-slate-700">
-              <Lock className="w-3 h-3 text-blue-600" /> Public Transparency
-            </Link>
-          </nav>
-
-          {/* Right Action Buttons */}
-          <div className="hidden md:flex items-center gap-2.5">
-            {isAuthenticated && user ? (
-              <Link
-                href="/dashboard"
-                className="px-3.5 py-2 bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold rounded-lg shadow-xs transition flex items-center gap-1.5"
-              >
-                <LayoutDashboard className="w-3.5 h-3.5" />
-                <span>Open Dashboard</span>
-              </Link>
-            ) : (
-              <>
-                <Link
-                  href="/login"
-                  className="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 hover:bg-slate-100 border border-slate-300 transition"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="/citizen/create-challenge"
-                  className="px-3.5 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold rounded-lg shadow-xs transition flex items-center gap-1"
-                >
-                  <span>Submit Challenge</span>
-                  <ArrowRight className="w-3 h-3" />
-                </Link>
-              </>
-            )}
-          </div>
-
-          {/* Mobile Menu Hamburger Button */}
-          <div className="flex lg:hidden items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 transition"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Drawer */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden border-b border-slate-200 bg-white px-4 py-4 space-y-3 shadow-md">
-            <div className="flex flex-col space-y-2 text-sm font-medium">
-              <Link
-                href="/challenges"
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-md hover:bg-slate-100 text-slate-800"
-              >
-                Civic Challenges
-              </Link>
-              <Link
-                href="/teams"
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-md hover:bg-slate-100 text-slate-800"
-              >
-                Teams & Roster
-              </Link>
-              <Link
-                href="/projects"
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-md hover:bg-slate-100 text-slate-800"
-              >
-                Projects Registry
-              </Link>
-              <Link
-                href="/partnerships"
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-md hover:bg-slate-100 text-slate-800"
-              >
-                CSR Marketplace
-              </Link>
-              <Link
-                href="/transparency"
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 rounded-md hover:bg-slate-100 text-slate-800 flex items-center gap-1.5"
-              >
-                <Lock className="w-3.5 h-3.5 text-blue-600" /> Public Transparency
-              </Link>
-            </div>
-
-            <div className="pt-3 border-t border-slate-200 flex items-center gap-2">
-              <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex-1 py-2 text-center text-xs font-medium rounded-lg bg-white border border-slate-300 text-slate-700"
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/citizen/create-challenge"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex-1 py-2 text-center text-xs font-semibold rounded-lg bg-blue-700 text-white"
-              >
-                Submit Challenge
-              </Link>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Hero Section */}
-      <section className="bg-white border-b border-slate-200 py-12 sm:py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          {/* Government of India Header Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold uppercase tracking-wider mb-5">
-            <span>National Innovation Framework • SIH 26043</span>
-          </div>
-
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            Societal Innovation Collaboration Portal
-          </h1>
-
-          <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Crowdsourcing Community Challenges through Universities and Industry Partnerships
-          </p>
-
-          <p className="mt-2 text-xs sm:text-sm text-slate-500 max-w-2xl mx-auto">
-            A structured national platform connecting Citizens, Higher Education Institutions (HEIs), Student Innovators,
-            Corporate CSR Grantors, and Government Ministries.
-          </p>
-
-          {/* Action CTAs */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="/citizen/create-challenge"
-              className="px-6 py-2.5 bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold rounded-lg shadow-xs transition flex items-center gap-2"
-            >
-              <span>Submit Challenge</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/challenges"
-              className="px-6 py-2.5 bg-white hover:bg-slate-50 text-slate-800 text-sm font-semibold rounded-lg border border-slate-300 shadow-xs transition"
-            >
-              Explore Challenges
-            </Link>
-            <Link
-              href="/transparency"
-              className="px-5 py-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-sm font-medium rounded-lg border border-slate-200 transition flex items-center gap-1.5"
-            >
-              <ShieldCheck className="w-4 h-4 text-blue-700" />
-              <span>Public Audit Ledger</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Problem Flow Diagram */}
-      <section className="py-12 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-8">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Operational Methodology</span>
-            <h2 className="text-2xl font-bold text-slate-900 mt-1">
-              End-to-End Problem Resolution Flow
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              The 7-stage lifecycle transforming grassroots civic issues into deployed societal solutions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-3">
-            {problemFlow.map((step, idx) => (
-              <div
-                key={idx}
-                className="p-3.5 bg-white border border-slate-200 rounded-lg shadow-xs flex flex-col justify-between relative"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-100">
-                      {step.step}
+              {/* Right Hero Visual Card */}
+              <div className="lg:col-span-4 hidden lg:block">
+                <div className="bg-[#052E16]/80 backdrop-blur-md border border-emerald-500/30 rounded-lg p-6 space-y-4 text-white shadow-xl">
+                  <div className="flex items-center justify-between border-b border-emerald-700/50 pb-3">
+                    <span className="text-xs font-bold uppercase tracking-wider text-emerald-300">
+                      Institutional Workflow
                     </span>
-                    <span className="text-[9px] font-semibold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
-                      {step.badge}
+                    <span className="text-[11px] bg-emerald-500/20 text-emerald-200 px-2 py-0.5 rounded border border-emerald-400/30 font-semibold">
+                      Live Portal
                     </span>
                   </div>
-                  <h3 className="font-bold text-xs text-slate-900 mb-1">{step.title}</h3>
-                  <p className="text-[11px] text-slate-600 leading-snug">{step.desc}</p>
-                </div>
-                {idx < problemFlow.length - 1 && (
-                  <div className="hidden lg:block absolute -right-2 top-1/2 -translate-y-1/2 z-10 text-slate-300">
-                    ➔
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Platform Statistics */}
-      <section className="py-10 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-6">
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Live Metrics</span>
-            <h3 className="text-lg font-bold text-slate-900">Platform Statistics & Transparency</h3>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {stats.map((s, idx) => {
-              const Icon = s.icon;
-              return (
-                <div key={idx} className="p-3.5 bg-slate-50 border border-slate-200 rounded-lg text-left">
-                  <div className="flex items-center gap-1.5 mb-1.5">
-                    <Icon className="w-4 h-4 text-blue-700 shrink-0" />
-                    <span className="text-[11px] font-medium text-slate-600 truncate">{s.label}</span>
-                  </div>
-                  <div className="text-xl font-bold text-slate-900">{s.value}</div>
-                  <div className="text-[10px] text-slate-500 mt-0.5">{s.subtext}</div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Stakeholders Workspaces (Compact Tiles) */}
-      <section className="py-12 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-8">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Workspaces & Functional Modules</span>
-            <h2 className="text-2xl font-bold text-slate-900 mt-1">
-              Stakeholder Command Workspaces
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Dedicated lightweight interfaces with full operational workflows for each participant role.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {compactModules.map((m, idx) => {
-              const Icon = m.icon;
-              return (
-                <div
-                  key={idx}
-                  className="p-3.5 bg-white border border-slate-200 rounded-lg hover:border-blue-500 hover:shadow-xs transition-all flex flex-col justify-between h-[124px]"
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <div className="p-1.5 rounded bg-blue-50 text-blue-700 border border-blue-100 shrink-0">
-                        <Icon className="w-4 h-4" />
-                      </div>
-                      <div className="min-w-0">
-                        <h4 className="font-semibold text-xs text-slate-900 truncate">
-                          {m.title}
-                        </h4>
-                        <span className="text-[10px] text-slate-500">{m.badge} • {m.role}</span>
+                  <div className="space-y-3 text-xs">
+                    <div className="flex items-center gap-3 p-2.5 rounded bg-black/30 border border-emerald-600/30">
+                      <span className="h-6 w-6 rounded bg-[#16A34A] text-white flex items-center justify-center font-bold text-xs shrink-0">
+                        1
+                      </span>
+                      <div>
+                        <div className="font-bold text-white">Citizen Problem Intake</div>
+                        <div className="text-[11px] text-emerald-200/80">Geotagged field evidence & impact rating</div>
                       </div>
                     </div>
-                    <span className="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
-                      Active
-                    </span>
-                  </div>
 
-                  <p className="text-[11px] text-slate-600 line-clamp-1 leading-snug">
-                    {m.desc}
-                  </p>
+                    <div className="flex items-center gap-3 p-2.5 rounded bg-black/30 border border-emerald-600/30">
+                      <span className="h-6 w-6 rounded bg-[#166534] border border-emerald-400/40 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                        2
+                      </span>
+                      <div>
+                        <div className="font-bold text-white">University & Faculty Assignment</div>
+                        <div className="text-[11px] text-emerald-200/80">Department triage & student squad formation</div>
+                      </div>
+                    </div>
 
-                  <div className="flex items-center justify-between pt-1.5 border-t border-slate-100">
-                    <span className="text-[10px] text-slate-400">GovTech Module</span>
-                    <Link
-                      href={m.href}
-                      className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-700 hover:text-blue-900"
-                    >
-                      <span>Open Workspace</span>
-                      <ArrowRight className="w-3 h-3" />
-                    </Link>
+                    <div className="flex items-center gap-3 p-2.5 rounded bg-black/30 border border-emerald-600/30">
+                      <span className="h-6 w-6 rounded bg-[#15803D] text-white flex items-center justify-center font-bold text-xs shrink-0">
+                        3
+                      </span>
+                      <div>
+                        <div className="font-bold text-white">CSR Funding & Field Deployment</div>
+                        <div className="text-[11px] text-emerald-200/80">Verified outcome & public ledger audit</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            </div>
+          </div>
+
+          {/* Slider Controls */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 flex items-center justify-between text-xs text-emerald-200 relative z-10 w-full">
+            <div className="flex items-center gap-1.5">
+              {heroSlides.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={cn(
+                    "h-2 rounded-full transition-all",
+                    currentSlide === idx ? "w-8 bg-[#22C55E]" : "w-2 bg-white/40 hover:bg-white/70"
+                  )}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setCurrentSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
+                className="p-1.5 rounded bg-black/30 hover:bg-black/50 border border-emerald-500/30"
+                aria-label="Previous Slide"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => setCurrentSlide((prev) => (prev === heroSlides.length - 1 ? 0 : prev + 1))}
+                className="p-1.5 rounded bg-black/30 hover:bg-black/50 border border-emerald-500/30"
+                aria-label="Next Slide"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* Stakeholders Overview Grid */}
-      <section className="py-12 bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-8">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-700">Ecosystem Roles</span>
-            <h2 className="text-2xl font-bold text-slate-900 mt-1">Platform Stakeholders</h2>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
-              Aligned collaboration between civil society, academia, corporate CSR, and public administration.
-            </p>
+        {/* SECTION 2: KEY NATIONAL STATISTICS STRIP */}
+        <div className="bg-[#EEF2F7] py-8 border-b border-[#E2E8F0]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+              {nationalStats.map((st) => {
+                const Icon = st.icon;
+                return (
+                  <div
+                    key={st.label}
+                    className="bg-white border border-[#E2E8F0] rounded-lg p-4 space-y-1 shadow-xs hover:border-[#166534] transition-colors"
+                  >
+                    <Icon className="h-5 w-5 text-[#166534] mb-1" />
+                    <div className="text-xl font-bold text-[#0F172A]">{st.value}</div>
+                    <div className="text-xs font-semibold text-[#475569] leading-tight">{st.label}</div>
+                    <div className="text-[10px] text-[#64748B]">{st.subtext}</div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3.5">
-            {stakeholders.map((s, idx) => (
-              <div key={idx} className="p-4 bg-slate-50 border border-slate-200 rounded-lg flex flex-col justify-between">
-                <div>
-                  <div className="font-bold text-sm text-slate-900">{s.name}</div>
-                  <div className="text-[11px] font-medium text-blue-700 mb-2">{s.role}</div>
-                  <p className="text-xs text-slate-600 mb-4 leading-relaxed">{s.desc}</p>
+        {/* SECTION 3: LEADERSHIP & RECENT UPDATES */}
+        <div className="bg-white py-12 border-b border-[#E2E8F0]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              {/* Left 5-Cols: Leadership Section */}
+              <div className="lg:col-span-5 space-y-4">
+                <div className="border-b-2 border-[#166534] pb-2">
+                  <h2 className="text-lg font-bold text-[#0F172A] uppercase tracking-wide">
+                    Program Leadership & Governance
+                  </h2>
                 </div>
-                <div className="space-y-1.5 pt-3 border-t border-slate-200">
-                  {s.features.map((f, fIdx) => (
-                    <div key={fIdx} className="flex items-center gap-1.5 text-[11px] text-slate-700">
-                      <Check className="w-3 h-3 text-emerald-600 shrink-0" />
-                      <span>{f}</span>
+
+                <div className="space-y-3">
+                  {leadership.map((l) => (
+                    <div
+                      key={l.name}
+                      className="flex items-center gap-3.5 p-3.5 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0] hover:border-[#166534]/50 transition-colors"
+                    >
+                      {l.image ? (
+                        <div className="h-14 w-14 rounded-full overflow-hidden shrink-0 border-2 border-[#166534]/40 bg-white shadow-xs">
+                          <img
+                            src={l.image}
+                            alt={l.name}
+                            className="h-full w-full object-cover object-top scale-105"
+                          />
+                        </div>
+                      ) : (
+                        <div className="h-14 w-14 rounded-full bg-[#166534] text-white flex items-center justify-center font-bold text-lg shrink-0 border-2 border-[#14532D]">
+                          {l.initial}
+                        </div>
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <div className="text-sm font-bold text-[#0F172A] leading-snug">{l.name}</div>
+                        <div className="text-xs font-semibold text-[#166534]">{l.role}</div>
+                        <div className="text-[11px] text-[#475569] truncate">{l.dept}</div>
+                      </div>
                     </div>
                   ))}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Official GovTech Footer */}
-      <footer className="mt-auto bg-slate-900 text-slate-300 py-10 border-t border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-xs">
-            <div className="space-y-2 md:col-span-1">
-              <div className="flex items-center gap-2">
-                <span className="text-lg">🏛️</span>
-                <span className="font-bold text-white text-sm">SICP National Portal</span>
+              {/* Right 7-Cols: Recent Updates / Circulars */}
+              <div className="lg:col-span-7 space-y-4">
+                <div className="border-b-2 border-[#166534] pb-2 flex items-center justify-between">
+                  <h2 className="text-lg font-bold text-[#0F172A] uppercase tracking-wide">
+                    Recent Updates & Circulars
+                  </h2>
+                  <Link href="/transparency" className="text-xs font-semibold text-[#166534] hover:underline">
+                    Archive &rarr;
+                  </Link>
+                </div>
+
+                <div className="space-y-2.5">
+                  {recentUpdates.map((up, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-start gap-3.5 p-3 bg-white border border-[#E2E8F0] rounded-lg hover:border-[#166534] transition-colors"
+                    >
+                      {/* Date Badge (Forest Green Pill) */}
+                      <div className="bg-[#166534] text-white text-center rounded-md px-2.5 py-1.5 shrink-0 min-w-[54px]">
+                        <div className="text-xs font-bold leading-none">{up.date.split(" ")[0]}</div>
+                        <div className="text-[9px] uppercase font-semibold leading-none mt-0.5 text-emerald-200">
+                          {up.date.split(" ")[1]}
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="min-w-0 flex-1 space-y-0.5">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#475569] bg-[#EEF2F7] px-2 py-0.5 rounded border border-[#E2E8F0]">
+                            📁 {up.category}
+                          </span>
+                          {up.isNew && (
+                            <span className="text-[9px] font-bold text-red-700 bg-red-50 border border-red-200 px-1.5 py-0.5 rounded">
+                              NEW
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] leading-snug hover:text-[#166534] cursor-pointer">
+                          {up.title}
+                        </h3>
+                        <div className="text-[11px] text-[#64748B] font-mono">Ref: {up.ref}</div>
+                      </div>
+
+                      <Download className="h-4 w-4 text-gray-400 hover:text-[#166534] cursor-pointer shrink-0 mt-1" />
+                    </div>
+                  ))}
+                </div>
               </div>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Societal Innovation Collaboration Portal. Built for Smart India Hackathon (SIH 26043)
-                to crowdsource community challenges and power university-industry problem solving.
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <div className="font-semibold text-white uppercase tracking-wider text-[11px]">Key Portals</div>
-              <ul className="space-y-1.5 text-slate-400">
-                <li><Link href="/challenges" className="hover:text-white transition">Civic Challenges</Link></li>
-                <li><Link href="/teams" className="hover:text-white transition">Student Innovation Teams</Link></li>
-                <li><Link href="/projects" className="hover:text-white transition">Project Milestones Registry</Link></li>
-                <li><Link href="/partnerships" className="hover:text-white transition">CSR Marketplace</Link></li>
-              </ul>
-            </div>
-
-            <div className="space-y-2">
-              <div className="font-semibold text-white uppercase tracking-wider text-[11px]">Governance</div>
-              <ul className="space-y-1.5 text-slate-400">
-                <li><Link href="/dashboard/government" className="hover:text-white transition">DIRI District Analytics</Link></li>
-                <li><Link href="/transparency" className="hover:text-white transition">SHA-256 Public Audit Ledger</Link></li>
-                <li><Link href="/dashboard/academic" className="hover:text-white transition">University Workload Command</Link></li>
-                <li><Link href="/login" className="hover:text-white transition">Role Login Gateway</Link></li>
-              </ul>
-            </div>
-
-            <div className="space-y-2">
-              <div className="font-semibold text-white uppercase tracking-wider text-[11px]">Compliance & Standards</div>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Compliant with Guidelines for Indian Government Websites (GIGW) & Digital India design standards.
-              </p>
-              <div className="pt-2 text-[11px] text-slate-400">
-                State of Jharkhand • Ministry of Education • AICTE
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-            <div>
-              © 2026 SICP Platform • National Societal Innovation Operating System. All rights reserved.
-            </div>
-            <div className="flex items-center gap-4">
-              <Link href="/transparency" className="hover:text-white transition">Ledger Audit</Link>
-              <Link href="/login" className="hover:text-white transition">Admin Portal</Link>
-              <span className="text-slate-600">|</span>
-              <span className="text-slate-400">Problem Statement 26043</span>
             </div>
           </div>
         </div>
-      </footer>
-    </div>
+
+        {/* SECTION 4: NATIONAL INNOVATION POLICIES */}
+        <div className="bg-[#14532D] text-white py-12 border-b border-[#052E16]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-emerald-700/60 pb-3">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
+                  National Innovation & Strategic Policies
+                </h2>
+                <p className="text-xs text-emerald-200 mt-0.5">
+                  Frameworks governing university credit allocations, CSR grants, and sustainability missions
+                </p>
+              </div>
+              <span className="text-xs font-semibold text-emerald-200 bg-[#052E16]/60 px-3 py-1 rounded border border-emerald-500/30">
+                AICTE / DST Frameworks
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {innovationPolicies.map((pol) => (
+                <div
+                  key={pol.title}
+                  className={cn(
+                    "rounded-lg p-4 space-y-3 flex flex-col justify-between transition-all border",
+                    pol.active
+                      ? "bg-[#166534] border-[#22C55E] ring-2 ring-[#22C55E]/40 shadow-lg"
+                      : "bg-[#052E16]/40 border-emerald-700/40 hover:border-emerald-500/60"
+                  )}
+                >
+                  <div className="space-y-1.5">
+                    <span className="text-[10px] font-bold uppercase text-emerald-300 bg-white/10 px-2 py-0.5 rounded">
+                      {pol.tag}
+                    </span>
+                    <h3 className="text-sm font-bold text-white leading-snug pt-1">{pol.title}</h3>
+                    <div className="text-[11px] text-emerald-300 font-mono">{pol.period}</div>
+                    <p className="text-xs text-emerald-100/90 leading-relaxed pt-1">{pol.desc}</p>
+                  </div>
+
+                  <div className="pt-2">
+                    <Link
+                      href="/transparency"
+                      className={cn(
+                        "w-full py-1.5 rounded text-xs font-bold text-center block transition-colors",
+                        pol.active
+                          ? "bg-[#22C55E] text-slate-950 hover:bg-[#16A34A] hover:text-white"
+                          : "bg-white/10 text-white hover:bg-white/20 border border-white/20"
+                      )}
+                    >
+                      {pol.active ? "Discover More" : "View Policy PDF"}
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 5: COLLABORATIVE INNOVATION ECOSYSTEM */}
+        <div className="bg-white py-12 border-b border-[#E2E8F0]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div className="text-center max-w-2xl mx-auto space-y-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#166534] bg-emerald-50 px-3 py-1 rounded border border-emerald-200">
+                Institutional Network
+              </span>
+              <h2 className="text-2xl font-bold text-[#0F172A] tracking-tight">
+                National Collaborative Innovation Ecosystem
+              </h2>
+              <p className="text-xs sm:text-sm text-[#475569]">
+                Interconnecting governmental directorates, research councils, data centers, and university labs
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {ecosystemNodes.map((node) => {
+                const Icon = node.icon;
+                return (
+                  <div
+                    key={node.name}
+                    className="p-4 rounded-lg border border-[#E2E8F0] bg-[#F8FAFC] hover:bg-white hover:border-[#166534] transition-all space-y-2 shadow-2xs"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="h-9 w-9 rounded-lg bg-emerald-50 text-[#166534] flex items-center justify-center border border-emerald-200">
+                        <Icon className="h-4 w-4" />
+                      </div>
+                      <span className="text-[10px] font-bold text-[#64748B] uppercase">Affiliated</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xs sm:text-sm font-bold text-[#0F172A] leading-snug">{node.name}</h3>
+                      <p className="text-[11px] text-[#475569] mt-0.5">{node.role}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 6: KEY PROJECTS & INITIATIVES */}
+        <div className="bg-[#EEF2F7] py-12 border-b border-[#E2E8F0]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+              <div>
+                <h2 className="text-xl font-bold text-[#0F172A] uppercase tracking-wide">
+                  Flagship Projects & Digital Initiatives
+                </h2>
+                <p className="text-xs text-[#475569] mt-0.5">Core state digital infrastructure supporting SICP workflows</p>
+              </div>
+              <Link
+                href="/projects"
+                className="text-xs font-semibold text-[#166534] hover:underline flex items-center gap-1"
+              >
+                <span>All Projects</span>
+                <ChevronRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {projectsAndInitiatives.map((p) => {
+                const Icon = p.icon;
+                return (
+                  <div
+                    key={p.code}
+                    className="bg-white border border-[#E2E8F0] rounded-lg p-5 flex flex-col justify-between space-y-3 shadow-xs hover:border-[#166534] transition-colors"
+                  >
+                    <div className="space-y-2">
+                      <div className="h-10 w-10 rounded-lg bg-emerald-50 text-[#166534] flex items-center justify-center border border-emerald-200">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <span className="text-[10px] font-bold text-[#166534] uppercase tracking-wide">
+                          {p.tag}
+                        </span>
+                        <h3 className="text-sm font-bold text-[#0F172A] leading-snug">{p.title}</h3>
+                        <div className="text-[11px] font-mono text-[#64748B] font-semibold">{p.code}</div>
+                      </div>
+                      <p className="text-xs text-[#475569] leading-relaxed">{p.desc}</p>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-[#166534]">
+                      <span>View Infrastructure</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* SECTION 7: NATIONAL PARTNERS STRIP */}
+        <div className="bg-white py-8 border-b border-[#E2E8F0]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center text-xs font-bold uppercase tracking-wider text-[#64748B] mb-6">
+              National Institutional & Technology Partners
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+              {[
+                { name: "Digital India", sub: "MeitY Initiative" },
+                { name: "India.gov.in", sub: "National Portal" },
+                { name: "JSAC", sub: "Jharkhand Geospatial GIS" },
+                { name: "JharNet", sub: "Jharkhand State WAN" },
+                { name: "AICTE / JUT", sub: "Technical Education" },
+                { name: "GeM", sub: "Government e-Marketplace" },
+              ].map((partner) => (
+                <div
+                  key={partner.name}
+                  className="p-3 bg-[#F8FAFC] border border-[#E2E8F0] rounded-lg flex flex-col items-center justify-center shadow-2xs"
+                >
+                  <span className="font-bold text-xs text-[#0F172A]">{partner.name}</span>
+                  <span className="text-[10px] text-[#64748B]">{partner.sub}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </AppShell>
   );
 }

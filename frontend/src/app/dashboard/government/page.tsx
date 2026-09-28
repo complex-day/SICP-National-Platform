@@ -93,7 +93,7 @@ export default function GovernmentDashboardPage() {
       header: "Rank",
       sortable: true,
       render: (row) => (
-        <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
+        <span className="font-mono font-bold text-xs px-2.5 py-0.5 rounded-md bg-emerald-50 text-[#166534] border border-emerald-200">
           #{row.ranking}
         </span>
       ),
@@ -208,7 +208,7 @@ export default function GovernmentDashboardPage() {
             { label: "Government Command", href: "/dashboard/government" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300">
               Module 7 • Macro Command
             </span>
           }
@@ -216,9 +216,9 @@ export default function GovernmentDashboardPage() {
             <div className="flex items-center gap-2">
               <Link
                 href="/transparency"
-                className="px-3.5 py-2 rounded-xl bg-secondary text-secondary-foreground text-xs font-semibold hover:bg-muted border border-border flex items-center gap-1.5 transition-colors"
+                className="px-4 py-2 rounded-lg bg-white text-[#0F172A] text-xs font-semibold hover:bg-[#F8FAFC] border border-[#CBD5E1] shadow-xs flex items-center gap-1.5 transition-colors"
               >
-                <Lock className="w-3.5 h-3.5 text-primary" />
+                <Lock className="w-3.5 h-3.5 text-[#166534]" />
                 Public Transparency Portal
               </Link>
             </div>
@@ -286,66 +286,66 @@ export default function GovernmentDashboardPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Link
             href="/dashboard/government/districts"
-            className="p-4 rounded-xl bg-card border border-border hover:border-primary/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-4 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#166534]/50 shadow-xs transition-colors group flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <MapPin className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-semibold text-xs text-foreground">DIRI District Index</h4>
-                <p className="text-[11px] text-muted-foreground">Rankings & Disparities</p>
+                <h4 className="font-semibold text-xs text-[#0F172A]">DIRI District Index</h4>
+                <p className="text-[11px] text-[#64748B]">Rankings & Disparities</p>
               </div>
             </div>
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
 
           <Link
             href="/dashboard/government/states"
-            className="p-4 rounded-xl bg-card border border-border hover:border-emerald-500/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-4 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#166534]/50 shadow-xs transition-colors group flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <Compass className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-semibold text-xs text-foreground">State Geo Rollup</h4>
-                <p className="text-[11px] text-muted-foreground">Regional Performance</p>
+                <h4 className="font-semibold text-xs text-[#0F172A]">State Geo Rollup</h4>
+                <p className="text-[11px] text-[#64748B]">Regional Performance</p>
               </div>
             </div>
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
 
           <Link
             href="/dashboard/government/universities"
-            className="p-4 rounded-xl bg-card border border-border hover:border-purple-500/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-4 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#166534]/50 shadow-xs transition-colors group flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <GraduationCap className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-semibold text-xs text-foreground">UPI University Index</h4>
-                <p className="text-[11px] text-muted-foreground">Academic Research ROI</p>
+                <h4 className="font-semibold text-xs text-[#0F172A]">UPI University Index</h4>
+                <p className="text-[11px] text-[#64748B]">Academic Research ROI</p>
               </div>
             </div>
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-purple-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
 
           <Link
             href="/dashboard/government/sponsors"
-            className="p-4 rounded-xl bg-card border border-border hover:border-amber-500/40 transition-all duration-300 group flex items-center justify-between"
+            className="p-4 rounded-xl bg-white border border-[#E2E8F0] hover:border-[#166534]/50 shadow-xs transition-colors group flex items-center justify-between"
           >
             <div className="flex items-center gap-3">
-              <div className="p-2.5 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 group-hover:scale-105 transition-transform">
+              <div className="p-2.5 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
                 <Building2 className="w-4 h-4" />
               </div>
               <div>
-                <h4 className="font-semibold text-xs text-foreground">SRI Sponsor Index</h4>
-                <p className="text-[11px] text-muted-foreground">CSR Grant Reliability</p>
+                <h4 className="font-semibold text-xs text-[#0F172A]">SRI Sponsor Index</h4>
+                <p className="text-[11px] text-[#64748B]">CSR Grant Reliability</p>
               </div>
             </div>
-            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-amber-400 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-3.5 h-3.5 text-[#64748B] group-hover:text-[#166534] group-hover:translate-x-0.5 transition-all" />
           </Link>
         </div>
 

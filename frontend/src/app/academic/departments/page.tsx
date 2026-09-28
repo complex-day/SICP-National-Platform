@@ -97,7 +97,7 @@ export default function AcademicDepartmentsPage() {
       header: "Assigned Challenges",
       sortable: true,
       render: (row: Department) => (
-        <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 font-mono text-xs font-bold">
+        <span className="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-800 border border-sky-200 font-mono text-xs font-bold">
           {row.assignedChallengesCount} Challenges
         </span>
       ),
@@ -107,7 +107,7 @@ export default function AcademicDepartmentsPage() {
       header: "Active Projects",
       sortable: true,
       render: (row: Department) => (
-        <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-mono text-xs font-bold">
+        <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-mono text-xs font-bold">
           {row.activeProjectsCount} Projects
         </span>
       ),
@@ -188,14 +188,14 @@ export default function AcademicDepartmentsPage() {
             { label: "Departments", href: "/academic/departments" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300">
               HEI Departments
             </span>
           }
           actions={
             <Link
               href="/academic/challenges"
-              className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow flex items-center gap-2 transition-all"
+              className="px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs flex items-center gap-2 transition-all"
             >
               <Layers className="w-3.5 h-3.5" />
               View Challenge Intake
@@ -236,15 +236,15 @@ export default function AcademicDepartmentsPage() {
         </div>
 
         {/* Search Bar */}
-        <div className="p-4 rounded-2xl bg-card border border-border">
+        <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] shadow-xs">
           <div className="relative">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#64748B]" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search departments by name, code, university, chair, or specialization..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-background border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors"
+              className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-sm text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534] transition-colors"
             />
           </div>
         </div>

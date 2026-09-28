@@ -168,7 +168,7 @@ export default function SponsorRankingsPage() {
       header: "SRI Score",
       sortable: true,
       render: (row) => (
-        <span className="font-mono text-xs font-bold text-emerald-400">
+        <span className="font-mono text-xs font-bold text-[#166534]">
           {row.sriScore} / 100
         </span>
       ),
@@ -188,7 +188,7 @@ export default function SponsorRankingsPage() {
             e.stopPropagation();
             setSelectedSponsorForModal(row);
           }}
-          className="px-2.5 py-1 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 text-xs font-semibold transition-colors"
+          className="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-[#166534] border border-emerald-200 text-xs font-semibold transition-colors"
         >
           Scorecard
         </button>
@@ -221,11 +221,11 @@ export default function SponsorRankingsPage() {
       <div className="space-y-8 animate-in fade-in duration-300">
         {/* Success Toast */}
         {successToast && (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium flex items-center justify-between shadow-glow animate-in slide-in-from-top-2">
+          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-[#166534] text-sm font-medium flex items-center justify-between shadow-xs animate-in slide-in-from-top-2">
             <span>{successToast}</span>
             <button
               onClick={() => setSuccessToast(null)}
-              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-300"
+              className="text-xs uppercase font-bold tracking-wider underline hover:text-[#14532D]"
             >
               Dismiss
             </button>
@@ -236,7 +236,7 @@ export default function SponsorRankingsPage() {
         <div>
           <Link
             href="/dashboard/government"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-[#64748B] hover:text-[#166534] transition-colors"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Back to Government Command
@@ -253,7 +253,7 @@ export default function SponsorRankingsPage() {
             { label: "SRI Rankings", href: "/dashboard/government/sponsors" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300">
               MCA CSR-1 Certified
             </span>
           }
@@ -261,74 +261,74 @@ export default function SponsorRankingsPage() {
 
         {/* KPI Row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="glass-panel p-5 rounded-xl border border-emerald-500/30 bg-emerald-500/5">
-            <span className="text-xs font-semibold uppercase tracking-wider text-emerald-400">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#166534]">
               Top Reliable Partner
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1 line-clamp-1">
+            <div className="text-2xl font-bold text-[#0F172A] mt-1 line-clamp-1">
               {sponsors[0]?.companyName || "Tata Trust"}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               SRI Score: {sponsors[0]?.sriScore || 98.4}/100
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-border">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#475569]">
               National Average SRI
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-[#0F172A] mt-1">
               {avgSri} / 100
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               High-trust corporate grant rating
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-border">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#475569]">
               Total Committed Capital
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-[#0F172A] mt-1">
               {formatLakhs(sponsors.reduce((acc, s) => acc + s.committedFunds, 0))}
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               {formatLakhs(sponsors.reduce((acc, s) => acc + s.releasedFunds, 0))} Verified & Disbursed
             </p>
           </div>
 
-          <div className="glass-panel p-5 rounded-xl border border-border">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-xs">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#475569]">
               Advisory Hours Delivered
             </span>
-            <div className="text-2xl font-bold text-foreground mt-1">
+            <div className="text-2xl font-bold text-[#0F172A] mt-1">
               {sponsors.reduce((acc, s) => acc + s.mentorshipHoursDelivered, 0)} Hours
             </div>
-            <p className="text-xs text-muted-foreground mt-1">
+            <p className="text-xs text-[#64748B] mt-1">
               Hands-on corporate research guidance
             </p>
           </div>
         </div>
 
         {/* Search & Filter Bar */}
-        <div className="glass-panel p-4 rounded-2xl border border-border space-y-3">
+        <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-xs space-y-3">
           <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
             <div className="relative w-full sm:w-80">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-[#64748B]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search sponsor company or compliance rating..."
-                className="w-full pl-9 pr-4 py-2 rounded-xl bg-background border border-border text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary"
+                className="w-full pl-9 pr-4 py-2 rounded-lg bg-[#F8FAFC] border border-[#CBD5E1] text-xs text-[#0F172A] placeholder:text-[#94A3B8] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
               />
             </div>
           </div>
 
           {/* Tier Pills */}
           <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
-            <span className="text-[11px] font-semibold text-muted-foreground mr-1 flex items-center gap-1 shrink-0">
-              <Filter className="h-3 w-3" />
+            <span className="text-[11px] font-bold text-[#475569] mr-1 flex items-center gap-1 shrink-0">
+              <Filter className="h-3 w-3 text-[#166534]" />
               SRI Tier:
             </span>
             {[
@@ -340,10 +340,10 @@ export default function SponsorRankingsPage() {
               <button
                 key={t.id}
                 onClick={() => setSelectedTier(t.id)}
-                className={`px-3 py-1 rounded-full whitespace-nowrap transition-all ${
+                className={`px-3 py-1 rounded-md text-xs whitespace-nowrap transition-all ${
                   selectedTier === t.id
-                    ? "bg-emerald-600 text-white font-semibold shadow-sm"
-                    : "bg-muted/40 text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "bg-[#166534] text-white font-bold shadow-xs"
+                    : "bg-[#EEF2F7] text-[#475569] border border-[#E2E8F0] font-medium hover:text-[#0F172A] hover:bg-[#E2E8F0]"
                 }`}
               >
                 {t.label}

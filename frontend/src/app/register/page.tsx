@@ -8,7 +8,7 @@ export default function RegisterPage() {
       <div className="relative z-10 w-full flex flex-col items-center">
         <Link
           href="/"
-          className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-[#0052CC] transition"
+          className="mb-6 inline-flex items-center gap-2 text-xs font-semibold text-slate-600 hover:text-[#166534] transition"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to SICP National Portal</span>

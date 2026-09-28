@@ -103,7 +103,7 @@ export default function ChallengesMarketplacePage() {
       header: "Category",
       sortable: true,
       render: (row) => (
-        <span className="px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20 text-[11px] font-semibold whitespace-nowrap">
+        <span className="px-2.5 py-1 rounded-md bg-emerald-50 text-[#166534] border border-emerald-200 text-[11px] font-bold whitespace-nowrap">
           {row.category}
         </span>
       ),
@@ -184,7 +184,7 @@ export default function ChallengesMarketplacePage() {
           actions={
             <Link
               href="/citizen/create-challenge"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground font-bold text-xs hover:bg-primary/90 transition-all shadow-sm shadow-primary/20"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#166534] text-white font-bold text-xs hover:bg-[#14532D] transition-all shadow-xs"
             >
               <Plus className="h-4 w-4" />
               <span>Submit Challenge</span>

@@ -67,20 +67,20 @@ export const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0F172A]/50 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="glass-panel border border-border rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200"
+        className="bg-white border border-[#E2E8F0] rounded-xl w-full max-w-lg shadow-xl overflow-hidden flex flex-col max-h-[90vh] animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-5 border-b border-border/80 flex items-center justify-between bg-muted/30">
+        <div className="p-5 border-b border-[#E2E8F0] flex items-center justify-between bg-[#EEF2F7]">
           <div className="flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center">
+            <div className="h-9 w-9 rounded-lg bg-emerald-50 border border-emerald-300 text-[#166534] flex items-center justify-center">
               <Mail className="h-4 w-4" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-foreground">Invite Member to Squad</h3>
-              <p className="text-xs text-muted-foreground truncate max-w-[320px]">
+              <h3 className="text-base font-bold text-[#0F172A]">Invite Member to Squad</h3>
+              <p className="text-xs text-[#64748B] truncate max-w-[320px]">
                 {team.name}
               </p>
             </div>
@@ -88,7 +88,7 @@ export const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
           <button
             type="button"
             onClick={onClose}
-            className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-[#E2E8F0] transition-colors cursor-pointer"
           >
             <X className="h-5 w-5" />
           </button>
@@ -97,19 +97,19 @@ export const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
         {/* Content */}
         {isSuccess ? (
           <div className="p-8 text-center space-y-4">
-            <div className="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 flex items-center justify-center mx-auto animate-in zoom-in">
+            <div className="w-14 h-14 rounded-full bg-emerald-50 border border-emerald-300 text-[#166534] flex items-center justify-center mx-auto animate-in zoom-in">
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <div className="space-y-1">
-              <h4 className="text-lg font-bold text-foreground">Invitation Dispatched!</h4>
-              <p className="text-xs text-muted-foreground max-w-sm mx-auto">
+              <h4 className="text-lg font-bold text-[#0F172A]">Invitation Dispatched!</h4>
+              <p className="text-xs text-[#64748B] max-w-sm mx-auto">
                 An invitation has been routed to <strong>{email}</strong>. Once they accept, they will automatically join the roster.
               </p>
             </div>
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2 rounded-xl bg-primary text-primary-foreground font-semibold text-xs hover:bg-primary/90 transition-colors cursor-pointer"
+              className="px-5 py-2 rounded-lg bg-[#166534] text-white font-semibold text-xs hover:bg-[#14532D] transition-colors cursor-pointer shadow-xs"
             >
               Done
             </button>
@@ -117,7 +117,7 @@ export const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
         ) : (
           <form onSubmit={handleSubmit} className="p-5 space-y-4 overflow-y-auto">
             {error && (
-              <div className="p-3 rounded-xl bg-destructive/10 border border-destructive/20 text-destructive text-xs font-medium flex items-center gap-2">
+              <div className="p-3 rounded-lg bg-red-50 border border-red-300 text-[#DC2626] text-xs font-medium flex items-center gap-2">
                 <AlertCircle className="h-4 w-4 shrink-0" />
                 <span>{error}</span>
               </div>
@@ -125,7 +125,7 @@ export const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-bold text-foreground mb-1">
+                <label className="block text-xs font-bold text-[#0F172A] mb-1">
                   Candidate Name *
                 </label>
                 <input
@@ -134,12 +134,12 @@ export const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g., Shreya Sen"
-                  className="w-full rounded-xl bg-background border border-border px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full rounded-lg bg-white border border-[#E2E8F0] px-3 py-2 text-xs text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-foreground mb-1">
+                <label className="block text-xs font-bold text-[#0F172A] mb-1">
                   Institutional Email *
                 </label>
                 <input
@@ -148,19 +148,19 @@ export const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="shreya@iitkgp.ac.in"
-                  className="w-full rounded-xl bg-background border border-border px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full rounded-lg bg-white border border-[#E2E8F0] px-3 py-2 text-xs text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534]"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-foreground mb-1">
+              <label className="block text-xs font-bold text-[#0F172A] mb-1">
                 Target Role in Squad *
               </label>
               <select
                 value={role}
                 onChange={(e) => setRole(e.target.value as TeamRole)}
-                className="w-full rounded-xl bg-background border border-border px-3 py-2 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer"
+                className="w-full rounded-lg bg-white border border-[#E2E8F0] px-3 py-2 text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534] cursor-pointer"
               >
                 <option value="MEMBER">Core Member</option>
                 <option value="CO_LEADER">Co-Leader</option>
@@ -169,7 +169,7 @@ export const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-bold text-foreground mb-1">
+              <label className="block text-xs font-bold text-[#0F172A] mb-1">
                 Personalized Note / Module Assignment
               </label>
               <textarea
@@ -177,23 +177,23 @@ export const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="We'd love to have you take charge of the CAD and hardware packaging module for our team..."
-                className="w-full rounded-xl bg-background border border-border p-3 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary leading-relaxed"
+                className="w-full rounded-lg bg-white border border-[#E2E8F0] p-3 text-xs text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534] leading-relaxed"
               />
             </div>
 
             {/* Footer Actions */}
-            <div className="pt-3 border-t border-border flex items-center justify-end gap-2.5">
+            <div className="pt-3 border-t border-[#E2E8F0] flex items-center justify-end gap-2.5">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-xl border border-border bg-background hover:bg-muted text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                className="px-4 py-2 rounded-lg border border-[#E2E8F0] bg-white hover:bg-[#EEF2F7] text-xs font-semibold text-[#475569] hover:text-[#0F172A] transition-colors cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 disabled:opacity-50 transition-all shadow-sm cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-bold hover:bg-[#14532D] disabled:opacity-50 transition-colors shadow-xs cursor-pointer"
               >
                 <Send className="h-3.5 w-3.5" />
                 <span>{isSubmitting ? "Sending..." : "Dispatch Invitation"}</span>

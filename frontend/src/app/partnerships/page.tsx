@@ -288,11 +288,11 @@ export default function ProjectDiscoveryMarketplacePage() {
       <div className="space-y-8 animate-in fade-in duration-300">
         {/* Success Toast */}
         {successToast && (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium flex items-center justify-between shadow-glow animate-in slide-in-from-top-2">
+          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-[#166534] text-sm font-medium flex items-center justify-between shadow-xs animate-in slide-in-from-top-2">
             <span>{successToast}</span>
             <button
               onClick={() => setSuccessToast(null)}
-              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-300"
+              className="text-xs uppercase font-bold tracking-wider underline hover:text-[#14532D]"
             >
               Dismiss
             </button>
@@ -309,7 +309,7 @@ export default function ProjectDiscoveryMarketplacePage() {
             { label: "Discovery Marketplace", href: "/partnerships" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300">
               M5 + M6 Marketplace
             </span>
           }
@@ -319,7 +319,7 @@ export default function ProjectDiscoveryMarketplacePage() {
                 setSelectedProjectForSponsorship(null);
                 setIsProposalModalOpen(true);
               }}
-              className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow flex items-center gap-2 transition-all"
+              className="px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs flex items-center gap-2 transition-all"
             >
               <Sparkles className="w-3.5 h-3.5" />
               Create CSR Sponsorship Proposal

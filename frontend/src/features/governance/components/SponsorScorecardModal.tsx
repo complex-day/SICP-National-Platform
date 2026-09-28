@@ -7,13 +7,7 @@ import { governanceService } from "@/services/governance.service";
 import {
   X,
   Building2,
-  Award,
   Download,
-  ShieldCheck,
-  CheckCircle2,
-  IndianRupee,
-  Clock,
-  Sparkles,
   BarChart2,
   Loader2,
 } from "lucide-react";
@@ -60,28 +54,28 @@ export function SponsorScorecardModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-card border border-border w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200">
+      <div className="bg-white border border-[#E2E8F0] w-full max-w-xl rounded-xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-border flex items-center justify-between bg-muted/40">
+        <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between bg-[#EEF2F7]">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              <Building2 className="w-5 h-5" />
+            <div className="p-2 rounded-lg bg-white border border-[#CBD5E1] text-[#166534]">
+              <Building2 className="w-5 h-5 text-[#166534]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-semibold text-foreground text-base line-clamp-1">
+                <h3 className="font-bold text-[#0F172A] text-base line-clamp-1">
                   {sponsor.companyName}
                 </h3>
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-[#475569]">
                 National SRI Rank #{sponsor.ranking} • {sponsor.complianceRating}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+            className="p-1.5 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-white transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -90,14 +84,14 @@ export function SponsorScorecardModal({
         {/* Content */}
         <div className="p-6 overflow-y-auto space-y-5">
           {/* Main SRI Banner */}
-          <div className="p-4 rounded-2xl bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent border border-emerald-500/25 flex items-center justify-between">
+          <div className="p-4 rounded-xl bg-[#EEF2F7] border border-[#CBD5E1] flex items-center justify-between">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+              <span className="text-[11px] font-bold uppercase tracking-wider text-[#475569]">
                 Sponsor Reliability Index (SRI)
               </span>
-              <div className="text-3xl font-black text-foreground mt-0.5">
+              <div className="text-3xl font-extrabold text-[#166534] mt-0.5">
                 {sponsor.sriScore}{" "}
-                <span className="text-xs font-normal text-muted-foreground">/ 100.0</span>
+                <span className="text-xs font-semibold text-[#64748B]">/ 100.0</span>
               </div>
             </div>
 
@@ -105,45 +99,45 @@ export function SponsorScorecardModal({
           </div>
 
           {/* SRI Algorithmic Weights */}
-          <div className="space-y-2.5">
-            <h4 className="text-xs font-bold text-foreground flex items-center gap-1.5">
-              <BarChart2 className="h-4 w-4 text-emerald-400" />
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold text-[#0F172A] flex items-center gap-1.5">
+              <BarChart2 className="h-4 w-4 text-[#166534]" />
               <span>SRI Reliability & Compliance Metrics</span>
             </h4>
 
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                <div className="text-[10px] text-muted-foreground uppercase">
+            <div className="grid grid-cols-2 gap-2.5 text-xs">
+              <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+                <div className="text-[10px] font-bold text-[#64748B] uppercase tracking-wider">
                   1. Capital Fulfillment Rate (40%)
                 </div>
-                <div className="font-bold text-emerald-400 mt-0.5">
+                <div className="font-bold text-[#166534] mt-0.5">
                   {sponsor.utilizationPercentage}% Disbursed
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                <div className="text-[10px] text-muted-foreground uppercase">
+              <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+                <div className="text-[10px] font-bold text-[#64748B] uppercase tracking-wider">
                   2. Tranche Timeliness (30%)
                 </div>
-                <div className="font-bold text-foreground mt-0.5">
+                <div className="font-bold text-[#0F172A] mt-0.5">
                   {sponsor.onTimeDisbursementsCount}/{sponsor.scheduledTranchesCount} On-Time
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                <div className="text-[10px] text-muted-foreground uppercase">
+              <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+                <div className="text-[10px] font-bold text-[#64748B] uppercase tracking-wider">
                   3. Technical Advisory Depth (10%)
                 </div>
-                <div className="font-bold text-primary mt-0.5">
+                <div className="font-bold text-[#0369A1] mt-0.5">
                   {sponsor.mentorshipHoursDelivered} Hours Delivered
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl bg-muted/40 border border-border/50">
-                <div className="text-[10px] text-muted-foreground uppercase">
+              <div className="p-3 rounded-lg bg-[#F8FAFC] border border-[#E2E8F0]">
+                <div className="text-[10px] font-bold text-[#64748B] uppercase tracking-wider">
                   4. Active Sponsorships (20%)
                 </div>
-                <div className="font-bold text-foreground mt-0.5">
+                <div className="font-bold text-[#0F172A] mt-0.5">
                   {sponsor.activeProjectsSponsored} Active Projects
                 </div>
               </div>
@@ -151,20 +145,20 @@ export function SponsorScorecardModal({
           </div>
 
           {/* Capital Allocation Card */}
-          <div className="p-3.5 bg-muted/30 rounded-xl border border-border flex items-center justify-between text-xs">
+          <div className="p-3.5 bg-[#F8FAFC] rounded-lg border border-[#E2E8F0] flex items-center justify-between text-xs">
             <div>
-              <span className="text-muted-foreground block text-[11px]">
+              <span className="text-[#64748B] font-medium block text-[11px]">
                 Total Committed Capital:
               </span>
-              <span className="font-mono font-bold text-foreground text-sm">
+              <span className="font-mono font-bold text-[#0F172A] text-sm">
                 {formatLakhs(sponsor.committedFunds)}
               </span>
             </div>
-            <div>
-              <span className="text-muted-foreground block text-[11px]">
+            <div className="text-right">
+              <span className="text-[#64748B] font-medium block text-[11px]">
                 Total Released / Audited:
               </span>
-              <span className="font-mono font-bold text-emerald-400 text-sm">
+              <span className="font-mono font-bold text-[#166534] text-sm">
                 {formatLakhs(sponsor.releasedFunds)}
               </span>
             </div>
@@ -172,10 +166,10 @@ export function SponsorScorecardModal({
         </div>
 
         {/* Footer */}
-        <div className="px-6 py-3 border-t border-border flex items-center justify-between bg-muted/20">
+        <div className="px-6 py-3 border-t border-[#E2E8F0] flex items-center justify-between bg-[#EEF2F7]">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-xl bg-secondary text-secondary-foreground hover:bg-muted text-xs font-semibold border border-border transition-colors"
+            className="px-4 py-2 rounded-lg bg-white border border-[#CBD5E1] text-[#0F172A] hover:bg-[#F8FAFC] text-xs font-semibold shadow-xs transition-colors"
           >
             Close
           </button>
@@ -183,7 +177,7 @@ export function SponsorScorecardModal({
           <button
             onClick={handleExportMCA}
             disabled={isExporting}
-            className="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold hover:bg-emerald-500 transition-all flex items-center gap-1.5 shadow-sm"
+            className="px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] transition-all flex items-center gap-1.5 shadow-xs"
           >
             {isExporting ? (
               <Loader2 className="h-3.5 w-3.5 animate-spin" />

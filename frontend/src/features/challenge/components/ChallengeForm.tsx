@@ -60,13 +60,13 @@ export const ChallengeForm: React.FC<ChallengeFormProps> = ({ onSubmit, isSubmit
       {/* Title */}
       <div>
         <label className="block text-sm font-semibold text-slate-800 mb-1.5">
-          Challenge Title <span className="text-[#0052CC]">*</span>
+          Challenge Title <span className="text-[#166534]">*</span>
         </label>
         <input
           type="text"
           {...register("title")}
           placeholder="e.g. Severe Drinking Water Pipeline Leakage in Ward 12"
-          className="w-full rounded-xl bg-white border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
+          className="w-full rounded-xl bg-white border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] focus:outline-none"
         />
         {errors.title && <p className="text-xs text-rose-600 mt-1 font-medium">{errors.title.message}</p>}
       </div>
@@ -75,11 +75,11 @@ export const ChallengeForm: React.FC<ChallengeFormProps> = ({ onSubmit, isSubmit
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-semibold text-slate-800 mb-1.5">
-            Domain Category <span className="text-[#0052CC]">*</span>
+            Domain Category <span className="text-[#166534]">*</span>
           </label>
           <select
             {...register("category")}
-            className="w-full rounded-xl bg-white border border-slate-300 px-4 py-3 text-sm text-slate-900 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
+            className="w-full rounded-xl bg-white border border-slate-300 px-4 py-3 text-sm text-slate-900 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] focus:outline-none"
           >
             <option value="">Select a Category</option>
             {CATEGORIES.map((cat) => (
@@ -93,13 +93,13 @@ export const ChallengeForm: React.FC<ChallengeFormProps> = ({ onSubmit, isSubmit
 
         <div>
           <label className="block text-sm font-semibold text-slate-800 mb-1.5">
-            Estimated Affected Population <span className="text-[#0052CC]">*</span>
+            Estimated Affected Population <span className="text-[#166534]">*</span>
           </label>
           <input
             type="number"
             {...register("affected_population", { valueAsNumber: true })}
             placeholder="e.g. 500"
-            className="w-full rounded-xl bg-white border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
+            className="w-full rounded-xl bg-white border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] focus:outline-none"
           />
           {errors.affected_population && (
             <p className="text-xs text-rose-600 mt-1 font-medium">{errors.affected_population.message}</p>
@@ -110,13 +110,13 @@ export const ChallengeForm: React.FC<ChallengeFormProps> = ({ onSubmit, isSubmit
       {/* Description */}
       <div>
         <label className="block text-sm font-semibold text-slate-800 mb-1.5">
-          Detailed Description <span className="text-[#0052CC]">*</span>
+          Detailed Description <span className="text-[#166534]">*</span>
         </label>
         <textarea
           rows={5}
           {...register("description")}
           placeholder="Describe the societal issue, its severity, impact on daily life, and any previous attempts to resolve it..."
-          className="w-full rounded-xl bg-white border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#0052CC] focus:ring-1 focus:ring-[#0052CC] focus:outline-none"
+          className="w-full rounded-xl bg-white border border-slate-300 px-4 py-3 text-sm text-slate-900 placeholder-slate-400 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] focus:outline-none"
         />
         {errors.description && <p className="text-xs text-rose-600 mt-1 font-medium">{errors.description.message}</p>}
       </div>
@@ -170,7 +170,7 @@ export const ChallengeForm: React.FC<ChallengeFormProps> = ({ onSubmit, isSubmit
           type="submit"
           onClick={() => setValue("status", "submitted")}
           disabled={isSubmitting}
-          className="flex-1 py-3 px-4 rounded-xl bg-[#0052CC] hover:bg-blue-700 text-white font-bold text-sm shadow-xs transition-all disabled:opacity-50 cursor-pointer"
+          className="flex-1 py-3 px-4 rounded-xl bg-[#166534] hover:bg-[#14532D] active:bg-[#052E16] text-white font-bold text-sm shadow-xs transition-all disabled:opacity-50 cursor-pointer"
         >
           {isSubmitting ? "Submitting Challenge..." : "Submit Challenge for Evaluation"}
         </button>

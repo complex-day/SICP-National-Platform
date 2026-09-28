@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
 export default function AcademicRootPage() {
-  redirect("/dashboard/academic");
+  redirect("/university/dashboard");
 }

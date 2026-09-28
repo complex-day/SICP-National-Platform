@@ -108,52 +108,52 @@ export function AssignMentorModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-card border border-border w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 animate-in fade-in duration-200">
+      <div className="bg-white border border-[#E2E8F0] w-full max-w-xl rounded-xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-border flex items-center justify-between bg-muted/40">
+        <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between bg-[#EEF2F7]">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-primary/10 text-primary border border-primary/20">
+            <div className="p-2 rounded-lg bg-emerald-50 text-[#166534] border border-emerald-200">
               <GraduationCap className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="font-semibold text-foreground text-base">
+              <h3 className="font-semibold text-[#0F172A] text-base">
                 Assign Faculty Mentor
               </h3>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-[#475569]">
                 HEI Institutional Mentorship Allocation & Workload Management
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+            className="p-1.5 rounded-lg text-[#64748B] hover:text-[#0F172A] hover:bg-slate-200 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content Form */}
-        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-5">
+        <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-5 bg-white">
           {error && (
-            <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs flex items-start gap-2.5 animate-in fade-in">
-              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+            <div className="p-3.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-800 text-xs flex items-start gap-2.5 animate-in fade-in">
+              <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-600" />
               <span>{error}</span>
             </div>
           )}
 
           {/* Context Details */}
-          <div className="p-3.5 rounded-xl bg-muted/50 border border-border/80 space-y-2 text-xs">
+          <div className="p-3.5 rounded-lg bg-[#EEF2F7] border border-[#E2E8F0] space-y-2 text-xs">
             <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Target Team:</span>
-              <span className="font-semibold text-foreground flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-primary" />
+              <span className="text-[#475569]">Target Team:</span>
+              <span className="font-semibold text-[#0F172A] flex items-center gap-1.5">
+                <Users className="w-3.5 h-3.5 text-[#166534]" />
                 {teamName}
               </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-muted-foreground">Challenge Domain:</span>
-              <span className="font-medium text-foreground truncate max-w-[280px]">
+              <span className="text-[#475569]">Challenge Domain:</span>
+              <span className="font-medium text-[#0F172A] truncate max-w-[280px]">
                 {challengeTitle}
               </span>
             </div>
@@ -161,23 +161,23 @@ export function AssignMentorModal({
 
           {/* Faculty Selector */}
           <div className="space-y-2">
-            <label className="text-xs font-semibold text-foreground flex items-center justify-between">
+            <label className="text-xs font-semibold text-[#0F172A] flex items-center justify-between">
               <span>Select Faculty Member</span>
-              <span className="text-[11px] font-normal text-muted-foreground">
+              <span className="text-[11px] font-normal text-[#64748B]">
                 Workload Cap: Max 3 Teams
               </span>
             </label>
 
             {isLoading ? (
-              <div className="flex items-center justify-center p-4 border border-border rounded-xl text-xs text-muted-foreground">
-                <Loader2 className="w-4 h-4 animate-spin mr-2 text-primary" />
+              <div className="flex items-center justify-center p-4 border border-[#E2E8F0] rounded-lg text-xs text-[#64748B]">
+                <Loader2 className="w-4 h-4 animate-spin mr-2 text-[#166534]" />
                 Loading faculty directory...
               </div>
             ) : (
               <select
                 value={selectedFacultyId}
                 onChange={(e) => setSelectedFacultyId(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-background border border-border text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors"
+                className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#E2E8F0] text-sm text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534] transition-colors"
                 required
               >
                 <option value="" disabled>
@@ -199,21 +199,21 @@ export function AssignMentorModal({
           {/* Selected Faculty Details Card */}
           {currentSelectedFaculty && (
             <div
-              className={`p-4 rounded-xl border transition-all ${
+              className={`p-4 rounded-lg border transition-all ${
                 isAtCapacity
-                  ? "bg-rose-500/5 border-rose-500/30"
-                  : "bg-card border-border shadow-sm"
+                  ? "bg-rose-50 border-rose-300"
+                  : "bg-[#F8FAFC] border-[#E2E8F0] shadow-xs"
               }`}
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h4 className="font-semibold text-sm text-foreground">
+                  <h4 className="font-semibold text-sm text-[#0F172A]">
                     {currentSelectedFaculty.name}
                   </h4>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-[#475569]">
                     {currentSelectedFaculty.designation} · {currentSelectedFaculty.departmentName}
                   </p>
-                  <p className="text-[11px] text-muted-foreground/80 mt-0.5">
+                  <p className="text-[11px] text-[#64748B] mt-0.5">
                     {currentSelectedFaculty.universityName}
                   </p>
                 </div>
@@ -229,7 +229,7 @@ export function AssignMentorModal({
                 {currentSelectedFaculty.specializations.map((spec, i) => (
                   <span
                     key={i}
-                    className="text-[10px] px-2 py-0.5 rounded-md bg-secondary text-secondary-foreground font-medium"
+                    className="text-[10px] px-2 py-0.5 rounded-md bg-[#EEF2F7] text-[#475569] font-medium border border-[#E2E8F0]"
                   >
                     {spec}
                   </span>
@@ -239,20 +239,20 @@ export function AssignMentorModal({
               {/* Mentorship Capacity Progress Bar */}
               <div className="mt-3.5 space-y-1">
                 <div className="flex justify-between text-[11px]">
-                  <span className="text-muted-foreground">Mentorship Workload:</span>
+                  <span className="text-[#64748B]">Mentorship Workload:</span>
                   <span
                     className={`font-semibold font-mono ${
-                      isAtCapacity ? "text-rose-400" : "text-foreground"
+                      isAtCapacity ? "text-rose-600" : "text-[#0F172A]"
                     }`}
                   >
                     {currentSelectedFaculty.activeMentorshipCount} / 3 Assigned
                   </span>
                 </div>
-                <div className="w-full h-2 rounded-full bg-muted overflow-hidden">
+                <div className="w-full h-2 rounded-full bg-[#E2E8F0] overflow-hidden">
                   <div
                     className={`h-full transition-all duration-300 ${
                       currentSelectedFaculty.activeMentorshipCount === 1
-                        ? "w-1/3 bg-emerald-500"
+                        ? "w-1/3 bg-[#16A34A]"
                         : currentSelectedFaculty.activeMentorshipCount === 2
                         ? "w-2/3 bg-amber-500"
                         : "w-full bg-rose-500"
@@ -262,8 +262,8 @@ export function AssignMentorModal({
               </div>
 
               {isAtCapacity && (
-                <div className="mt-3 flex items-center gap-2 text-xs text-rose-400">
-                  <AlertTriangle className="w-4 h-4 shrink-0" />
+                <div className="mt-3 flex items-center gap-2 text-xs text-rose-700 font-medium">
+                  <AlertTriangle className="w-4 h-4 shrink-0 text-rose-600" />
                   <span>
                     Constraint Violated: Max capacity (3) reached. You cannot assign this mentor.
                   </span>
@@ -274,47 +274,47 @@ export function AssignMentorModal({
 
           {/* Mentorship Role Selection */}
           <div className="space-y-2">
-            <label className="text-xs font-semibold text-foreground">
+            <label className="text-xs font-semibold text-[#0F172A]">
               Mentorship Role
             </label>
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
                 onClick={() => setSelectedRole("PRIMARY_MENTOR")}
-                className={`px-3.5 py-2.5 rounded-xl border text-xs font-medium text-left flex items-center justify-between transition-all ${
+                className={`px-3.5 py-2.5 rounded-lg border text-xs font-medium text-left flex items-center justify-between transition-all cursor-pointer ${
                   selectedRole === "PRIMARY_MENTOR"
-                    ? "bg-primary/10 border-primary text-primary shadow-glow-sm"
-                    : "bg-background border-border text-muted-foreground hover:text-foreground"
+                    ? "bg-emerald-50 border-[#166534] text-[#166534] shadow-xs"
+                    : "bg-[#F8FAFC] border-[#E2E8F0] text-[#475569] hover:bg-slate-100"
                 }`}
               >
                 <div>
-                  <div className="font-semibold text-foreground">Primary Mentor</div>
-                  <div className="text-[10px] text-muted-foreground">
+                  <div className="font-semibold text-[#0F172A]">Primary Mentor</div>
+                  <div className="text-[10px] text-[#64748B]">
                     Lead academic guidance
                   </div>
                 </div>
                 {selectedRole === "PRIMARY_MENTOR" && (
-                  <CheckCircle2 className="w-4 h-4 text-primary" />
+                  <CheckCircle2 className="w-4 h-4 text-[#166534]" />
                 )}
               </button>
 
               <button
                 type="button"
                 onClick={() => setSelectedRole("CO_MENTOR")}
-                className={`px-3.5 py-2.5 rounded-xl border text-xs font-medium text-left flex items-center justify-between transition-all ${
+                className={`px-3.5 py-2.5 rounded-lg border text-xs font-medium text-left flex items-center justify-between transition-all cursor-pointer ${
                   selectedRole === "CO_MENTOR"
-                    ? "bg-primary/10 border-primary text-primary shadow-glow-sm"
-                    : "bg-background border-border text-muted-foreground hover:text-foreground"
+                    ? "bg-emerald-50 border-[#166534] text-[#166534] shadow-xs"
+                    : "bg-[#F8FAFC] border-[#E2E8F0] text-[#475569] hover:bg-slate-100"
                 }`}
               >
                 <div>
-                  <div className="font-semibold text-foreground">Co-Mentor</div>
-                  <div className="text-[10px] text-muted-foreground">
+                  <div className="font-semibold text-[#0F172A]">Co-Mentor</div>
+                  <div className="text-[10px] text-[#64748B]">
                     Domain specialist
                   </div>
                 </div>
                 {selectedRole === "CO_MENTOR" && (
-                  <CheckCircle2 className="w-4 h-4 text-primary" />
+                  <CheckCircle2 className="w-4 h-4 text-[#166534]" />
                 )}
               </button>
             </div>
@@ -322,7 +322,7 @@ export function AssignMentorModal({
 
           {/* Special Instructions / Notes */}
           <div className="space-y-1.5">
-            <label className="text-xs font-semibold text-foreground">
+            <label className="text-xs font-semibold text-[#0F172A]">
               Allocation Directives & Lab Access (Optional)
             </label>
             <textarea
@@ -330,23 +330,23 @@ export function AssignMentorModal({
               onChange={(e) => setMentorshipNotes(e.target.value)}
               placeholder="e.g., Provide access to IoT & Embedded Systems Lab for sensor calibration..."
               rows={2}
-              className="w-full px-3.5 py-2 rounded-xl bg-background border border-border text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors resize-none"
+              className="w-full px-3.5 py-2 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:ring-1 focus:ring-[#166534] focus:border-[#166534] transition-colors resize-none"
             />
           </div>
 
           {/* Action Buttons */}
-          <div className="pt-2 flex items-center justify-end gap-3">
+          <div className="pt-2 flex items-center justify-end gap-3 border-t border-[#E2E8F0]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl border border-border text-xs font-semibold text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors"
+              className="px-4 py-2 rounded-lg border border-[#E2E8F0] text-xs font-semibold text-[#475569] hover:text-[#0F172A] hover:bg-slate-100 transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting || !selectedFacultyId || isAtCapacity}
-              className="px-5 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed shadow-glow flex items-center gap-2 transition-all"
+              className="px-5 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] disabled:opacity-50 disabled:cursor-not-allowed shadow-xs flex items-center gap-2 transition-all cursor-pointer"
             >
               {isSubmitting ? (
                 <>

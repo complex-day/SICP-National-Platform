@@ -62,28 +62,28 @@ export function UserProfileCard() {
 
   if (isLoading || !profile) {
     return (
-      <div className="w-full max-w-xl p-8 bg-white border border-slate-200 rounded-2xl flex flex-col items-center justify-center min-h-[300px] shadow-sm">
-        <Loader2 className="w-8 h-8 text-[#0052CC] animate-spin mb-3" />
+      <div className="w-full max-w-xl p-8 bg-white border border-[#E2E8F0] rounded-2xl flex flex-col items-center justify-center min-h-[300px] shadow-sm">
+        <Loader2 className="w-8 h-8 text-[#166534] animate-spin mb-3" />
         <p className="text-slate-500 text-xs">Loading user credentials...</p>
       </div>
     );
   }
 
   const roleColors: Record<string, string> = {
-    citizen: "bg-blue-50 text-[#0052CC] border-blue-200",
+    citizen: "bg-emerald-50 text-[#166534] border-emerald-200",
     student: "bg-emerald-50 text-emerald-800 border-emerald-300",
-    faculty: "bg-purple-50 text-purple-800 border-purple-300",
+    faculty: "bg-teal-50 text-teal-800 border-teal-300",
     industry: "bg-amber-50 text-amber-800 border-amber-300",
     government: "bg-sky-50 text-sky-800 border-sky-300",
     admin: "bg-rose-50 text-rose-800 border-rose-300",
   };
 
   return (
-    <div className="w-full max-w-xl bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+    <div className="w-full max-w-xl bg-white border border-[#E2E8F0] rounded-2xl shadow-sm overflow-hidden">
       {/* Header Banner */}
       <div className="p-6 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#0052CC] font-bold text-xl">
+          <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-[#166534] font-bold text-xl">
             {profile.full_name.charAt(0).toUpperCase()}
           </div>
           <div>
@@ -134,7 +134,7 @@ export function UserProfileCard() {
           </div>
           <div className="w-24 bg-slate-200 rounded-full h-2.5 overflow-hidden">
             <div
-              className="bg-[#0052CC] h-2.5 rounded-full"
+              className="bg-[#166534] h-2.5 rounded-full"
               style={{ width: `${profile.trust_score}%` }}
             />
           </div>

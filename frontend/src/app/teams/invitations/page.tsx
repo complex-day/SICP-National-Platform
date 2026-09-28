@@ -183,7 +183,7 @@ export default function TeamInvitationsPage() {
                         <button
                           type="button"
                           onClick={() => handleAction(inv.id, "ACCEPT")}
-                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-primary text-primary-foreground font-bold text-xs hover:bg-primary/90 transition-all shadow-xs cursor-pointer"
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-[#166534] text-white font-bold text-xs hover:bg-[#14532D] transition-all shadow-xs cursor-pointer"
                         >
                           <CheckCircle2 className="h-3.5 w-3.5" />
                           <span>Accept & Join</span>
@@ -191,7 +191,7 @@ export default function TeamInvitationsPage() {
                         <button
                           type="button"
                           onClick={() => handleAction(inv.id, "REJECT")}
-                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl border border-border bg-background hover:bg-destructive/10 text-muted-foreground hover:text-destructive font-semibold text-xs transition-colors cursor-pointer"
+                          className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border border-[#CBD5E1] bg-white hover:bg-red-50 text-[#475569] hover:text-[#DC2626] font-semibold text-xs transition-colors cursor-pointer"
                         >
                           <XCircle className="h-3.5 w-3.5" />
                           <span>Decline</span>
@@ -201,7 +201,7 @@ export default function TeamInvitationsPage() {
                       <button
                         type="button"
                         onClick={() => handleAction(inv.id, "CANCEL")}
-                        className="w-full py-2 px-3 rounded-xl border border-border bg-background hover:bg-destructive/10 text-muted-foreground hover:text-destructive font-semibold text-xs transition-colors cursor-pointer"
+                        className="w-full py-2 px-3 rounded-lg border border-[#CBD5E1] bg-white hover:bg-red-50 text-[#475569] hover:text-[#DC2626] font-semibold text-xs transition-colors cursor-pointer"
                       >
                         Revoke Invitation
                       </button>

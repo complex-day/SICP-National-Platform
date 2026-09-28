@@ -16,11 +16,11 @@ export function ChallengeAssignmentStatusBadge({ status, className }: Props) {
       return (
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20",
+            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-300",
             className
           )}
         >
-          <Clock className="w-3 h-3 animate-pulse" />
+          <Clock className="w-3 h-3" />
           Intake Pending
         </span>
       );
@@ -28,7 +28,7 @@ export function ChallengeAssignmentStatusBadge({ status, className }: Props) {
       return (
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20",
+            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-50 text-sky-800 border border-sky-300",
             className
           )}
         >
@@ -40,7 +40,7 @@ export function ChallengeAssignmentStatusBadge({ status, className }: Props) {
       return (
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20",
+            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-300",
             className
           )}
         >
@@ -52,11 +52,11 @@ export function ChallengeAssignmentStatusBadge({ status, className }: Props) {
       return (
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20",
+            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border-emerald-300",
             className
           )}
         >
-          <FlaskConical className="w-3 h-3 animate-bounce" />
+          <FlaskConical className="w-3 h-3" />
           Active Research
         </span>
       );
@@ -64,7 +64,7 @@ export function ChallengeAssignmentStatusBadge({ status, className }: Props) {
       return (
         <span
           className={cn(
-            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+            "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#14532D] border-emerald-300",
             className
           )}
         >

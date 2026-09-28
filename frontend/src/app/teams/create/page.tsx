@@ -295,7 +295,7 @@ export default function CreateTeamPage() {
             <button
               type="button"
               onClick={() => router.push("/teams")}
-              className="inline-flex items-center gap-1 px-4 py-2.5 rounded-xl border border-border bg-background hover:bg-muted text-xs font-bold text-foreground transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1 px-4 py-2.5 rounded-lg border border-[#CBD5E1] bg-white hover:bg-[#F8FAFC] text-xs font-semibold text-[#0F172A] shadow-xs transition-colors cursor-pointer"
             >
               <ChevronLeft className="h-4 w-4" />
               <span>Cancel</span>
@@ -304,7 +304,7 @@ export default function CreateTeamPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-primary text-primary-foreground font-bold text-xs hover:bg-primary/90 transition-all shadow-md shadow-primary/20 cursor-pointer disabled:opacity-50"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-[#166534] text-white font-bold text-xs hover:bg-[#14532D] transition-all shadow-xs cursor-pointer disabled:opacity-50"
             >
               <Sparkles className="h-4 w-4" />
               <span>{isSubmitting ? "Creating Squad..." : "Create Squad Workspace"}</span>

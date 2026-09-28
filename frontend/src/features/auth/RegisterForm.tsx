@@ -89,7 +89,7 @@ export function RegisterForm() {
   };
 
   return (
-    <div className="w-full max-w-2xl p-8 bg-white border border-slate-200 rounded-2xl shadow-lg">
+    <div className="w-full max-w-2xl p-8 bg-white border border-[#E2E8F0] rounded-2xl shadow-sm">
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Create SICP Account</h2>
         <p className="text-xs text-slate-500 mt-1.5">
@@ -133,12 +133,12 @@ export function RegisterForm() {
                       onClick={() => setValue("role", r.id, { shouldValidate: true })}
                       className={`p-3 rounded-lg border text-left flex flex-col gap-1.5 transition duration-150 cursor-pointer ${
                         isSelected
-                          ? "bg-blue-50 border-[#0052CC] ring-1 ring-[#0052CC] text-slate-900 shadow-xs"
+                          ? "bg-emerald-50 border-[#166534] ring-1 ring-[#166534] text-[#14532D] shadow-xs"
                           : "bg-slate-50 border-slate-200 hover:bg-slate-100 text-slate-700"
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <Icon className={`w-4 h-4 ${isSelected ? "text-[#0052CC]" : "text-slate-500"}`} />
+                        <Icon className={`w-4 h-4 ${isSelected ? "text-[#166534]" : "text-slate-500"}`} />
                         <span className="font-semibold text-xs">{r.label}</span>
                       </div>
                       <span className="text-[11px] text-slate-500 line-clamp-1">{r.desc}</span>
@@ -167,7 +167,7 @@ export function RegisterForm() {
                     placeholder="Rahul Kumar"
                     {...register("full_name")}
                     className={`w-full pl-10 pr-4 py-2.5 bg-white border ${
-                      errors.full_name ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#0052CC]"
+                      errors.full_name ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534]"
                     } rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition`}
                   />
                 </div>
@@ -190,7 +190,7 @@ export function RegisterForm() {
                     placeholder="rahul@example.com"
                     {...register("email")}
                     className={`w-full pl-10 pr-4 py-2.5 bg-white border ${
-                      errors.email ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#0052CC]"
+                      errors.email ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534]"
                     } rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition`}
                   />
                 </div>
@@ -215,7 +215,7 @@ export function RegisterForm() {
                     type="tel"
                     placeholder="9876543210"
                     {...register("phone")}
-                    className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-300 focus:border-[#0052CC] rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition"
+                    className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition"
                   />
                 </div>
               </div>
@@ -234,7 +234,7 @@ export function RegisterForm() {
                       type="text"
                       placeholder="e.g. Ranchi"
                       {...register("district")}
-                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-300 focus:border-[#0052CC] rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition"
                     />
                   </div>
                 </div>
@@ -254,7 +254,7 @@ export function RegisterForm() {
                       type="text"
                       placeholder="e.g. Tata Steel CSR"
                       {...register("company_name")}
-                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-300 focus:border-[#0052CC] rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition"
                     />
                   </div>
                 </div>
@@ -274,7 +274,7 @@ export function RegisterForm() {
                       type="text"
                       placeholder="e.g. Water Resources Engineering"
                       {...register("specialization")}
-                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-300 focus:border-[#0052CC] rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition"
+                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534] rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition"
                     />
                   </div>
                 </div>
@@ -297,7 +297,7 @@ export function RegisterForm() {
                     placeholder="••••••••"
                     {...register("password")}
                     className={`w-full pl-10 pr-10 py-2.5 bg-white border ${
-                      errors.password ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#0052CC]"
+                      errors.password ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534]"
                     } rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition`}
                   />
                   <button
@@ -328,7 +328,7 @@ export function RegisterForm() {
                     placeholder="••••••••"
                     {...register("confirmPassword")}
                     className={`w-full pl-10 pr-10 py-2.5 bg-white border ${
-                      errors.confirmPassword ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#0052CC]"
+                      errors.confirmPassword ? "border-rose-500 ring-1 ring-rose-500" : "border-slate-300 focus:border-[#166534] focus:ring-1 focus:ring-[#166534]"
                     } rounded-lg text-slate-900 placeholder-slate-400 text-xs focus:outline-none transition`}
                   />
                   <button
@@ -349,7 +349,7 @@ export function RegisterForm() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-2.5 px-4 bg-[#0052CC] hover:bg-blue-700 text-white font-semibold rounded-lg shadow-xs transition duration-150 flex items-center justify-center gap-2 group disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer text-xs"
+              className="w-full py-2.5 px-4 bg-[#166534] hover:bg-[#14532D] active:bg-[#052E16] text-white font-semibold rounded-lg shadow-xs transition duration-150 flex items-center justify-center gap-2 group disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer text-xs"
             >
               {isLoading ? (
                 <>
@@ -367,7 +367,7 @@ export function RegisterForm() {
 
           <div className="mt-8 text-center text-xs text-slate-500">
             Already have an account?{" "}
-            <Link href="/login" className="font-semibold text-[#0052CC] hover:underline transition">
+            <Link href="/login" className="font-semibold text-[#166534] hover:underline transition">
               Sign In
             </Link>
           </div>

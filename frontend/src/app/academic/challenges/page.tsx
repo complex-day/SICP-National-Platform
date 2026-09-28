@@ -141,10 +141,10 @@ export default function AcademicChallengesPage() {
         const u = row.urgency;
         const color =
           u === "CRITICAL"
-            ? "text-rose-400 bg-rose-500/10 border-rose-500/20"
+            ? "text-[#DC2626] bg-red-50 border-red-200"
             : u === "HIGH"
-            ? "text-amber-400 bg-amber-500/10 border-amber-500/20"
-            : "text-emerald-400 bg-emerald-500/10 border-emerald-500/20";
+            ? "text-[#D97706] bg-amber-50 border-amber-200"
+            : "text-[#166534] bg-emerald-50 border-emerald-200";
         return (
           <span
             className={`px-2 py-0.5 rounded-full text-[11px] font-bold border ${color}`}
@@ -196,7 +196,7 @@ export default function AcademicChallengesPage() {
           <button
             onClick={() => router.push(`/challenges`)}
             title="Review Original Problem Statement"
-            className="px-2.5 py-1 rounded-lg border border-border text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors flex items-center gap-1"
+            className="px-2.5 py-1 rounded-lg border border-[#E2E8F0] text-xs font-medium text-[#475569] hover:text-[#0F172A] hover:bg-[#EEF2F7] transition-colors flex items-center gap-1"
           >
             <Eye className="w-3 h-3" />
             Review
@@ -212,7 +212,7 @@ export default function AcademicChallengesPage() {
                 });
                 setIsClaimModalOpen(true);
               }}
-              className="px-2.5 py-1 rounded-lg bg-cyan-500/15 text-cyan-400 hover:bg-cyan-500/25 border border-cyan-500/30 text-xs font-semibold transition-colors"
+              className="px-2.5 py-1 rounded-lg bg-emerald-50 text-[#166534] hover:bg-emerald-100 border border-emerald-300 text-xs font-semibold transition-colors"
             >
               Claim
             </button>
@@ -222,7 +222,7 @@ export default function AcademicChallengesPage() {
                 setSelectedAssignmentForDept(row);
                 setIsAssignDeptOpen(true);
               }}
-              className="px-2.5 py-1 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 text-xs font-semibold transition-all"
+              className="px-2.5 py-1 rounded-lg bg-[#166534] text-white hover:bg-[#14532D] text-xs font-semibold transition-all shadow-xs"
             >
               Assign Dept
             </button>
@@ -237,11 +237,11 @@ export default function AcademicChallengesPage() {
       <div className="space-y-6 animate-in fade-in duration-300">
         {/* Success Toast */}
         {successToast && (
-          <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium flex items-center justify-between shadow-glow animate-in slide-in-from-top-2">
+          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-[#166534] text-sm font-medium flex items-center justify-between shadow-xs animate-in slide-in-from-top-2">
             <span>{successToast}</span>
             <button
               onClick={() => setSuccessToast(null)}
-              className="text-xs uppercase font-bold tracking-wider underline hover:text-emerald-300"
+              className="text-xs uppercase font-bold tracking-wider underline hover:text-[#14532D]"
             >
               Dismiss
             </button>
@@ -258,7 +258,7 @@ export default function AcademicChallengesPage() {
             { label: "Challenges", href: "/academic/challenges" },
           ]}
           badge={
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-[#166534] border border-emerald-300">
               HEI Intake Portal
             </span>
           }
@@ -272,7 +272,7 @@ export default function AcademicChallengesPage() {
                 });
                 setIsClaimModalOpen(true);
               }}
-              className="px-4 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow flex items-center gap-2 transition-all"
+              className="px-4 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs flex items-center gap-2 transition-all"
             >
               <Plus className="w-3.5 h-3.5" />
               Claim New Challenge
@@ -281,36 +281,36 @@ export default function AcademicChallengesPage() {
         />
 
         {/* Search & Filter Bar */}
-        <div className="p-4 rounded-2xl bg-card border border-border space-y-3">
+        <div className="p-4 rounded-xl bg-white border border-[#E2E8F0] shadow-xs space-y-3">
           <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#64748B]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search challenges by title, university, department, or faculty PI..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-background border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-colors"
+                className="w-full pl-10 pr-4 py-2 rounded-lg bg-white border border-[#E2E8F0] text-sm text-[#0F172A] placeholder:text-[#64748B] focus:outline-none focus:ring-2 focus:ring-[#166534]/20 focus:border-[#166534] transition-colors"
               />
             </div>
             <button
               type="submit"
-              className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:bg-primary/90 shadow-glow transition-all"
+              className="px-5 py-2 rounded-lg bg-[#166534] text-white text-xs font-semibold hover:bg-[#14532D] shadow-xs transition-all"
             >
               Search
             </button>
           </form>
 
           {/* Filter Pills */}
-          <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-border/60">
+          <div className="flex flex-wrap items-center gap-3 pt-2 border-t border-[#E2E8F0]">
             {/* Category Filter */}
             <div className="flex items-center gap-1.5 text-xs">
-              <Filter className="w-3.5 h-3.5 text-muted-foreground" />
-              <span className="text-muted-foreground font-medium">Category:</span>
+              <Filter className="w-3.5 h-3.5 text-[#64748B]" />
+              <span className="text-[#475569] font-medium">Category:</span>
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-2.5 py-1 rounded-lg bg-background border border-border text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                className="px-2.5 py-1 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534]"
               >
                 {CATEGORIES.map((cat) => (
                   <option key={cat} value={cat}>
@@ -322,11 +322,11 @@ export default function AcademicChallengesPage() {
 
             {/* Status Filter */}
             <div className="flex items-center gap-1.5 text-xs">
-              <span className="text-muted-foreground font-medium">Status:</span>
+              <span className="text-[#475569] font-medium">Status:</span>
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value)}
-                className="px-2.5 py-1 rounded-lg bg-background border border-border text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                className="px-2.5 py-1 rounded-lg bg-white border border-[#E2E8F0] text-xs text-[#0F172A] focus:outline-none focus:ring-1 focus:ring-[#166534]"
               >
                 {STATUSES.map((st) => (
                   <option key={st.value} value={st.value}>
@@ -346,7 +346,7 @@ export default function AcademicChallengesPage() {
                   setSelectedStatus("ALL");
                   setSearchQuery("");
                 }}
-                className="text-xs text-primary font-semibold hover:underline ml-auto"
+                className="text-xs text-[#166534] font-semibold hover:underline ml-auto"
               >
                 Reset Filters
               </button>

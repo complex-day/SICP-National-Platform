@@ -17,24 +17,24 @@ export interface MetricCardProps {
 
 const statusColorMap = {
   emerald: {
-    bar: "bg-emerald-500",
-    badge: "bg-emerald-500/10 text-emerald-500 border-emerald-500/20",
+    bar: "bg-[#16A34A]",
+    badge: "bg-emerald-50 text-[#166534] border-emerald-200",
   },
   amber: {
-    bar: "bg-amber-500",
-    badge: "bg-amber-500/10 text-amber-500 border-amber-500/20",
+    bar: "bg-[#D97706]",
+    badge: "bg-amber-50 text-amber-800 border-amber-200",
   },
   rose: {
-    bar: "bg-rose-500",
-    badge: "bg-rose-500/10 text-rose-500 border-rose-500/20",
+    bar: "bg-[#DC2626]",
+    badge: "bg-red-50 text-red-800 border-red-200",
   },
   blue: {
-    bar: "bg-blue-500",
-    badge: "bg-blue-500/10 text-blue-500 border-blue-500/20",
+    bar: "bg-[#0369A1]",
+    badge: "bg-sky-50 text-[#0369A1] border-sky-200",
   },
   purple: {
-    bar: "bg-purple-500",
-    badge: "bg-purple-500/10 text-purple-500 border-purple-500/20",
+    bar: "bg-[#166534]",
+    badge: "bg-emerald-50 text-[#166534] border-emerald-200",
   },
 };
 
@@ -44,19 +44,19 @@ export function MetricCard({
   percentage,
   targetLabel,
   category,
-  statusColor = "blue",
+  statusColor = "emerald",
   footerNote,
   className,
   isLoading = false,
 }: MetricCardProps) {
-  const colors = statusColorMap[statusColor] || statusColorMap.blue;
+  const colors = statusColorMap[statusColor] || statusColorMap.emerald;
 
   if (isLoading) {
     return (
-      <div className={cn("glass-panel rounded-lg p-4 animate-pulse", className)}>
-        <div className="h-3 w-20 bg-muted rounded mb-2"></div>
-        <div className="h-6 w-28 bg-muted rounded mb-3"></div>
-        <div className="h-2 w-full bg-muted rounded"></div>
+      <div className={cn("bg-white rounded-lg p-4 border border-[#E2E8F0] shadow-xs animate-pulse", className)}>
+        <div className="h-3 w-20 bg-slate-200 rounded mb-2"></div>
+        <div className="h-6 w-28 bg-slate-200 rounded mb-3"></div>
+        <div className="h-2 w-full bg-slate-200 rounded"></div>
       </div>
     );
   }
@@ -66,12 +66,12 @@ export function MetricCard({
   return (
     <div
       className={cn(
-        "glass-panel rounded-lg p-4 border border-border/70 hover:border-border transition-colors",
+        "bg-white rounded-lg p-4 border border-[#E2E8F0] shadow-xs hover:border-[#166534]/50 transition-colors",
         className
       )}
     >
       <div className="flex items-center justify-between gap-2 mb-1.5">
-        <span className="text-xs text-muted-foreground font-medium truncate">
+        <span className="text-xs text-[#475569] font-medium truncate">
           {label}
         </span>
         {category && (
@@ -87,18 +87,18 @@ export function MetricCard({
       </div>
 
       <div className="flex items-baseline justify-between gap-2 mb-2">
-        <span className="text-xl font-bold tracking-tight text-foreground">
+        <span className="text-xl font-bold tracking-tight text-[#0F172A]">
           {value}
         </span>
         {targetLabel && (
-          <span className="text-xs text-muted-foreground font-medium">
+          <span className="text-xs text-[#64748B] font-medium">
             {targetLabel}
           </span>
         )}
       </div>
 
       {clampedPercentage !== undefined && (
-        <div className="w-full bg-muted/60 rounded-full h-1.5 overflow-hidden mb-1.5">
+        <div className="w-full bg-[#EEF2F7] rounded-full h-1.5 overflow-hidden mb-1.5">
           <div
             className={cn("h-full rounded-full transition-all duration-500", colors.bar)}
             style={{ width: `${clampedPercentage}%` }}
@@ -107,7 +107,7 @@ export function MetricCard({
       )}
 
       {footerNote && (
-        <p className="text-[11px] text-muted-foreground mt-1 truncate">
+        <p className="text-[11px] text-[#64748B] mt-1 truncate">
           {footerNote}
         </p>
       )}
