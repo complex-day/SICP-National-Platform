@@ -85,7 +85,7 @@ export function GovTopBar() {
                 {role || "USER"}
               </span>
               <span className="hidden sm:inline font-medium text-emerald-100 truncate max-w-[120px]">
-                {user.email || user.username}
+                {user.full_name || user.email}
               </span>
               <button
                 type="button"
