@@ -23,19 +23,29 @@ export const URGENCY_LEVELS: UrgencyLevel[] = ["LOW", "MEDIUM", "HIGH", "CRITICA
 
 export type ChallengeStatus =
   | "DRAFT"
+  | "OPEN"
   | "SUBMITTED"
   | "UNDER_REVIEW"
   | "CLAIMED"
+  | "ASSIGNED"
+  | "MATCHED"
   | "IN_PROGRESS"
-  | "RESOLVED";
+  | "ACTIVE"
+  | "RESOLVED"
+  | "COMPLETED";
 
 export const CHALLENGE_STATUSES: ChallengeStatus[] = [
   "DRAFT",
+  "OPEN",
   "SUBMITTED",
   "UNDER_REVIEW",
   "CLAIMED",
+  "ASSIGNED",
+  "MATCHED",
   "IN_PROGRESS",
+  "ACTIVE",
   "RESOLVED",
+  "COMPLETED",
 ];
 
 export interface ChallengeLocation {

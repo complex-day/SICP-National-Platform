@@ -24,11 +24,16 @@ const statusOrder: ChallengeStatus[] = [
 
 const statusDescriptions: Record<ChallengeStatus, string> = {
   DRAFT: "Observation recorded & initial draft prepared.",
+  OPEN: "Published and open for intake & community review.",
   SUBMITTED: "Citizen verified and submitted for nodal review.",
   UNDER_REVIEW: "AI triage & district authority eligibility vetting.",
   CLAIMED: "Academic institution or research team claimed for R&D.",
+  ASSIGNED: "Assigned to university engineering department.",
+  MATCHED: "Matched with faculty research lead & research squad.",
   IN_PROGRESS: "Active solution prototyping and on-site field trials.",
+  ACTIVE: "Active solution prototyping and on-site field trials.",
   RESOLVED: "Solution validated, deployed, and impact verified.",
+  COMPLETED: "Field implementation validated & completed.",
 };
 
 export const ChallengeTimeline: React.FC<ChallengeTimelineProps> = ({
