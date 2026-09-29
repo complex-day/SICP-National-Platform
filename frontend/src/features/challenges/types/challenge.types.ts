@@ -50,7 +50,7 @@ export interface ChallengeMedia {
   id: string;
   name: string;
   url: string;
-  type: "image" | "document";
+  type: "image" | "document" | "video";
   sizeBytes?: number;
   mimeType?: string;
   uploadedAt?: string;

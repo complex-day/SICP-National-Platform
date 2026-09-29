@@ -141,13 +141,13 @@ export default function ChallengeDetailPage() {
 
   // Filter media files
   const imageMedia = challenge.media?.filter(
-    (m) => m.type === "image" || m.url?.includes("unsplash") || m.url?.includes("image") || m.url?.includes(".png") || m.url?.includes(".jpg")
+    (m) => (m.type as string) === "image" || m.url?.includes("unsplash") || m.url?.includes("image") || m.url?.includes(".png") || m.url?.includes(".jpg")
   ) || [];
   const docMedia = challenge.media?.filter(
-    (m) => m.type === "document" || m.url?.includes(".pdf") || m.url?.includes(".doc")
+    (m) => (m.type as string) === "document" || m.url?.includes(".pdf") || m.url?.includes(".doc")
   ) || [];
   const videoMedia = challenge.media?.filter(
-    (m) => m.type === "video" || m.url?.includes(".mp4")
+    (m) => (m.type as string) === "video" || m.url?.includes(".mp4")
   ) || [];
 
   return (
