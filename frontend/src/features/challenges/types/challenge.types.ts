@@ -89,6 +89,7 @@ export interface Challenge {
     teamName: string;
     leadName: string;
     institution: string;
+    claimedAt?: string;
   };
 }
 
