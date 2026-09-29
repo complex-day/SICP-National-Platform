@@ -240,21 +240,21 @@ npm run build
 
 ---
 
-## 📸 Screenshots & UI Showcase
+## 📸 Screenshots & UI Showcase (National Government & Sustainability Platform)
 
-| Citizen Problem Reporting | Interactive Innovation Map |
+| 🏛️ National Portal Homepage | 🇮🇳 National Leadership & Mission |
 | :---: | :---: |
-| ![Problem Submission](screenshots/media_1789831912272.png) | ![Interactive Map](screenshots/media_1789832212636.png) |
+| ![National Portal Homepage](screenshots/01_national_portal_homepage.png) | ![National Leadership & Mission](screenshots/02_national_leadership_mission.png) |
 
-| Student Collaboration Hub | Milestone & Grant Tracking |
+| 🎓 AI Academic & Faculty Matching | 🚀 State Innovation Projects & Milestones |
 | :---: | :---: |
-| ![Student Workspace](screenshots/media_1789832350820.png) | ![Milestone Escrow](screenshots/media_1789832732142.png) |
+| ![AI Academic Matching Engine](screenshots/03_academic_ai_matching.png) | ![State Innovation Projects](screenshots/04_state_innovation_projects.png) |
 
-| Government Analytics Console | Stakeholder Role Dashboards |
+| 📊 Institutional Governance Overview | 🛡️ Verified NIC & Digital India Architecture |
 | :---: | :---: |
-| ![District Analytics](screenshots/media_1789833205304.png) | ![Role Switcher](screenshots/media_1789833308434.png) |
+| ![Institutional Overview](screenshots/05_institutional_portal_overview.png) | ![NIC Digital India Footer](screenshots/06_nic_digital_india_footer.png) |
 
-*(More detailed walkthrough screenshots available in the [`screenshots/`](file:///c:/Users/Lenovo/Desktop/PROJECT%20CREATED/SICP/screenshots) directory).*
+*(All views adhere strictly to the **National Digital India / Forest Green & Sustainability Design System**).*
 
 ---
 
