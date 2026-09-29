@@ -27,7 +27,7 @@ import {
 import { cn } from "@/lib/utils";
 
 // Status Badge Helper according to Gov spec
-export function GovStatusBadge({ status }: { status: string }) {
+function GovStatusBadge({ status }: { status: string }) {
   const normalized = status.toUpperCase();
   switch (normalized) {
     case "DRAFT":

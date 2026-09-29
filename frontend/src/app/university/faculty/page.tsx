@@ -26,7 +26,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function FacultyLoadBadge({ count }: { count: number }) {
+function FacultyLoadBadge({ count }: { count: number }) {
   if (count <= 2) {
     return (
       <span className="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-[#2E7D32] border border-emerald-300">
@@ -48,7 +48,7 @@ export function FacultyLoadBadge({ count }: { count: number }) {
   );
 }
 
-export function FacultyAvailabilityBadge({ availability }: { availability: string }) {
+function FacultyAvailabilityBadge({ availability }: { availability: string }) {
   const norm = availability.toUpperCase();
   if (norm === "AVAILABLE") {
     return (
